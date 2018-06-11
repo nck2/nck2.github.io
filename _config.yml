@@ -9,7 +9,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "ko"
-title                    : "Xzero의 노트"
+title                    : "Xzero's Notes"
 # title                    : "Dev.Hundred"
 title_separator          : "-"
 name                     : #"Xzero"
@@ -21,7 +21,7 @@ url                      : "https://nck2.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "nck2/nck2.github.io"
 # repository               : "junhobaik/junhobaik.github.io"
-teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+teaser                   : "assets/images/456.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -95,7 +95,7 @@ analytics:
 author:
   name             : #"Xzero"
   # name             : "Junho Baik"
-  avatar           : "/assets/images/123.jpg"
+  avatar           : "/assets/images/123.png"
   # avatar           : "/assets/images/profile.png"
   bio              :
   # bio              : "Junior Front-End Web Developer"
