@@ -6,6 +6,8 @@ categories: "Python"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "AWS"
 slug: "aws_jupyter"
+header:
+  teaser: /assets/images/123.png
 ---
 
 - 참고 [link](https://chrisalbon.com/software_engineering/cloud_computing/run_project_jupyter_on_amazon_ec2/)
