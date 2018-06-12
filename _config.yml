@@ -8,7 +8,7 @@
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "ko"
+locale                   : "en-US"
 title                    : "Xzero's Notes"
 # title                    : "Dev.Hundred"
 title_separator          : "-"
@@ -25,10 +25,10 @@ teaser                   : "assets/images/456.jpg" # path of fallback teaser ima
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               :  "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
-  # provider               : "disqus"
+  # provider               :  "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
+  provider               : "staticman_v2"
   disqus:
-    shortname            : myxzero
+    # shortname            : myxzero #현재 사용하는 disqus
     # shortname            : dev-hundred-blog
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
@@ -39,7 +39,7 @@ comments:
     colorscheme          : # "light" (default), "dark"
 staticman:
   allowedFields          : # ['name', 'email', 'url', 'message']
-  branch                 : # "master"
+  branch                 : "master"
   commitMessage          : # "New comment."
   filename               : # comment-{@timestamp}
   format                 : # "yml"
