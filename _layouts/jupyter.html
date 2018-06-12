@@ -57,8 +57,11 @@ layout: default
           <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Updated:" }}</strong> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
         {% endif %}
       </footer>
+       <!--공유하기 부분 껐음. -->
+      {% comment %}
 
-      {% if page.share %}{% include social-share.html %}{% endif %}
+       {% if page.share %}{% include social-share.html %}{% endif %} #}
+       {% endcomment %}
 
       {% include post_pagination.html %}
     </div>
