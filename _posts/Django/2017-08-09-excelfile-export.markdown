@@ -1,11 +1,15 @@
 ---
-layout: "post"
+# layout: "post"
 title: "excelfile_export"
 date: "2017-08-09 10:44"
 categories: Django
+tag: Django
+header:
+  teaser: /assets/images/4.png
+
 ---
 
-장고에서 엑셀파일로 export하는 view 예시
+## 장고에서 엑셀파일로 export하는 view 예시
 
 {% highlight python %}
 def excel(request):

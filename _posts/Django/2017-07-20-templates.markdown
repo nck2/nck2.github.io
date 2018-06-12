@@ -1,17 +1,21 @@
 ---
-layout: "post"
-title: "templates"
+# layout: "post"
+title: "Templates"
 date: "2017-07-20 12:06"
-categories:
+categories: Django
+tag: Django
+header:
+  teaser: /assets/images/9.png
+
 ---
 
-주피터 노트북 사용
+## 주피터 노트북 사용
 python manage.py shell_plus --notebook
 
 - 1:1 OneToOneField로 연결된, user와 profile관계에서 profile에 해당하는 user호출 예시
 <script src="https://gist.github.com/nck2/ac7d813751f6869cb181271ef767c5da.js"></script>
 
-staticfile 사용
+## staticfile 사용
 
 - 앱/static/앱/css/style.css 생성
 - 템플릿 파일위에

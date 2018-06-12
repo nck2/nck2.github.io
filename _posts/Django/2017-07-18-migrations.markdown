@@ -1,8 +1,12 @@
 ---
-layout: "post"
+# layout: "post"
 title: "Migrations"
 date: "2017-07-18 12:00"
 categories: Django
+tag: Django
+header:
+  teaser: /assets/images/7.png
+
 ---
 
 ## Migrations 명령어

@@ -1,8 +1,12 @@
 ---
-layout: "post"
+# layout: "post"
 title: "Django Shell"
 date: "2017-07-18 13:01"
 categories: Django
+tag: Django
+header:
+  teaser: /assets/images/5.png
+
 ---
 ## Jupyter notebook을 통한 shell 접근
 

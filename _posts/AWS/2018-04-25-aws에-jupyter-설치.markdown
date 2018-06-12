@@ -7,7 +7,7 @@ categories: "Python"
 tag: "AWS"
 slug: "aws_jupyter"
 header:
-  teaser: /assets/images/123.png
+  teaser: /assets/images/2.png
 ---
 
 - 참고 [link](https://chrisalbon.com/software_engineering/cloud_computing/run_project_jupyter_on_amazon_ec2/)
@@ -15,7 +15,7 @@ header:
 - https://[주소]:8888 로 접속하면 끝
 
 
-* sage 설치
+## sage 설치
 - ssh로 해당 리눅스 접속
 - sage에서 파일 다운로드
 - wget (sage 파일주소)
@@ -28,5 +28,4 @@ header:
 - 하지만 다른 폴더에서는 실행하면 잠깐 실행되었다가 꺼짐 = SAGE_ROOT를 설정하라는 메시지뜸.
 - SAGE_ROOT=/home/hvofak5s/SageMath/ jupyter notebook 와 같이 앞에 명령을 주고 실행시켜보니 됨.
 - cd 명령어로 원하는 폴더로 이동후 위의 명령을 치니 잘 실행됨.
-
 - 로컬 맥에서 /Applications/SageMath/sage -n jupyter 로 sage 주피터 실행가능

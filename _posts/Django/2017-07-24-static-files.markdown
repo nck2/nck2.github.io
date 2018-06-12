@@ -1,10 +1,15 @@
 ---
-layout: "post"
-title: "static_files"
+# layout: "post"
+title: "Static_files"
 date: "2017-07-24 10:28"
-categories:
+categories: Django
+tag: Django
+header:
+  teaser: /assets/images/8.png
+
 ---
-- BASE_DIR
+
+## BASE_DIR
   - 설정파일에 설정함.
   - 보통 최상위root, 즉, manage.py가 있는 폴더를 말함
 

@@ -4,12 +4,11 @@ title: "ec2에 ssh접속"
 date: "2018-03-28 22:51"
 categories: Computer
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag:
+tag: "Computer"
 slug: "awsssh"
 header:
-  teaser: /assets/images/mytest.png
+  teaser: /assets/images/1.png
 ---
-
 
 1. IAM 계정생성
 - 프로그래밍 방식 접근허용
@@ -34,6 +33,3 @@ ssh -i ***.pem ec2-user@주소
 - cd templated-visualize
 - cp -R ./* /var/www/html/
 - service httpd restart
-
-수식테스트
-$$ 23 \equiv B \frac{1}{3}$$

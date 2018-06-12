@@ -4,12 +4,17 @@ title: "ec2에 fabric 설정"
 date: "2017-12-29 22:45"
 categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag: 'fabric'
 slug: 'ec2_fabric'
+tag: Django
+header:
+  teaser: /assets/images/13.png
+
+
 ---
 
 > https://kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/
 
+### 설정순서
 - 우선 ec2 에 .pem으로 접속하여 사용자를 만든다.
 - ssh -i ****key.pem ubuntu@(서버주소)
 - 사용자를 만든다.

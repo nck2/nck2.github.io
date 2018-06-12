@@ -1,9 +1,16 @@
 ---
-layout: "post"
-title: "fabric으로 django 배포"
+# layout: "post"
+title: "Fabric으로 django 배포"
 date: "2017-11-22 22:14"
 categories: Django
+slug: deploy_fabric
+tag: Django
+header:
+  teaser: /assets/images/11.png
+
 ---
+
+## 장고 배포 방법
 
 1. manage.py에 있는 곳에 fabfile.py 를 아래와 같이 만든다.
 2. 같은 위치에 deploy.json 과 envs.json (빈파일)을 만든다.
@@ -242,6 +249,7 @@ def _restart_apache2():
 
 {% endhighlight %}
 
+## 과정 
 - gitignore 에 sqlite3 를 추가하여 데이터가 지워지지 않도록함.
 - 실행하면 github의 유저네임, 비번을 입력하도록 하는 창이 계속 나타났음.
 - 이때에는 서버의 .ssh/에 퍼블릭 키를 생성하고 이를 github에 등록하면됨. 또한 연결된 주소는 ssh 주소로 바꾸면 됨.

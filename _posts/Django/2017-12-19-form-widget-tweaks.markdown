@@ -1,15 +1,19 @@
 ---
-layout: "post"
-title: "form_snippets"
+# layout: "post"
+title: "Form_snippets"
 date: "2017-12-19 12:54"
 categories: Django
-tag: Snippets
+tag: Django
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
+
+header:
+  teaser: /assets/images/4.png
+
 ---
 
 ## Django form Html 꾸미기
 
-- bootstrap을 사용하여 개별적으로 폼을 만드는 방법
+### bootstrap을 사용하여 개별적으로 폼을 만드는 방법
 
 {%highlight python%}
 {%raw%}
@@ -61,7 +65,7 @@ tag: Snippets
 {%endraw%}
 {%endhighlight%}
 
-- widget_tweaks을 사용하여 개별적으로 폼을 만드는 방법
+### widget_tweaks을 사용하여 개별적으로 폼을 만드는 방법
 - install apps : 'widget_tweaks'
 - pip install django-widget-tweaks
 

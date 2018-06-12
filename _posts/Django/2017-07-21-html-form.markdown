@@ -1,11 +1,12 @@
 ---
-layout: "post"
+# layout: "post"
 title: "Html form"
 date: "2017-07-21 09:11"
 categories: Django
+tag: Django
 slug: html-form
 ---
-
+## 몇가지 fact
 - 하나의 form 태그는 하나 이상의 [위젯](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/The_native_form_widgets)을 가진다.
 - Middleware는 view함수의 함,뒤에서 실행됨.(csrf_token이 한 예)
 -[request.method](https://docs.djangoproject.com/en/1.10/ref/request-response/#quick-overview) 는 "GET,POST" (대문자)로 사용

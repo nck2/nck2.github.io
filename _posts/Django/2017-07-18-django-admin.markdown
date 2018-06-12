@@ -1,8 +1,11 @@
 ---
-layout: "post"
+# layout: "post"
 title: "Django Admin"
 date: "2017-07-18 13:29"
 categories: Django
+tag: Django
+header:
+  teaser: /assets/images/6.png
 ---
 
 - 장고의 admin은 staff/superuser 접근가능
@@ -22,7 +25,8 @@ class PostAdmin(admin.ModelAdmin):
 
 {% endhighlight %}
 
-예시) User 에서  is_active 를 False로 만드는 액션
+
+## 예시) User 에서  is_active 를 False로 만드는 액션
 
 {% highlight python %}
 

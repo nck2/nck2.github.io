@@ -4,11 +4,14 @@ title: "EB에 배포 및 세팅분기시 삽질"
 date: "2018-01-16 16:46"
 categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag:
 slug: "ebsettings"
+tag: Django
+header:
+  teaser: /assets/images/20.png
+
 ---
 
-### EB에 오랜만에 배포하면서 했던 삽질
+## EB에 오랜만에 배포하면서 했던 삽질
 
 1. 우선 eb deploy에서 request 버젼 에러
   - pip uninstall awsebcli 후 brew install awsebcli 로 설치하니까 되었음

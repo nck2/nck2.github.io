@@ -1,9 +1,12 @@
 ---
-layout: "post"
+# layout: "post"
 title: "git 사용법"
 date: "2017-07-16 23:38"
 categories: Computer
+tag: Computer
 slug: git
+header:
+  teaser: /assets/images/3.png
 ---
 
 ## git 사용법
@@ -14,3 +17,5 @@ slug: git
 - git add .
 - git commit -m 'text'
 - git push
+
+## 고급 사용법

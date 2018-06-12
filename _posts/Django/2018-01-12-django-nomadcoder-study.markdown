@@ -1,11 +1,13 @@
 ---
-layout: "post"
+# layout: "post"
 title: "Django_nomadcoder_study"
 date: "2018-01-12 10:59"
 categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag:
-slug:
+tag: Django
+header:
+  teaser: /assets/images/19.png
+
 ---
 
 ## NomadeCoder의 백엔드 강의 1

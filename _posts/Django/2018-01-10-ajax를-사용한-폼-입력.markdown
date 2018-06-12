@@ -4,8 +4,11 @@ title: "ajax를 사용한 폼 입력"
 date: "2018-01-10 10:54"
 categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag: "ajax"
 slug: "ajax_with_django"
+tag: Django
+header:
+  teaser: /assets/images/18.png
+
 ---
 
 ## ajax에서 csrf_token 문제
