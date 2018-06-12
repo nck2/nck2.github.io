@@ -6,6 +6,8 @@ categories: Computer
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag:
 slug: "awsssh"
+header:
+  teaser: /assets/images/mytest.png
 ---
 
 
@@ -32,3 +34,6 @@ ssh -i ***.pem ec2-user@주소
 - cd templated-visualize
 - cp -R ./* /var/www/html/
 - service httpd restart
+
+수식테스트
+$$ 23 \equiv B \frac{1}{3}$$
