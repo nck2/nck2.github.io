@@ -1,8 +1,11 @@
 ---
-layout: "post"
+# layout: "post"
 title: "Model Relationship Fields"
 date: "2017-07-19 11:25"
 categories: Django
+tags: Django
+header:
+  teaser: /assets/images/9.png
 ---
 
 ### 1-N 관계
@@ -17,7 +20,6 @@ class Comment(models.Model):
   message = models.TextField()
 
 {% endhighlight %}
-
 
 
 - 위에서 Comment 는 DB에 blog_comment 라는 이름으로 테이블 생성

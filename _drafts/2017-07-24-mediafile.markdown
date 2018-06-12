@@ -3,6 +3,10 @@ layout: "post"
 title: "Mediafile"
 date: "2017-07-24 10:14"
 categories: Django
+tags: Django
+header:
+  teaser: /assets/images/8.png
+
 ---
 ## local server에서 S3로 mediafile 연결
 - settings/dev.py 에서 아래와 같은 설정을 추가하여 S3에 media파일을 넣을 수 있었다.

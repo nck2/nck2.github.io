@@ -1,11 +1,14 @@
 ---
-layout: "post"
+# layout: "post"
 title: "class에서 super용법"
 date: "2018-02-08 22:02"
 categories: "Python"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag:
+tag: "Python"
 slug: "class_super"
+header:
+  teaser: /assets/images/14.png
+
 ---
 
 {% highlight python %}

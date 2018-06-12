@@ -1,11 +1,14 @@
 ---
-layout: "post"
+# layout: "post"
 title: "fabric custom function"
 date: "2017-12-29 00:19"
 categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag: "fabroc"
+tag: "Django"
 slug: "fabric_custom_function"
+header:
+  teaser: /assets/images/9.png
+
 ---
 
 {% highlight python %}

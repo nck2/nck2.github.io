@@ -2,12 +2,16 @@
 layout: "post"
 title: "3벌식 코드"
 date: "2017-08-19 01:33"
-categories: Javascript
+categories: javascript
+tags: Etc
 slug: 3bol
+header:
+  teaser: /assets/images/10.png
+
 ---
-3벌식 버튼 만드는 예제
-{% highlight javascript %}
-{% raw %}
+## 3벌식 버튼 만드는 예제
+
+'''
 <script>
 $(document).ready(function(){
 
@@ -49,6 +53,4 @@ $(document).ready(function(){
     });
 });
 </script>
-
-{% endraw %}
-{% endhighlight %}
+'''

@@ -1,8 +1,0 @@
----
-layout: "post"
-title: "mathtest"
-date: "2017-07-02 13:41"
-categories:
----
-수식 입력
-$$\frac{1}{4}$$

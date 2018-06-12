@@ -1,9 +1,12 @@
 ---
-layout: "post"
+# layout: "post"
 title: "View_save_snippets"
 date: "2017-12-19 13:22"
 categories: Django #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag: Snippets
+tag: Django
+header:
+  teaser: /assets/images/10.png
+
 ---
 
 # views에서 저장 로직

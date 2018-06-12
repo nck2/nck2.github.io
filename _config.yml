@@ -207,7 +207,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jemoji
-  
+
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -255,6 +255,7 @@ compress_html:
     envs: development
 
 
+
 # Defaults
 defaults:
   # _posts
@@ -270,3 +271,4 @@ defaults:
       related: true
       # category: undefined
       toc: true
+  
