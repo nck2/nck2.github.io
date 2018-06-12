@@ -1,0 +1,36 @@
+---
+layout: post
+title: "오늘의 연습"
+date: "2017-07-01 23:37:18 +0900"
+categories: Computer
+---
+
+
+- listM
+- list2
+- 이건 리스트
+
+## 헤딩
+
+이제 이거는 그만하고 연습해야겠다.
+**stron**
+
+[Daum][id1].
+[Daum][id1].
+
+
+uvs;fufa.fa fw
+inlin `import re`
+
+
+[id1]: http://www.daum.net
+
+---
+
+fff
+fon [^1]
+ddf[^2]
+
+
+[^1]: lfafofwkgw
+[^2]: 이게 1번
