@@ -260,6 +260,10 @@ compress_html:
   ignore:
     envs: development
 
+collections:
+  my_math:
+    output: true
+    permalink: /:collection/:name
 
 
 # Defaults
@@ -270,6 +274,19 @@ defaults:
       type: posts
     values:
       layout: single
+      author_profile: true
+      read_time: false
+      comments: true # true
+      share: true
+      related: true
+      # category: undefined
+      toc: true
+
+  - scope:
+      path: ""
+      type: my_math
+    values:
+      layout: single_math
       author_profile: true
       read_time: false
       comments: true # true
