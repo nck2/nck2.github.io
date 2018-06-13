@@ -60,13 +60,11 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
 search_full_content      : true #, false (default)
-
-search_provider: "algolia"
-
-algolia:
-  application_id: RMRH6ZPK80
-  index_name: xzero
-  search_only_api_key: 53c75519c34ce6b1fda0f6a6f20ed942
+# search_provider: algolia
+# algolia:
+#   application_id:
+#   index_name: xzero
+#   search_only_api_key:
   # powered_by: true
 
 # SEO Related
