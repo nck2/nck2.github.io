@@ -21,7 +21,7 @@ url                      : "https://nck2.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "nck2/nck2.github.io"
 # repository               : "junhobaik/junhobaik.github.io"
-teaser                   : "assets/images/456.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+teaser                   : "assets/images/18.png" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -60,6 +60,14 @@ atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : true # true, false (default)
 search_full_content      : true #, false (default)
+
+search_provider: "algolia"
+
+algolia:
+  application_id: RMRH6ZPK80
+  index_name: xzero
+  search_only_api_key: 53c75519c34ce6b1fda0f6a6f20ed942
+  # powered_by: true
 
 # SEO Related
 google_site_verification :
