@@ -97,7 +97,7 @@ author:
   # name             : "Junho Baik"
   avatar           : "/assets/images/123.png"
   # avatar           : "/assets/images/profile.png"
-  bio              :
+  bio              : "Mathematics, Coding"
   # bio              : "Junior Front-End Web Developer"
   location         : "Korea"
   email            : "matxzero@gmail.com"
@@ -271,4 +271,3 @@ defaults:
       related: true
       # category: undefined
       toc: true
-  

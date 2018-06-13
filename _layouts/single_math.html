@@ -15,16 +15,11 @@ layout: default
   {% endunless %}
 {% endif %}
 <!-- 여기 커스텀 시작-->
+{% include math.html %}
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 <!-- 여기 끝-->
-대기
+
 <div id="main" role="main">
   {% include sidebar.html %}
 
