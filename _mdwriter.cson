@@ -48,13 +48,13 @@ frontMatterDate: "{year}-{month}-{day} {hour}:{minute}"
 # Front matter template
 frontMatter: """
 ---
-layout: "{layout}" # single_math
+layout: "{layout}" # single_math, single_jupyter
 title: "{title}"
 date: "{date}"
 categories:
   #Computer,Python,Math,Django,Excel,AWS, Crawl
 tag:
-  #Computer,Python,Math,Django,Excel,AWS, Crawl
+  #Computer,Python,Math,Django,Excel,AWS, Crawl, Etc
 
 slug:
 header:
