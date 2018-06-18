@@ -1,5 +1,5 @@
 ---
-layout: "single_jupyter" # single_math
+# layout: "single_jupyter" # single_math
 title: "jupyter_notebook 을 jekyll에 적용"
 date: "2018-06-18 00:34"
 categories: Etc
@@ -39,5 +39,6 @@ jupyter nbconvert --to markdown --template ./mytemplate.tpl abc.ipynb
 }
 </style>
 ```
+- 그런데 생각해보니 위의 style 을 기본 레이아웃에 포함시켜 별도의 레이아웃을 만들지 않는 것이 좋을 것 같음.
 
 >  [참고](https://predictablynoisy.com/jekyll-markdown-nbconvert){:target="_blank"}

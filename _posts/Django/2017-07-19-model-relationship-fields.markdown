@@ -10,7 +10,7 @@ header:
 
 ### 1-N 관계
 장고
-{% highlight python %}
+```python
 class Post(models.Model):
   title = models.CharField(max_length=10)
   content = models.TextField()
@@ -19,7 +19,7 @@ class Comment(models.Model):
   post = models.ForeignKey(Post)
   message = models.TextField()
 
-{% endhighlight %}
+```
 
 
 - 위에서 Comment 는 DB에 blog_comment 라는 이름으로 테이블 생성
@@ -36,39 +36,39 @@ post = models.ForeignKey('appname.Post')
 와 같이 지정하면 된다.
 
 ### Tip
-{% highlight python %}
+```python
 Post.objects.filter(tag_set__name='askdjango')
 Post.objects.filter(tag_set__name__in=['askdjango','Python'])
-{% endhighlight %}
+```
 
 와 같이 쿼리셋을 찾을 수 있다.
 
 ### user과 관계 추천 설정
-{% highlight python %}
+```python
 from django.conf import settings
 user = models.OneToOneField(settings.AUTH_USER_MODEL)
 profile.user_id  # id번호
 profile.user # 작성자
-{% endhighlight %}
+```
 
 - 즉, 모델을 구성할 때,
 ```user = models.OneToOneField(settings.AUTH_USER_MODEL)```
 일때 Fetch가 되는 것이 아니라,
-{% highlight python %}
+```python
 profile.user_id  # id번호
 profile.user # 작성자
-{% endhighlight %}
+```
 와 같은 명령어가 나올때 fetch가 된다. (laze)
 
 ### ForeignKey에서 related_name
 post, comment 가 있을때
-{% highlight python %}
+```python
 post= Post.objects.first()
 Comment.objects.filter(post=post) # 방법1
 post.comment_set.all() #방법2 -related name 사용
 comment= Comment.objects.first()
 comment.post
-{% endhighlight %}
+```
 
 - 중간에 외래키로 연결된 user를 삽입한 경우 이미 생성된 값들에
 어떠한 값을 연결할지 묻는 질문이 나옴.

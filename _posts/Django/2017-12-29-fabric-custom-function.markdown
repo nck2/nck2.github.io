@@ -11,8 +11,7 @@ header:
 
 ---
 
-{% highlight python %}
-
+``` python
 def myg(val="blank"):
     '''git push하고 배포 이거는 전체를 다시올리는 것이라 데이타 베이스가 다 초기화됨'''
     local('git add .')
@@ -27,8 +26,7 @@ def edit(startfolder,endfolder):
     '''
     local('scp -r {} idroot@example.com:/home/hvofak5s/{}'.format(startfolder,endfolder))
     sudo('sudo service apache2 restart')
-
-{% endhighlight %}
+```
 
 - myg 는 git push 후 전체를 다 배포함. 데이터베이스가 전부초기화되는 등 비효율적임.
 - edit은 필요한 폴더만 올림. 이때 A라는 폴더를 A위치에 올리면, 두개의 내용이 합쳐짐. 단, 같은 제목의 파일은 덮어씀.이부분을 주의해야함

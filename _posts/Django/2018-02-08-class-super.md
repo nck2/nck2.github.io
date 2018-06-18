@@ -11,8 +11,7 @@ header:
 
 ---
 
-{% highlight python %}
-
+``` python
 class Animal():
   def __init__(self,name):
     self.name= name
@@ -37,8 +36,5 @@ class Person3(Animal):
 
 p12=Person3(name='lee')
 p12.name # lee**
-
-
-{% endhighlight %}
-
+```
 즉, 부모에 사용되는 변수를 잘모르지만, 하나의 변수를 알고 있을 때, 이 변수의 값을 수정할 때 유용한 것 같음.

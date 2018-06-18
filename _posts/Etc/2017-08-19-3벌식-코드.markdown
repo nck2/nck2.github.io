@@ -1,5 +1,5 @@
 ---
-layout: "post"
+# layout: "post"
 title: "3벌식 코드"
 date: "2017-08-19 01:33"
 categories: javascript
@@ -11,7 +11,8 @@ header:
 ---
 ## 3벌식 버튼 만드는 예제
 
-'''
+```javascript
+{% raw %}
 <script>
 $(document).ready(function(){
 
@@ -53,4 +54,5 @@ $(document).ready(function(){
     });
 });
 </script>
-'''
+{% endraw %}
+```

@@ -11,7 +11,8 @@ header:
 
 # views에서 저장 로직
 - 저장 기본 로직
-{%highlight python%}
+
+``` python
 from django.shortcuts import render, redirect
 from .models import MyTest
 from .forms import MyTestForm
@@ -29,5 +30,4 @@ def form1(request):
         form = MyTestForm()
 
     return render(request,'formtest/form1.html',{'form':form})
-
-{%endhighlight%}
+```
