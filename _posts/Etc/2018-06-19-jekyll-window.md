@@ -7,12 +7,13 @@ categories:
 - Etc
 tag:
 - Etc
+
 ---
 
 ## 윈도우에서 설치하기
 - 기본적으로 linux, mac 설치지원
 - 윈도우에서는 [jekyll](http://jekyllrb-ko.github.io/docs/windows/){:target="_blank"}을 참고하여 생성
-- 나의 경우 chcp 65001
+- 나의 경우 <code>chcp 65001</code>로 <font color='red'>설정함.</font>
 
 
 ## 몇가지 Tip
