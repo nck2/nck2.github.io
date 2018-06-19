@@ -9,7 +9,7 @@ tags: Math Python
 
 ## 조건수렴하는 급수는 임의의 값으로 수렴하도록 재배열 할 수 있다.
 
-{% highlight python%}
+``` python
 import fractions
 limit=1000
 pl=[1/(2*x-1) for x in range(1,limit)]
@@ -36,5 +36,4 @@ while p<dis:
         j=j+1
 
     p=p+1
-
-  {% endhighlight %}
+```
