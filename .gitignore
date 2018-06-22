@@ -79,3 +79,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+
+### custom ###
+jupy_to_md_with_temp
