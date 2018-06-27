@@ -4,13 +4,13 @@
     slug: binary_text
     header:
       teaser: /assets/images/12.png
-    ---
-        
+---
+
 ## pickle 사용
 
 
   <div class="input_area" markdown="1">
-  
+
 ```python
 import pickle
 
@@ -23,12 +23,12 @@ data3 =['car','apple','house']
 ```
 
   </div>
-  
+
 ## binary와 텍스트 쓰기
 
 
   <div class="input_area" markdown="1">
-  
+
 ```python
 with open(bfilename, 'wb') as f:
     pickle.dump(data1,f) #dumps (문자열 직렬화)
@@ -44,12 +44,12 @@ with open(tfilename,'wt') as f:
 ```
 
   </div>
-  
+
 ## binary 읽기
 
 
   <div class="input_area" markdown="1">
-  
+
 ```python
 with open(bfilename,'rb') as f:
     b = pickle.load(f) #loads (문자열 역직렬화)
@@ -61,7 +61,7 @@ with open(bfilename,'rb') as f:
 ```
 
   </div>
-  
+
   {:.output_stream}
   ```
   <class 'int'> 77
@@ -69,12 +69,12 @@ with open(bfilename,'rb') as f:
 <class 'list'> ['car', 'apple', 'house']
 
   ```
-  
+
 ## 텍스트 읽기
 
 
   <div class="input_area" markdown="1">
-  
+
 ```python
 with open(tfilename, 'rt') as f:
     for i, line in enumerate(f,1):
@@ -82,7 +82,7 @@ with open(tfilename, 'rt') as f:
 ```
 
   </div>
-  
+
   {:.output_stream}
   ```
   <class 'str'> text1| 77
@@ -91,6 +91,6 @@ with open(tfilename, 'rt') as f:
 <class 'str'> text4| apple
 <class 'str'> text5| house
   ```
-  
+
 - binary는 자료형도 그대로 유지함
 - 텍스트는 읽어오면 그대로 텍스트임
