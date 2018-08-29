@@ -11,6 +11,7 @@ header:
 ---
 > 참고: https://hackernoon.com/python-tricks-101-2836251922e0
 ---
+
 1. 변수 값 서로 바꾸기
 ``` python
 a, b = 5, 10
