@@ -64,7 +64,7 @@ print(list(transposed))
 # [('a', 'c', 'e'), ('b', 'd', 'f')]
 ```
 7. 비교 연산자
-```python
+``` python
 b = 6 
 print(4<b<7)
 #True
@@ -72,7 +72,7 @@ print(1==b<20)
 #False
 ```
 8. 리스트 
-```python
+``` python
 a=[1,2,3,4,5]
 b = a #주소로 연결
 b[0] =10
