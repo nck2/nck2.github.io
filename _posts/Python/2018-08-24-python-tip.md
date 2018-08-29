@@ -83,7 +83,6 @@ print(a,c) #[10, 2, 3, 4, 5] [20, 2, 3, 4, 5]
 d= a.copy() #새로운 객체 생성
 d[0]=30
 print(a,d) #[10, 2, 3, 4, 5] [30, 2, 3, 4, 5]
-
 from copy import deepcopy
 e =deepcopy(a)
 ```
