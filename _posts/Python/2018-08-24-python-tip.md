@@ -45,20 +45,16 @@ cnt.most_common(3) #[(3, 5), (1, 2), (2, 2)]
 4. 구성이 같은 것 찾기
 예) aabc == abac # 참
    [1,1,2,3] ==[1,2,3,1] # 참
-
 ``` python
 from collections import Counter
 Counter(str1) = Counter(str2)
 ```
-
 5. 글자 뒤집기
 ``` python
 a = "abcdefg"
 print(a[::-1])
 ```
-
 6. zip함수 이용하여 다시 묶기
-
 ``` python
 list(zip([1, 2, 3], [4, 5, 6]))
 # [(1, 4), (2, 5), (3, 6)]
@@ -67,7 +63,6 @@ transposed = zip(*orginal)
 print(list(transposed))
 # [('a', 'c', 'e'), ('b', 'd', 'f')]
 ```
-
 7. 비교 연산자
 ```python
 b = 6 
@@ -76,7 +71,6 @@ print(4<b<7)
 print(1==b<20)
 #False
 ```
-
 8. 리스트 
 ```python
 a=[1,2,3,4,5]
@@ -93,7 +87,6 @@ print(a,d) #[10, 2, 3, 4, 5] [30, 2, 3, 4, 5]
 from copy import deepcopy
 e =deepcopy(a)
 ```
-
 9. 사전에서 값 얻기
 ``` python
 d = {'a':1,'b':2}
