@@ -2,7 +2,7 @@
 # layout: "post"
 title: "BeautifulSoup 예제 (사진 다운로드)"
 slug: BeauS1_image
-categories: Crawl
+# categories: Crawl
 tag: Crawl
 header:
   teaser: /assets/images/6.png

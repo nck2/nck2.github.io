@@ -2,9 +2,9 @@
 # layout: "post"
 title: "ec2에 ssh접속"
 date: "2018-03-28 22:51"
-categories: Computer
+# categories: Computer
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag: "Computer"
+tag: "AWS"
 slug: "awsssh"
 header:
   teaser: /assets/images/1.png

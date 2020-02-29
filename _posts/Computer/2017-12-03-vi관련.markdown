@@ -2,7 +2,7 @@
 # layout: "post"
 title: "vi관련"
 date: "2017-12-03 22:07"
-categories: "Computer"
+# categories: "Computer"
 tags: "Computer"
 slug: "vi"
 header:

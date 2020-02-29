@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Django의 DB와 csv"
 date: "2017-12-13 21:47"
-categories: "Django"
+# categories: "Django"
 slug: Django_DB_csv
 tag: Django
 header:

@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Model Relationship Fields"
 date: "2017-07-19 11:25"
-categories: Django
+# categories: Django
 tags: Django
 header:
   teaser: /assets/images/9.png

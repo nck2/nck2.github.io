@@ -2,7 +2,7 @@
 # layout: "post"
 title: "synology ssh설정"
 date: "2018-05-30 23:02"
-categories: "Computer"
+# categories: "Computer"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "Computer"
 slug: 'synology_ssh'

@@ -2,7 +2,7 @@
 # layout: "post"
 title: "user custom후 eb에 배포"
 date: "2018-08-06 22:51"
-categories: Django
+# categories: Django
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "AWS"
 slug: "awsssh2"

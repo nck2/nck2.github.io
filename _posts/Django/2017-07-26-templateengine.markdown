@@ -2,7 +2,7 @@
 # layout: "post"
 title: "TemplateEngine"
 date: "2017-07-26 14:05"
-categories: Django
+# categories: Django
 tag: Django
 slug: Django template engine
 header:

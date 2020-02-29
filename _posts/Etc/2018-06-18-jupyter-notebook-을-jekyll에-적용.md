@@ -2,7 +2,7 @@
 # layout: "single_jupyter" # single_math
 title: "jupyter_notebook 을 jekyll에 적용"
 date: "2018-06-18 00:34"
-categories: Etc
+# categories: Etc
   #Computer,Python,Math,Django,Excel,AWS, Crawl
 tag: Etc
   #Computer,Python,Math,Django,Excel,AWS, Crawl

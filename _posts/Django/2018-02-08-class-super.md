@@ -2,7 +2,7 @@
 # layout: "post"
 title: "class에서 super용법"
 date: "2018-02-08 22:02"
-categories: "Python"
+# categories: "Python"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "Python"
 slug: "class_super"

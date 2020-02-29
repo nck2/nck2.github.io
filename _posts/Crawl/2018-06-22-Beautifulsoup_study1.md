@@ -2,7 +2,7 @@
 # layout: "post"
 title: "BeautifulSoup 예제 1"
 slug: BeauS1
-categories: Crawl
+# categories: Crawl
 tag: Crawl
 header:
   teaser: /assets/images/8.png

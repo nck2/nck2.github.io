@@ -2,7 +2,7 @@
 layout: "post"
 title: "ajax를 사용한 폼 입력"
 date: "2018-01-10 10:54"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 slug: "ajax_with_django"
 tag: Django

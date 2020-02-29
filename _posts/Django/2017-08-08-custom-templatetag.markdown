@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Custom_template_tag"
 date: "2017-08-08 12:37"
-categories: Django
+# categories: Django
 tag: Django
 header:
   teaser: /assets/images/12.png

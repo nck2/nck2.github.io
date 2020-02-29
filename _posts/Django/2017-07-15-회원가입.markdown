@@ -2,7 +2,7 @@
 # layout: "post"
 title: "회원가입"
 date: "2017-07-15 23:06"
-categories: Python
+# categories: Python
 tag: Django
 slug: sign_up
 header:

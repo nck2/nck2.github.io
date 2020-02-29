@@ -2,7 +2,7 @@
 layout: "post"
 title: "AWS Elastic Beanstalk SSH 접속"
 date: "2018-01-06 22:01"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 slug: "AWS_Elastic_Beanstalk_SSH"
 tag: Django

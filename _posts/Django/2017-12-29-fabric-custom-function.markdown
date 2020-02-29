@@ -2,7 +2,7 @@
 # layout: "post"
 title: "fabric custom function"
 date: "2017-12-29 00:19"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "Django"
 slug: "fabric_custom_function"

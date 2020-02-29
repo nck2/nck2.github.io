@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Docker를 이용하여 Azure에서 배포하기"
 date: "2018-02-08 22:02"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "Docker"
 slug: "docker_deploy"

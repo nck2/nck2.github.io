@@ -4,7 +4,7 @@ title: Jekyll 각종 설정
 # type: post
 # status: publish
 categories:
-- Etc
+# - Etc
 tag:
 - Etc
 

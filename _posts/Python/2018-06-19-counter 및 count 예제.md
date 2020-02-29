@@ -4,7 +4,7 @@ title: counter 및 count 예제
 # type: post
 # status: publish
 categories:
-- Etc
+# - Etc
 tag:
 - Etc
 slug: "counter_count"

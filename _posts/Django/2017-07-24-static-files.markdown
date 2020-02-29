@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Static_files"
 date: "2017-07-24 10:28"
-categories: Django
+# categories: Django
 tag: Django
 header:
   teaser: /assets/images/8.png

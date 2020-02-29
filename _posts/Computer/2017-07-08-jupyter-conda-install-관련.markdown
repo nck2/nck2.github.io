@@ -2,8 +2,9 @@
 layout: "post"
 title: "jupyter conda install 관련"
 date: "2017-07-08 09:50"
-categories: Computer
-tag: Computer
+# categories: Computer
+tag: 
+- Jupyter
 slug: conda
 header:
   teaser: /assets/images/14.png

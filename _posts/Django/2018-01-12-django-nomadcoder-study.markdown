@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Django_nomadcoder_study"
 date: "2018-01-12 10:59"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: Django
 header:

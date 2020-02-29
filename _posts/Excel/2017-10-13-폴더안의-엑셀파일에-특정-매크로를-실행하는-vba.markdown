@@ -4,9 +4,12 @@ title: "폴더안의 엑셀파일에 특정 매크로를 실행하는 VBA"
 date: "2017-10-13 23:25"
 slug: vba_macro
 categories:
-  - Excel
+#   - Excel
+tags:
+- Excel
 header:
   teaser: /assets/images/16.png
+
 ---
 
 ## 특정 폴더 안의 파일들

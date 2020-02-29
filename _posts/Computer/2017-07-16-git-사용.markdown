@@ -2,8 +2,8 @@
 # layout: "post"
 title: "git 사용법"
 date: "2017-07-16 23:38"
-categories: Computer
-tag: Computer
+# categories: Computer
+tag: Git
 slug: git
 header:
   teaser: /assets/images/3.png

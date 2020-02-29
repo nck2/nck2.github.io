@@ -2,9 +2,9 @@
 # layout: "post"
 title: "주피터노트북 환경설정"
 date: "2018-05-14 22:51"
-categories: "Computer"
+# categories: "Computer"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
-tag: "Computer"
+tag: "Jupyter"
 slug: "config-jupyter"
 header:
   teaser: /assets/images/14.png

@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Django Shell"
 date: "2017-07-18 13:01"
-categories: Django
+# categories: Django
 tag: Django
 header:
   teaser: /assets/images/5.png

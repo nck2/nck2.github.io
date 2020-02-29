@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Form-valid"
 date: "2017-08-07 15:01"
-categories: Django
+# categories: Django
 tag: Django
 header:
   teaser: /assets/images/11.png

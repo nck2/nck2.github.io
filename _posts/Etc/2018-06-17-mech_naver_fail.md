@@ -5,7 +5,7 @@ date: 2017-02-08 12:29:37.000000000 +09:00
 # type: post
 # status: publish
 categories:
-- Etc
+# - Etc
 tag:
 - Etc
 ---

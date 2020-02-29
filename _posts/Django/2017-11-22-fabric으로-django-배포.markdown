@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Fabric으로 django 배포"
 date: "2017-11-22 22:14"
-categories: Django
+# categories: Django
 slug: deploy_fabric
 tag: Django
 header:

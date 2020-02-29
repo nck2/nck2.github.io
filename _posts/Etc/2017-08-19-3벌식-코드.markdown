@@ -2,7 +2,7 @@
 # layout: "post"
 title: "3벌식 코드"
 date: "2017-08-19 01:33"
-categories: javascript
+# categories: javascript
 tags: Etc
 slug: 3bol
 header:

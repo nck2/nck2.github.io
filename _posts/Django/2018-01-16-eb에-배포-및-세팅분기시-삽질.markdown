@@ -2,7 +2,7 @@
 layout: "post"
 title: "EB에 배포 및 세팅분기시 삽질"
 date: "2018-01-16 16:46"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 slug: "ebsettings"
 tag: Django

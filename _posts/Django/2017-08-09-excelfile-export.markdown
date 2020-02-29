@@ -2,7 +2,7 @@
 # layout: "post"
 title: "excelfile_export"
 date: "2017-08-09 10:44"
-categories: Django
+# categories: Django
 tag: Django
 header:
   teaser: /assets/images/4.png

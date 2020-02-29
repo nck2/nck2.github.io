@@ -2,7 +2,7 @@
 # layout: "post"
 title: "View_save_snippets"
 date: "2017-12-19 13:22"
-categories: Django #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
+# categories: Django #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: Django
 header:
   teaser: /assets/images/10.png

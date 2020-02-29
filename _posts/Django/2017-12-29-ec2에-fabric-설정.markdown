@@ -2,7 +2,7 @@
 layout: "post"
 title: "ec2에 fabric 설정"
 date: "2017-12-29 22:45"
-categories: "Django"
+# categories: "Django"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 slug: 'ec2_fabric'
 tag: Django

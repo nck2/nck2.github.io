@@ -15,8 +15,9 @@
 "title: ${1:title}" ,
 "date: ${2:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
 "categories:",
-  "#Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW",
+  
 "tag: ${3:Python}",
+	"#AWS,Computer,Crawl,Docker,Python,Math,Django,Javascript,Jupyter,Excel,Etc,Matplotlib",
 "slug: ${4: }",
 "---"
 		],

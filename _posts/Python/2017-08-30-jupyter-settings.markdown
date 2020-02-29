@@ -3,7 +3,7 @@
 title: "Jupyter_settings"
 date: "2017-08-30 08:16"
 categories:
-- Python
+# - Python
 tags:
 - Python
 header:

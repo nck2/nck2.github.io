@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Request 예제1"
 slug: request1
-categories: Crawl
+# categories: Crawl
 tag: Crawl
 header:
   teaser: /assets/images/9.png

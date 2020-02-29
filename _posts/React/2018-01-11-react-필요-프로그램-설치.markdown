@@ -2,7 +2,7 @@
 layout: "post"
 title: "react 필요 프로그램 설치"
 date: "2018-01-11 14:03"
-categories: "Nomadcoder"
+# categories: "Nomadcoder"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "React"
 slug: "react_requirements"

@@ -2,7 +2,7 @@
 # layout: post
 title: 함수 인자
 categories:
-- Python
+# - Python
 tags:
 - Python
 header:

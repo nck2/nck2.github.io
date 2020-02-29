@@ -2,7 +2,7 @@
 #layout: "post"
 title: "aws에 jupyter 설치"
 date: "2018-04-25 21:52"
-categories: "Python"
+# categories: "Python"
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "AWS"
 slug: "aws_jupyter"

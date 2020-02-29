@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Form_snippets"
 date: "2017-12-19 12:54"
-categories: Django
+# categories: Django
 tag: Django
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 

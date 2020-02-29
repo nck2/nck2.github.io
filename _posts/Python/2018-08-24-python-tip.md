@@ -2,7 +2,7 @@
 # layout: "post"
 title: "python의 소소한 팁"
 date: "2018-08-24"
-categories: Python
+# categories: Python
   #Computer,Python,Math,Django,Javascript,Jupyter Notebook,Excel,TW
 tag: "Python"
 slug: "python_tip"

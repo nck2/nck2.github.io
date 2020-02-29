@@ -2,9 +2,11 @@
 # layout: post
 title: 조건 수렴하는 수열은 임의로 수렴
 categories:
+# - Python
+# - Math
+tags: 
+- Math 
 - Python
-- Math
-tags: Math Python
 ---
 
 ## 조건수렴하는 급수는 임의의 값으로 수렴하도록 재배열 할 수 있다.

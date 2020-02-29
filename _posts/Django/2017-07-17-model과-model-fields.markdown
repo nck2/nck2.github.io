@@ -2,7 +2,7 @@
 # layout: "post"
 title: "Model과 Model fields"
 date: "2017-07-17 10:54"
-categories: Django
+# categories: Django
 tags: Django
 slug: model
 header:
