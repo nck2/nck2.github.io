@@ -11,10 +11,11 @@
 		"prefix": "je",
 		"body": [
 			"---",
-"# layout: 'post'",
+"# layout: 'single_math'",
+			"#post",
 "title: ${1:title}" ,
 "date: ${2:$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE}",
-"categories:",
+"#categories: Euler-Project",
   
 "tag: ${3:Python}",
 	"#AWS,Computer,Crawl,Docker,Python,Math,Django,Javascript,Jupyter,Excel,Etc,Matplotlib",
