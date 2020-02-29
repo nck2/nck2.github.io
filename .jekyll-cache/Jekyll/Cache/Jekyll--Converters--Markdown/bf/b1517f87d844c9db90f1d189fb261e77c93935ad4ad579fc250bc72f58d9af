@@ -1,0 +1,72 @@
+I"�<p>ep2, ep3</p>
+
+<h2 id="프로젝트-및-앱생성-절차">프로젝트 및 앱생성 절차</h2>
+<ol>
+  <li>django-admin startproject [프로젝트이름]</li>
+  <li>mysite(폴더이름)아래에 있는
+mysite(프로젝트이름), db.sqlite3, manage.py …
+에서 폴더이름은 바꿔도 된다. 하지만 프로젝트이름은 함부로 바꾸면 안된다.</li>
+  <li>python manage.py –help
+    <ul>
+      <li>여러가지 명령옵션을 확인할 수 있다.</li>
+    </ul>
+  </li>
+  <li>python manage.py startapp blog
+    <ul>
+      <li>필요한 몇개의 디렉토리를 생성함. 지울때는 그냥 삭제해도 됨. 단순히 폴더 만드는 것이기 때문.</li>
+      <li>INSTALLED_APPS 항목에 앱이름 추가할 것</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="템플릿-위치">템플릿 위치</h2>
+<ul>
+  <li>blog/templates/blog/post_list.html 와 같이 위치함</li>
+  <li>개발서버를 실시할 때 템플릿위치 목록을 최초 수집하여 이후 사용함. 따라서 개발서버를 켜고 나서 템플릿 폴더를 새로만들면 곧바로 반영되지 않을 수 있음.</li>
+</ul>
+
+<h2 id="정규표현식">정규표현식</h2>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />: 특정 한글자를 표현한 것</li>
+  <li class="task-list-item">“\d” : 숫자 0회 또는 1회</li>
+  <li class="task-list-item">“\d*”: 숫자 0회 이상</li>
+  <li class="task-list-item">“\d+”: 숫자 1회 이상</li>
+  <li class="task-list-item">“\d{m}”: 숫자 m글자</li>
+  <li class="task-list-item">“\d{m,n}”: 숫자 m글자 이상 ,n글자 이하</li>
+  <li class="task-list-item">re.match(r’^01[016789][1-9]\d{6,7}$,number) (휴대폰번호찾기)
+    <ul>
+      <li>부합이 되면 해당 글자를 리턴</li>
+      <li>부합이 안되면 none을 리턴</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="urlconf">urlconf</h2>
+<p>-세팅에 ROOT_URLCONF = ‘mysite.urls’ : 최상위 urls를 설정함
+-url에서 인자로 넘겨온 것은 str 이다.(숫자라 할지라도)</p>
+
+<h2 id="앱성성시-추천작업">앱성성시 추천작업</h2>
+<ul>
+  <li>앱생성: python manage.py startapp [앱이름]</li>
+  <li>프로젝트/settings.py에 앱등록</li>
+  <li>앱이름/urls.py 파일생성</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">url</span>
+  <span class="n">urlpatterns</span><span class="o">=</span><span class="p">[</span> <span class="p">]</span>
+  </code></pre></figure>
+
+<ul>
+  <li>프로젝트/urls.py :앱 urlconf 설정 include</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
+  <span class="n">urlpatterns</span><span class="o">=</span><span class="p">[</span>
+  <span class="n">url</span><span class="p">(</span><span class="s">r'^앱이름/'</span><span class="p">,</span><span class="n">include</span><span class="p">(</span><span class="s">'앱이름.urls'</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s">'앱이름'</span><span class="p">)),</span>
+  <span class="p">]</span>
+  </code></pre></figure>
+
+<blockquote>
+  <p>AskDjango (https://nomade.kr)</p>
+</blockquote>
+:ET

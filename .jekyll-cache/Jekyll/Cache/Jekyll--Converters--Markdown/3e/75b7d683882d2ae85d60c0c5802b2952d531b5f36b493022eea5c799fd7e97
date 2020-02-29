@@ -1,0 +1,24 @@
+I"�	<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">myg</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="s">"blank"</span><span class="p">):</span>
+    <span class="s">'''git push하고 배포 이거는 전체를 다시올리는 것이라 데이타 베이스가 다 초기화됨'''</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'git add .'</span><span class="p">)</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'git commit -m {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'git push'</span><span class="p">)</span>
+    <span class="n">deploy</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">edit</span><span class="p">(</span><span class="n">startfolder</span><span class="p">,</span><span class="n">endfolder</span><span class="p">):</span>
+    <span class="s">'''해당폴더를 업로드, 해당폴더만 찍어서 업로드함. 폴더명에 주의해야 함. 있는 폴더는 합쳐짐(완전히 똑같아지는 게 아니라 합해지는 것 같음.)
+    scp -r ./testfolder idroot@example.com:/home/hvofak5s
+    fab edit:"./test",""
+    '''</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'scp -r {} idroot@example.com:/home/hvofak5s/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">startfolder</span><span class="p">,</span><span class="n">endfolder</span><span class="p">))</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">'sudo service apache2 restart'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>myg 는 git push 후 전체를 다 배포함. 데이터베이스가 전부초기화되는 등 비효율적임.</li>
+  <li>edit은 필요한 폴더만 올림. 이때 A라는 폴더를 A위치에 올리면, 두개의 내용이 합쳐짐. 단, 같은 제목의 파일은 덮어씀.이부분을 주의해야함</li>
+  <li>그 외의 migration등은 fabfile의 내용을 참고하여 쓸 수 있음.</li>
+  <li>edit의 경우 위치를 잘지정해야 함.</li>
+  <li>fab edit:”./test”,”” 하면, test폴더가 /home/hvofak5s/test 로 옮겨짐.</li>
+</ul>
+:ET

@@ -1,0 +1,68 @@
+I"l<blockquote>
+  <p>https://kimpaper.github.io/2016/04/08/amazon-ec2-root-pwd/</p>
+</blockquote>
+
+<h3 id="설정순서">설정순서</h3>
+<ul>
+  <li>우선 ec2 에 .pem으로 접속하여 사용자를 만든다.</li>
+  <li>ssh -i <em>**</em>key.pem ubuntu@(서버주소)</li>
+  <li>사용자를 만든다.</li>
+  <li>ec2는 비밀번호 로그인을 ssh에서 지원하지 않는다. 위의 내용을 참고하여 바꾸면 비번으로 로그인 가능</li>
+  <li>fab new_server를 통해 실행한다. (물론 그전에 git push완료한다.)</li>
+  <li>static root 를 세팅파일에 넣기(배포과정이므로)</li>
+  <li>보안그룹에서 인바운드(http)세팅</li>
+  <li>세팅 파일에서 allow host 설정</li>
+  <li>처음 세팅을 하면 git 아이디와 비번을 묻는다.</li>
+  <li>아파치화면이 나올 경우 fabfile.py 의 allow host 부분을 살펴본다. (ip의 경우 안되었고 dns가 되었다.)</li>
+</ul>
+
+<h3 id="rds-s3-설정">rds, s3 설정</h3>
+<ul>
+  <li>다음 패키지 설치</li>
+  <li>django-storages</li>
+  <li>psycopg2</li>
+  <li>boto3</li>
+  <li>세팅파일이 있는 곳에 storages.py 다음과 같이 작성</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">storages.backends.s3boto3</span> <span class="kn">import</span> <span class="n">S3Boto3Storage</span>
+<span class="k">class</span> <span class="nc">StaticS3Boto3Storage</span><span class="p">(</span><span class="n">S3Boto3Storage</span><span class="p">):</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="s">'static'</span> <span class="c1"># bucket 업로드 prefix 지정
+</span><span class="k">class</span> <span class="nc">MediaS3Boto3Storage</span><span class="p">(</span><span class="n">S3Boto3Storage</span><span class="p">):</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="s">'media'</span> <span class="c1"># bucket 업로드 prefix 지정</span></code></pre></figure>
+
+<ul>
+  <li>세팅 파일안에 다음과 같이 설정</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'ENGINE'</span><span class="p">:</span> <span class="s">'django.db.backends.postgresql_psycopg2'</span><span class="p">,</span>
+        <span class="s">'NAME'</span><span class="p">:</span> <span class="s">'name'</span><span class="p">,</span>
+        <span class="s">'USER'</span><span class="p">:</span> <span class="s">'uset'</span><span class="p">,</span>
+        <span class="s">'PASSWORD'</span><span class="p">:</span> <span class="s">'-------'</span><span class="p">,</span>
+        <span class="s">'HOST'</span><span class="p">:</span> <span class="s">'-------'</span><span class="p">,</span>
+        <span class="s">'PORT'</span><span class="p">:</span> <span class="s">'------'</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+
+<span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">[</span><span class="s">'storages'</span><span class="p">,]</span>
+
+
+
+<span class="n">AWS_S3_HOST</span> <span class="o">=</span> <span class="s">'s3.ap-northeast-2.amazonaws.com'</span>
+<span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s">'awsfab.storages.StaticS3Boto3Storage'</span>
+<span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s">'awsfab.storages.MediaS3Boto3Storage'</span>  <span class="c1">#dropbox
+</span>
+
+<span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="s">'---------'</span> <span class="c1"># 필수 지정
+</span><span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s">'-----------'</span> <span class="c1"># 필수 지정
+</span><span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s">'----------'</span> <span class="c1"># 필수 지정
+</span><span class="n">AWS_S3_REGION_NAME</span> <span class="o">=</span> <span class="s">'ap-northeast-2'</span></code></pre></figure>
+
+<ul>
+  <li>rds 의 경우 보안 그룹( 있는 것을 사용해도 됨)에 아래와 같이 사용.</li>
+  <li><img src="/public/img/rds.png" alt="image" /></li>
+</ul>
+:ET

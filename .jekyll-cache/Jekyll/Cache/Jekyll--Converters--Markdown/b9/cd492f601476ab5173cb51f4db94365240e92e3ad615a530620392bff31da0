@@ -1,0 +1,110 @@
+I"W<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">client_id</span> <span class="o">=</span> <span class="s">"QTKf81BA4QcR0mz_e5tc"</span>
+<span class="n">client_secret</span> <span class="o">=</span> <span class="s">"Wbvq8_eYhh"</span>
+<span class="n">encText</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s">"학교에 가고 싶다."</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">"source=ko&amp;target=en&amp;text="</span> <span class="o">+</span> <span class="n">encText</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://openapi.naver.com/v1/language/translate"</span>
+<span class="n">request</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">"X-Naver-Client-Id"</span><span class="p">,</span><span class="n">client_id</span><span class="p">)</span>
+<span class="n">request</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">"X-Naver-Client-Secret"</span><span class="p">,</span><span class="n">client_secret</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"utf-8"</span><span class="p">))</span>
+<span class="n">rescode</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">getcode</span><span class="p">()</span>
+<span class="k">if</span><span class="p">(</span><span class="n">rescode</span><span class="o">==</span><span class="mi">200</span><span class="p">):</span>
+    <span class="n">response_body</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">response_body</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error Code:"</span> <span class="o">+</span> <span class="n">rescode</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {"message":{"@type":"response","@service":"naverservice.labs.api","@version":"1.0.0","result":{"translatedText":"I want to go to school."}}}
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">type</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  bytes
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result2</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result2</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {'message': {'@service': 'naverservice.labs.api',
+  '@type': 'response',
+  '@version': '1.0.0',
+  'result': {'translatedText': 'I want to go to school.'}}}
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">type</span><span class="p">(</span><span class="n">result2</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  dict
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">result2</span><span class="p">[</span><span class="s">'message'</span><span class="p">])</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {'@type': 'response', '@service': 'naverservice.labs.api', '@version': '1.0.0', 'result': {'translatedText': 'I want to go to school.'}}
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">result2</span><span class="p">[</span><span class="s">'message'</span><span class="p">][</span><span class="s">'result'</span><span class="p">][</span><span class="s">'translatedText'</span><span class="p">])</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  I want to go to school.
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div>  </div>
+
+</div>
+:ET

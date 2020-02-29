@@ -1,0 +1,16 @@
+I"<h2 id="환경변수-설정">환경변수 설정</h2>
+<dl>
+<dt>
+<ul>
+<li>echo $PATH</li>
+</ul>
+</dt>
+<dd>
+환경변수 path의 값 출력
+</dd>
+</dl>
+<ul>
+<li>~/.bash_profile 또는 .zshrc  안에</li>
+</ul>
+<p>export PATH 구문을 수정하면 된다.</p>
+:ET

@@ -1,0 +1,74 @@
+I"�<h2 id="파이썬-클래스와-데이터베이스-테이블의-매핑">파이썬 클래스와 데이터베이스 테이블의 매핑</h2>
+<ul>
+  <li>blog앱 Post모델 : blog_post 데이터베이스테이블</li>
+  <li>blog앱 Comment모델: blog_comment 데이터베이스테이블</li>
+  <li>model과 DB 테이블과 매핑</li>
+  <li>model instance 는 DB 테이블의 하나의 row와 매핑</li>
+</ul>
+
+<h2 id="모델-클래스명">모델 클래스명</h2>
+<ul>
+  <li>단수형으로 작성 (Post)</li>
+</ul>
+
+<h2 id="모델정의">모델정의</h2>
+<ul>
+  <li>created_at = models.DateTimeField(auto_now_add=True)
+    <ul>
+      <li>최초 저장일시가 자동 저장됨</li>
+    </ul>
+  </li>
+  <li>updated_at = models.DateTimeField(auto_now=True)
+    <ul>
+      <li>업데이트된 일시가 자동 갱신됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="field-options">Field Options</h2>
+<ul>
+  <li>null : DB필드에 NULL허용여부 (디폴트 : False) ,db 옵션</li>
+  <li>unique , db옵션</li>
+  <li>blank: 입력값 유효성 검사시에 empty 허용여부 (디폴트: False)</li>
+  <li>default</li>
+  <li>choices
+    <ul>
+      <li>사용문법</li>
+    </ul>
+  </li>
+</ul>
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="n">choice</span><span class="o">=</span><span class="p">(</span>
+  <span class="p">(</span><span class="s">'제목1'</span><span class="p">,</span><span class="s">'제목1 레이블'</span><span class="p">),</span>
+  <span class="p">(</span><span class="s">'제목2'</span><span class="p">,</span><span class="s">'제목2 레이블'</span><span class="p">)</span>
+  <span class="p">)</span>
+  </code></pre></figure>
+
+<ul>
+  <li>첫번째 인자는 저장될 값이고, 두번째 인자는 UI에 보여질 레이블</li>
+  <li>validators
+    <ul>
+      <li>사용문법</li>
+    </ul>
+  </li>
+</ul>
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">from</span> <span class="nn">django.forms</span> <span class="kn">import</span> <span class="n">ValidationError</span>
+
+  <span class="k">def</span> <span class="nf">test_validator</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+      <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s">"여기가 오류메세지"</span><span class="p">)</span>
+
+  <span class="n">Class</span> <span class="n">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">test</span><span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span>
+      <span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">test_validator</span><span class="p">]),</span>
+        <span class="p">)</span>
+  </code></pre></figure>
+
+<ul>
+  <li>verbose_name</li>
+  <li>help_text</li>
+</ul>
+
+<blockquote>
+  <p>AskDjango 강의(https://nomade.kr)</p>
+</blockquote>
+:ET

@@ -1,0 +1,28 @@
+I"d<h2 id="vim-관련">vim 관련</h2>
+<p>-.vim/vimrc 코드</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">set</span> <span class="n">nocompatible</span>              <span class="s">" be iMproved, required</span><span class="err">
+</span><span class="s">filetype off                  "</span> <span class="n">required</span>
+
+<span class="s">"set the runtime path to include Vundle and initialize</span><span class="err">
+</span><span class="s">set rtp+=~/.vim/bundle/Vundle.vim</span><span class="err">
+</span><span class="s">call vundle#begin()</span><span class="err">
+</span><span class="s">"</span>
+<span class="s">" "</span> <span class="n">let</span> <span class="n">Vundle</span> <span class="n">manage</span> <span class="n">Vundle</span><span class="p">,</span> <span class="n">required</span>
+
+<span class="n">Plugin</span> <span class="s">'VundleVim/Vundle.vim'</span>
+<span class="n">Plugin</span> <span class="s">'vim-airline/vim-airline'</span>
+<span class="n">Plugin</span> <span class="s">'scrooloose/nerdtree'</span>
+<span class="n">Plugin</span> <span class="s">'nanotech/jellybeans.vim'</span>
+
+<span class="n">call</span> <span class="n">vundle</span><span class="c1">#end()            " required
+</span><span class="n">filetype</span> <span class="n">plugin</span> <span class="n">indent</span> <span class="n">on</span>    <span class="s">" required</span><span class="err">
+
+</span><span class="s">color jellybeans</span><span class="err">
+</span><span class="s">syntax on</span><span class="err">
+</span><span class="s">filetype plugin indent on</span><span class="err">
+</span><span class="s">map &lt;F3&gt; :NERDTreeToggle&lt;CR&gt;</span><span class="err">
+
+</span><span class="s">set number "</span> <span class="n">show</span> <span class="n">line</span> <span class="n">number</span></code></pre></figure>
+
+:ET

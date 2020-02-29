@@ -1,0 +1,11 @@
+I"�<h2 id="beautiful-soup-사용예제">Beautiful Soup 사용예제</h2>
+<h3 id="css-selector의-문법이-일부-적용됨">Css selector의 문법이 일부 적용됨.</h3>
+<h4 id="사용예제">사용예제</h4>
+<ul>
+  <li>a[href*=playSong]은 a 태그 중에 href 속성에 playSong 문자열이 포함된 모든 a 태그<br /></li>
+  <li>a[href^=playSong]은 a 태그 중에 href 속성이 playSong 문자열로 시작되는 모든 a 태그<br /></li>
+  <li>a[href$=playSong]은 a 태그 중에 href 속성이 playSong 문자열로 끝나는 모든 a 태그&lt;/p&gt;</li>
+</ul>
+
+<h4 id="w3schools"><a href="https://www.w3schools.com/cssref/css_selectors.asp&quot;" target="_blank">W3schools</a></h4>
+:ET

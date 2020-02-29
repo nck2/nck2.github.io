@@ -1,0 +1,32 @@
+I"<h2 id="장고에서-엑셀파일로-export하는-view-예시">장고에서 엑셀파일로 export하는 view 예시</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">excel</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">io</span>
+    <span class="kn">import</span> <span class="nn">xlsxwriter</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">content_type</span><span class="o">=</span><span class="s">'application/vnd.ms-excel'</span><span class="p">)</span>
+    <span class="n">response</span><span class="p">[</span><span class="s">'Content-Disposition'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'attachment; filename=Report.xlsx'</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">workbook</span> <span class="o">=</span> <span class="n">xlsxwriter</span><span class="o">.</span><span class="n">Workbook</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="c1"># 엑셀파일 편집부분--------
+</span>    <span class="kn">from</span> <span class="nn">accounts.models</span> <span class="kn">import</span> <span class="n">Profile</span>
+    <span class="n">li</span><span class="o">=</span><span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="c1"># workbook=xlsxwriter.Workbook('datatest3.xlsx')
+</span>    <span class="n">worksheet</span><span class="o">=</span><span class="n">workbook</span><span class="o">.</span><span class="n">add_worksheet</span><span class="p">()</span>
+    <span class="n">row</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">col</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">li</span><span class="p">:</span>
+        <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">user</span><span class="p">))</span>
+        <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">phone_number</span><span class="p">)</span>
+        <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+        <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">class_number</span><span class="p">)</span>
+        <span class="n">worksheet</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">row</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">workbook</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># ----------엑셀파일편집부분 끝
+</span>
+    <span class="n">xlsx_data</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">xlsx_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span></code></pre></figure>
+
+:ET

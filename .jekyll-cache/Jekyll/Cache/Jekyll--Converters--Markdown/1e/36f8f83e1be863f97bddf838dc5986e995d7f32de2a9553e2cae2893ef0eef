@@ -1,0 +1,79 @@
+I"�<h3 id="1-n-관계">1-N 관계</h3>
+<p>장고</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+  <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Comment</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">post</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Post</span><span class="p">)</span>
+  <span class="n">message</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextField</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>위에서 Comment 는 DB에 blog_comment 라는 이름으로 테이블 생성</li>
+  <li>외래키로 지정된 post는 DB에 post_id 라는 fields 생성</li>
+  <li>위에서  post = models.ForeignKey(Post)는
+post = models.ForeignKey(‘Post’) 로 쓸 수 있다.</li>
+  <li>이때,
+    <ol>
+      <li>post = models.ForeignKey(Post)
+        <ul>
+          <li>반드시 Post가 위에 정의되어 있어야 함.
+2.post = models.ForeignKey(‘Post’)</li>
+          <li>어디에 있든 상관없음.</li>
+        </ul>
+      </li>
+      <li>다른 앱에 있는 경우에는
+post = models.ForeignKey(‘appname.Post’)
+와 같이 지정하면 된다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="tip">Tip</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">tag_set__name</span><span class="o">=</span><span class="s">'askdjango'</span><span class="p">)</span>
+<span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">tag_set__name__in</span><span class="o">=</span><span class="p">[</span><span class="s">'askdjango'</span><span class="p">,</span><span class="s">'Python'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>와 같이 쿼리셋을 찾을 수 있다.</p>
+
+<h3 id="user과-관계-추천-설정">user과 관계 추천 설정</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OneToOneField</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">AUTH_USER_MODEL</span><span class="p">)</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">user_id</span>  <span class="c1"># id번호
+</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span> <span class="c1"># 작성자
+</span></code></pre></div></div>
+
+<ul>
+  <li>즉, 모델을 구성할 때,
+<code class="highlighter-rouge">user = models.OneToOneField(settings.AUTH_USER_MODEL)</code>
+일때 Fetch가 되는 것이 아니라,
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">profile</span><span class="o">.</span><span class="n">user_id</span>  <span class="c1"># id번호
+</span><span class="n">profile</span><span class="o">.</span><span class="n">user</span> <span class="c1"># 작성자
+</span></code></pre></div>    </div>
+    <p>와 같은 명령어가 나올때 fetch가 된다. (laze)</p>
+  </li>
+</ul>
+
+<h3 id="foreignkey에서-related_name">ForeignKey에서 related_name</h3>
+<p>post, comment 가 있을때</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">post</span><span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">Comment</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">post</span><span class="o">=</span><span class="n">post</span><span class="p">)</span> <span class="c1"># 방법1
+</span><span class="n">post</span><span class="o">.</span><span class="n">comment_set</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span> <span class="c1">#방법2 -related name 사용
+</span><span class="n">comment</span><span class="o">=</span> <span class="n">Comment</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+<span class="n">comment</span><span class="o">.</span><span class="n">post</span>
+</code></pre></div></div>
+
+<ul>
+  <li>중간에 외래키로 연결된 user를 삽입한 경우 이미 생성된 값들에
+어떠한 값을 연결할지 묻는 질문이 나옴.</li>
+  <li>이때 넣는것은 user의 값이 아니라, user_id의 값을 묻는 것임.
+따라서 User.objects.get(pk=1) 이라 하면 안되고
+숫자 1은 된다.</li>
+</ul>
+
+<blockquote>
+  <p><a href="https://nomade.kr">AskDjang</a> EP11. Model Relationship Fields</p>
+</blockquote>
+:ET

@@ -1,0 +1,95 @@
+I"�$<h2 id="몇가지-fact">몇가지 fact</h2>
+<ul>
+  <li>하나의 form 태그는 하나 이상의 <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/The_native_form_widgets">위젯</a>을 가진다.</li>
+  <li>Middleware는 view함수의 함,뒤에서 실행됨.(csrf_token이 한 예)
+-<a href="https://docs.djangoproject.com/en/1.10/ref/request-response/#quick-overview">request.method</a> 는 “GET,POST” (대문자)로 사용</li>
+  <li>request.GET, request.POST, request.FILES</li>
+  <li>Validator는 모델에 하면 좋음(admin에도 포함됨)</li>
+  <li>form.is_valid()가 참이되면 값들을 사전타입으로 form.cleaned_data에 저장됨.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">     <span class="o">&lt;</span><span class="n">form</span> <span class="n">action</span> <span class="s">"?lang=ko"</span> <span class="n">method</span> <span class="o">=</span> <span class="s">"post"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text"</span> <span class="n">name</span><span class="o">=</span><span class="s">"title"</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="n">textarea</span> <span class="n">name</span><span class="o">=</span><span class="s">"contents"</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text"</span> <span class="n">name</span><span class="o">=</span><span class="s">"latlng"</span> <span class="o">/&gt;</span>
+     <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>라 하면 post전송에 get인자를 지정해서 보내는 것임.</p>
+
+<ul>
+  <li>form.is_valid()를 하면 유효성 검사와 함께 clean data 생성함.</li>
+  <li>(모델폼을 사용했을 경우) comment=form.save(commit=False)를 하면 clean data가 인스턴스에 저장되어 새로운 인스턴스(comment)를 생성. 위에서 commit=False을 생략하면, DB에 저장되는 절차가 부여됨.</li>
+  <li>request.POST[‘message’]보다는 form.cleaned_data[‘message’]와 같이 사용할 것</li>
+  <li>모델폼에서 수정은 instance=post를 넣어주어야 함.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1">#app/models.py
+</span><span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+  <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">TextFiels</span><span class="p">()</span>
+  <span class="n">created_at</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+  <span class="n">updated_at</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="c1">#app/forms.py
+</span><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
+<span class="k">class</span> <span class="nc">PostForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+  <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">()</span>
+  <span class="n">content</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>models는 DB에 대한 fields 설명</li>
+  <li>form은  python에 대한 fields(파이썬은 길이에 따른 구분이 없으므로 같이 쓰면 된다. )</li>
+  <li>form의 유효성 검사가 통과하였을 때 저장방법</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">     <span class="c1">#방법1
+</span>     <span class="n">post</span> <span class="o">=</span><span class="n">Post</span><span class="p">()</span>
+     <span class="n">post</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">'title'</span><span class="p">]</span>
+     <span class="n">post</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_date</span><span class="p">[</span><span class="s">'content'</span><span class="p">]</span>
+     <span class="n">post</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+     <span class="c1">#방법2
+</span>     <span class="n">post</span> <span class="o">=</span><span class="n">Post</span><span class="p">(</span><span class="n">title</span><span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">'title'</span><span class="p">],</span> <span class="n">content</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_date</span><span class="p">[</span><span class="s">'content'</span><span class="p">])</span>
+     <span class="n">post</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+     <span class="c1">#방법3
+</span>     <span class="n">post</span> <span class="o">=</span><span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">title</span><span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s">'title'</span><span class="p">],</span> <span class="n">content</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">cleaned_date</span><span class="p">[</span><span class="s">'content'</span><span class="p">])</span>
+
+     <span class="c1">#방법4
+</span>     <span class="n">post</span><span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">**</span><span class="n">form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>3,4번째 방식은 따로 save()를 호출하지 않아도 됨.</li>
+  <li>
+    <p>검증에 실패하면 form.errors와 form.각필드.errors에 정보저장</p>
+  </li>
+  <li>
+    <p>내장 <a href="https://docs.djangoproject.com/en/1.10/ref/validators/">Validators</a></p>
+  </li>
+  <li>화면 한쪽으로 쏠릴때</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">     <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span> <span class="s">"container"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span> <span class="s">"row"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span> <span class="s">"col-md-12"</span><span class="o">&gt;</span>
+            <span class="err">내용</span>
+          <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>만 해도 어느정도 레이아웃이 이뻐진다.</p>
+
+<ul>
+  <li>nonfield error (특정영역에 속하지 않는 전체적인 오류)</li>
+  <li>템플릿에서 쓰는 form 마크업 <a href="https://docs.djangoproject.com/en/1.10/topics/forms/#rendering-fields-manually">참고</a>
+    <ul>
+      <li>for error in form.non_field_errors</li>
+      <li>form.title.label_tag 등</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><a href="https://nomade.kr">AskDjango</a> EP18~EP24 form 관련</p>
+</blockquote>
+:ET

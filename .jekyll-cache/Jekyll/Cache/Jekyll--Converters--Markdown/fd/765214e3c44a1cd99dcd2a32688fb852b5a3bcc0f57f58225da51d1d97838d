@@ -1,0 +1,10 @@
+I"�<h2 id="몇가지-fact">몇가지 fact</h2>
+<ul>
+  <li>하나의 form 태그는 하나 이상의 <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/The_native_form_widgets">위젯</a>을 가진다.</li>
+  <li>Middleware는 view함수의 함,뒤에서 실행됨.(csrf_token이 한 예)
+-<a href="https://docs.djangoproject.com/en/1.10/ref/request-response/#quick-overview">request.method</a> 는 “GET,POST” (대문자)로 사용</li>
+  <li>request.GET, request.POST, request.FILES</li>
+  <li>Validator는 모델에 하면 좋음(admin에도 포함됨)</li>
+  <li>form.is_valid()가 참이되면 값들을 사전타입으로 form.cleaned_data에 저장됨.</li>
+</ul>
+:ET

@@ -1,0 +1,39 @@
+I"R<h2 id="필요한-프로그램-설치">필요한 프로그램 설치</h2>
+<ol>
+  <li>yarn 설치중
+    <ul>
+      <li>sudo chown -R $(whoami):admin /usr/local</li>
+      <li>usr/local 아래의 모든 파일(-R)에 [사용자:그룹]에 소유권부여</li>
+      <li>brew update; brew install yarn 로 설치함</li>
+    </ul>
+  </li>
+  <li>기존 배열로 새로운 배열 생성 문법</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span><span class="nx">movies</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">movie</span> <span class="o">=&gt;</span><span class="p">{</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Movie</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">movie</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="nx">poster</span><span class="o">=</span><span class="p">{</span><span class="nx">movie</span><span class="p">.</span><span class="nx">poster</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="p">})}</span></code></pre></figure>
+
+<ul>
+  <li>기존에 있는 moives라는 배열에서 원소를 하나씩 꺼내서 movie에 대응, =&gt; return 뒤에 있는 값을 워소로 가지는 배열 생성?</li>
+</ul>
+
+<ol>
+  <li>component 실행순서(render)
+    <ul>
+      <li>componentWillMount()</li>
+      <li>render()</li>
+      <li>componentDidMount()</li>
+    </ul>
+  </li>
+  <li>component 실행순서(update)
+    <ul>
+      <li>componentWillReceiveProps()</li>
+      <li>shouldComponentUpdate()</li>
+      <li>componentWillupdate()</li>
+      <li>render()</li>
+      <li>componentDidupdate()</li>
+    </ul>
+  </li>
+</ol>
+:ET

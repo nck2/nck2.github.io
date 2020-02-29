@@ -1,0 +1,7 @@
+I"�<h3 id="1-n-관계">1-N 관계</h3>
+<p>장고
+```python
+class Post(models.Model):
+  title = models.CharField(max_length=10)
+  content = models.TextField()</p>
+:ET

@@ -1,0 +1,215 @@
+I"Z$<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">collections</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myList</span><span class="o">=</span><span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'d'</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myCounter</span><span class="o">=</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">myList</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myCounter</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Counter({'a': 2, 'b': 2, 'c': 1, 'd': 1})
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">myCounter</span><span class="p">[</span><span class="s">'a'</span><span class="p">])</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  2
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">yourList</span><span class="o">=</span><span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'e'</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourList</span><span class="o">=</span><span class="n">myList</span><span class="o">+</span><span class="n">yourList</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourList</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['a', 'b', 'c', 'a', 'b', 'd', 'a', 'b', 'b', 'e']
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">type</span><span class="p">(</span><span class="n">ourList</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  list
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourCounter</span><span class="o">=</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">ourList</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourCounter</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Counter({'a': 3, 'b': 4, 'c': 1, 'd': 1, 'e': 1})
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourCounter</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [('b', 4), ('a', 3)]
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourCounter</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  dict_keys(['a', 'b', 'c', 'd', 'e'])
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ourCounter</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  dict_items([('a', 3), ('b', 4), ('c', 1), ('d', 1), ('e', 1)])
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">itertools</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># 1부터 시작하여 1씩 증가 하는 카운터
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">10</span> <span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span><span class="o">=</span><span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  count(1)
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  count(1)
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">k</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  count(1)
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="nb">iter</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  count(1) count(1)
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">iter</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  count(1)
+</code></pre></div></div>
+
+:ET

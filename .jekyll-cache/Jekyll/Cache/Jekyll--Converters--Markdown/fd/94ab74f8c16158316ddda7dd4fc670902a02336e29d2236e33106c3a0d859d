@@ -1,0 +1,7 @@
+I"�<h2 id="문자열-추출">문자열 추출</h2>
+<p><script src="https://gist.github.com/nck2/e4f7fcc7a684b4e639d846d9a6f5fb5f.js"></script></p>
+<h2 id="참고">참고</h2>
+<p>1.문자열 분리 함수의 div 인수에 적당한 숫자를 넣으면 원하는대로 추출가능<br />
+2.숫자추출은 자연수를 추출하는 함수<br />
+3.select case ~ end select 도 유용한 함수인듯.</p>
+:ET

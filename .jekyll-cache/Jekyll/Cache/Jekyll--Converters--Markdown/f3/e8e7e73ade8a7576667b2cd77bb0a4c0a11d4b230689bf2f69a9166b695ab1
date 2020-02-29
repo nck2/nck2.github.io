@@ -1,0 +1,35 @@
+I"�<h2 id="문제">문제</h2>
+<p>$(a,b)$에서 미분가능한 $f,g$가 다음 조건을 만족시킨다.</p>
+
+<ul>
+  <li>$\lim_{x \rightarrow a+} f(x) =\lim_{x \rightarrow a+} g(x)= \infty$</li>
+  <li>$\lim_{x \rightarrow a+}{\frac{f’(x)}{g’(x)} = \infty}$</li>
+</ul>
+
+<p>이 때 $\lim_{x \rightarrow a+}\frac{f(x)}{g(x)} = \infty$임을 보이시오.</p>
+
+<h2 id="증명">증명</h2>
+
+<p>$\forall M &gt;0$에 대하여 다음 식을 만족하는 $\beta_m$이 존재한다.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+x \in (a, \beta_m) \Rightarrow M < \frac{f'(x)}{g'(x)} %]]></script>
+
+<p>이제 $x&lt;y$, $[x,y] \subset (a,\beta_m)$인 $x,y$를 고려하자. 이때, 다음 식을 만족하는 $c_{x,y}$가 $c_{x,y} \in (x,y)$에 존재한다.</p>
+
+<script type="math/tex; mode=display">\frac{f'(c_{x,y})}{g'(c_{x,y})} = \frac{f(x)-f(y)}{g(x)-g(y)} = \frac{\frac{f(x)}{g(x)}- \frac{f(y)}{g(x)}}{1-\frac{g(y)}{g(x)}}</script>
+
+<p>이때 고정된 $y$에 대하여 다음과 같은 양수 $r$이 존재한다.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+x \in (a, a+r) \subset (a,y) \Rightarrow \left| \frac{g(y)}{g(x)} \right| < \frac{1}{2} \text{ and } \left| \frac{f(y)}{g(x)} \right| < \frac{1}{2} %]]></script>
+
+<p>이제 $x \in (a, a+r) $ 이면, $c_{x,y} \in  (a, \beta_m)$이므로,
+다음이 성립한다.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+M < \frac{f'(c_{x,y})}{g'(c_{x,y})} = \frac{\frac{f(x)}{g(x)}- \frac{f(y)}{g(x)}}{1-\frac{g(y)}{g(x)}} < \frac{\frac{f(x)}{g(x)}+\frac{1}{2} }{1-\frac{1}{2}} %]]></script>
+
+<p>따라서 $\frac{M-1}{2} &lt;\frac{f(x)}{g(x)}$이므로 
+주어진 명제가 성립한다.</p>
+:ET

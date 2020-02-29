@@ -1,0 +1,70 @@
+I"/<h2 id="eb에-오랜만에-배포하면서-했던-삽질">EB에 오랜만에 배포하면서 했던 삽질</h2>
+
+<ol>
+  <li>우선 eb deploy에서 request 버젼 에러
+    <ul>
+      <li>pip uninstall awsebcli 후 brew install awsebcli 로 설치하니까 되었음</li>
+    </ul>
+  </li>
+  <li>루트 디렉토리에 .ebextensions/django.config 를 만든다.</li>
+</ol>
+
+<p>내용은</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">container_commands</span><span class="p">:</span>
+  <span class="mi">01</span><span class="n">_migrate</span><span class="p">:</span>
+    <span class="n">command</span><span class="p">:</span> <span class="s">"python manage.py migrate"</span>
+  <span class="mi">02</span><span class="n">_collectstatic</span><span class="p">:</span>
+    <span class="n">command</span><span class="p">:</span> <span class="s">"python manage.py collectstatic --noinput"</span>
+  <span class="mi">03</span><span class="n">_createsu</span><span class="p">:</span>
+    <span class="n">command</span><span class="p">:</span> <span class="s">"python manage.py createsu"</span>
+    <span class="n">leader_only</span><span class="p">:</span> <span class="n">true</span>
+
+<span class="n">option_settings</span><span class="p">:</span>
+  <span class="n">aws</span><span class="p">:</span><span class="n">elasticbeanstalk</span><span class="p">:</span><span class="n">container</span><span class="p">:</span><span class="n">python</span><span class="p">:</span>
+    <span class="n">WSGIPath</span><span class="p">:</span> <span class="n">mysite</span><span class="o">/</span><span class="n">wsgi</span><span class="o">.</span><span class="n">py</span></code></pre></figure>
+
+<p>이다. 물론 위에서 프로젝트명 등은 적당히 변경</p>
+
+<ol>
+  <li>적당한앱/management/commands/createsu.py 를 만든다.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">django.core.management.base</span> <span class="kn">import</span> <span class="n">BaseCommand</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.models</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="k">class</span> <span class="nc">Command</span><span class="p">(</span><span class="n">BaseCommand</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">"admin"</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create_superuser</span><span class="p">(</span><span class="s">"admin"</span><span class="p">,</span><span class="s">"id@gmail.com"</span><span class="p">,</span><span class="s">"password"</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>이를 통해 어드민 계정을 생성할 수 있다.</li>
+</ul>
+
+<ol>
+  <li>세팅분기시 삽질
+    <ul>
+      <li>common.py에 BASE_DIR 의 깊이 변경</li>
+      <li>manage.py에  os.environ.setdefault(“DJANGO_SETTINGS_MODULE”, “mysite.settings.dev”) 로 변경, 이를 통해 최초 시작시 세팅을 dev로 설정</li>
+      <li>wsgi.py에 os.environ.setdefault(“DJANGO_SETTINGS_MODULE”, “mysite.settings.aws_prod”) 설정, 이를 통해 배포했을때 세팅설정</li>
+    </ul>
+  </li>
+  <li>eb cli시 삽질
+    <ul>
+      <li>계정을 새로 팠는데 전에 계정으로 계속 연결됨</li>
+      <li>.aws에 키와 아이디가 기록되어 있는데 이를 바탕으로 eb cli를 연결함!</li>
+      <li>rds설정시 인바운드를 postgre 로 잘 설정함. 포트번호도!!</li>
+      <li>S3의 버킷을 생성해놓고 이를 연결해야함.</li>
+      <li>버킷은 읽을 수 있는 권한을 everyone(실험해볼 필요있음.)</li>
+      <li>eb setenv key=value/ 를 통해 여러줄 입력하여 환경변수 생성</li>
+      <li>파이썬 위치에 해당하는 환경변수는 자동으로 생기는 듯?</li>
+    </ul>
+  </li>
+  <li>기타
+    <ul>
+      <li>배포후 elastic ip 가 잘 설정되지 않았다.</li>
+      <li>구성,확장에서 환경유형을 단일 인스턴스로 하면 자동적으로 EIP가 생긴다.!!</li>
+    </ul>
+  </li>
+</ol>
+:ET

@@ -1,0 +1,61 @@
+I"�<h2 id="migrations-명령어">Migrations 명령어</h2>
+<ol>
+  <li>python manage.py makemigrations [앱이름]</li>
+  <li>python manage.py migrate [앱이름]</li>
+  <li>python manage.py showmigrations [앱이름] : 어떤 마이그레이션이 적용되었는지 안되었는지 확인가능.</li>
+  <li>python manage.py sqlmigrate [앱이름] [migration-name]</li>
+</ol>
+
+<h2 id="tip">Tip</h2>
+<ul>
+  <li>적용하지않은 마이그레이션은 삭제해도 무방</li>
+  <li>하지만 적용한 마이그레이션은 함부로 삭제하면 안됨!!</li>
+  <li>no such table, no such column 오류는 거의 마이그레이션이 안되어 나타나는 오류임</li>
+</ul>
+
+<h2 id="마이그레이션의-포워드-롤백">마이그레이션의 포워드, 롤백</h2>
+<ul>
+  <li>case 1
+    <ul>
+      <li>blog/001</li>
+      <li>blog/002</li>
+      <li>blog/003</li>
+      <li>blog/004 –여기까지 적용</li>
+    </ul>
+  </li>
+</ul>
+
+<p>위의 상황에서 004를 취소시키려면
+python manage.py migrate blog 003 을 하면
+003까지 적용된 버젼으로 바뀐다. 이후 004를 삭제하면 된다.</p>
+
+<hr />
+
+<ul>
+  <li>case 2
+    <ul>
+      <li>blog/001</li>
+      <li>blog/002  –여기까지 적용</li>
+      <li>blog/003</li>
+      <li>blog/004</li>
+    </ul>
+  </li>
+</ul>
+
+<p>위의 상황에서
+python manage.py migrate blog 003 을 하면
+003까지 적용된 버젼으로 바뀐다.</p>
+
+<hr />
+
+<h2 id="기타">기타</h2>
+<ul>
+  <li>python manage.py migrate zero로 하면
+모든 마이그레이션이 취소가 된다.</li>
+  <li>단 이처럼 롤백을 하면 데이터가 모두 삭제될 수 있으니 유의해야 함.</li>
+</ul>
+
+<blockquote>
+  <p><a href="https://nomade.kr">AskDjang</a> EP6. Migrations</p>
+</blockquote>
+:ET

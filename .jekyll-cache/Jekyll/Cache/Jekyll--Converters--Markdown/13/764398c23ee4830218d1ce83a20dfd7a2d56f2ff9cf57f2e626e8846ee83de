@@ -1,0 +1,19 @@
+I"G<h2 id="ddns-주소-설정">DDNS 주소 설정</h2>
+<blockquote>
+  <p>http://devks.tistory.com/19?category=686547
+  위를 참고하여 DDNS 주소를 설정함. 이 주소로 접속가능함.</p>
+</blockquote>
+
+<h2 id="ssh-활성화">SSH 활성화</h2>
+<blockquote>
+  <p>http://ngee.tistory.com/625
+  를 참고하여 SSH 활성화한다.</p>
+  <ul>
+    <li>포트를 설정한다.</li>
+    <li>사용자 홈폴더 활성화</li>
+    <li>처음 접속은 admin으로 가능함.</li>
+    <li>ssh -p 1111 admin@ddns주소
+  (포트번호가 1111일 경우)</li>
+  </ul>
+</blockquote>
+:ET

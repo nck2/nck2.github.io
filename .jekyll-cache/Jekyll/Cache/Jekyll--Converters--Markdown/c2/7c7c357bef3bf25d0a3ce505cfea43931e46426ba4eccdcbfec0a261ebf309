@@ -1,0 +1,5 @@
+I"�<p><script src="https://gist.github.com/nck2/e57c26e4471be6ffd9c8142ca2fefc4d.js"></script><br />
+(한영전환)&lt;button type="button" class="btn btn-default" onclick="javascript:ohiChange_KE()"&gt;한/영&lt;/button&gt; 을 추가하면 됨.</p>
+<p>처음에 세벌식으로 나오고 버튼을 클릭하면 한영전환됨. 키보드에서 한영전환을 하면 두벌식으로 바뀜</p>
+<blockquote><p>http://pat.im/910 참고</p></blockquote>
+:ET

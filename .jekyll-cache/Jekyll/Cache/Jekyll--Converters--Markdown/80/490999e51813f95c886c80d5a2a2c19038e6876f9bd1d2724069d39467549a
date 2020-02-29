@@ -1,0 +1,34 @@
+I"�<h2 id="form과-관련한-몇-가지-사실">form과 관련한 몇 가지 사실</h2>
+<ol>
+  <li>모델폼의 widget변경은 마이그레이션이 필요없다.</li>
+  <li>forms.py에서의 변경은 마이그레이션이 필요없다.</li>
+  <li>hidden input을 하면 폼에 포함되지만 화면에 나타나지 않는다.</li>
+  <li>is_valid()는 폼에서 지정한 필드에 대해서만 유효성검사를 하는 듯하다.</li>
+</ol>
+
+<h2 id="form의-저장과-수정">form의 저장과 수정</h2>
+<ul>
+  <li>(1)</li>
+</ul>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="o">==</span><span class="s">'POST'</span><span class="p">:</span>
+        <span class="n">form</span><span class="o">=</span><span class="n">Webaddressform</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="s">"수정되었습니다."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">'shortenwebadview'</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>(2)</li>
+</ul>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="o">==</span><span class="s">'POST'</span><span class="p">:</span>
+        <span class="n">form</span><span class="o">=</span><span class="n">Webaddressform</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span><span class="n">instance</span><span class="o">=</span><span class="n">posted</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="s">"수정되었습니다."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">'shortenwebadview'</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>(1)는 request에 대한 요청을 새롭게 저장한다.(즉, 수정이 아닌 추가이다.)</li>
+  <li>(2)은 instance에 대한 수정을 요청한다. 즉, 수정을 하기 위해서는 6번과 같이 적어줄 필요가 있다.</li>
+</ul>
+:ET

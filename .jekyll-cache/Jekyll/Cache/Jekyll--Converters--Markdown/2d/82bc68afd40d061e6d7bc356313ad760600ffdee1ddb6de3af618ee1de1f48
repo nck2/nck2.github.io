@@ -1,0 +1,14 @@
+I";<h2 id="aws-eb에-배포-중-몇가지-문제-직면">AWS EB에 배포 중 몇가지 문제 직면</h2>
+<ul>
+  <li>accounts의 마이그레이션 중 auth에 종속성을 가짐.</li>
+  <li>실제로 accounts의 마이그레이션 파일을 보면 아래 코드가 있음.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">dependencies</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">(</span><span class="s">'auth'</span><span class="p">,</span> <span class="s">'0009_alter_user_last_name_max_length'</span><span class="p">),</span>
+  <span class="p">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>시도 결과 먼저 auth가 migrate되고 난 뒤, accounts가 migrate 되야 함</li>
+  <li>보통 migrate는 알파벳순으로 위의 원칙이 지켜지지 않는 것 같음.</li>
+  <li>로컬에서는 되지만 이후 rds에서는 계속 <code>django.db.utils.ProgrammingError: column course_classdata.created_at does not exist</code>와 같은 오류가 뜸.</li>
+</ul>
+:ET

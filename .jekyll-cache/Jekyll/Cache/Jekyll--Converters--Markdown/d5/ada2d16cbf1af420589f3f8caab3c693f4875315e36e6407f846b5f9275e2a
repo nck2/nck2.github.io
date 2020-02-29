@@ -1,0 +1,71 @@
+I"q<h2 id="nomadecoder의-백엔드-강의-1">NomadeCoder의 백엔드 강의 1</h2>
+
+<ol>
+  <li>pipenv
+    <ul>
+      <li>그냥 python3 -m venv mysite 가 나은듯 함.</li>
+      <li>왜냐면 pipenv는 활성화되어있는지 확인이 안되는 것 같음.</li>
+    </ul>
+  </li>
+  <li>cookiecutter
+    <ul>
+      <li>글로벌하게 설치할 필요가 있음.(각 프로젝트별로 항상 쿠키커터 필요)</li>
+      <li>깃헙에서 프로젝트를 clone할때 원하는대로 설정(프로젝트이름등)을 바꿔서 사용할 수 있음.</li>
+      <li>cookiecutter https://github.com/pydanny/cookiecutter-django</li>
+      <li>각종 템플릿, requirements 등이 포함되어 있음.</li>
+      <li>기본적으로 많은 패키지가 깔림. 좀 과하다 싶은 느낌이 있음.</li>
+      <li>https://postgresapp.com/ DB 설치</li>
+      <li>디버그 툴바, 부트스트랩등 기본적인 것이 모두 설치되어 있음.</li>
+      <li>처음 연결하면 데이터베이스가 없어서 오류, postgresapp을 실행시켜 데이터베이스를 생성해주면 됨.</li>
+      <li>CREATE DATABASE 데이터베이스이름;</li>
+      <li>user 앱이 이미 생성되어 있음.</li>
+      <li>app 에서 이름을 바꿔서 등록함.</li>
+      <li>django-admin startapp 으로도 됨.</li>
+    </ul>
+  </li>
+  <li>admin에 쓸수 있는 것
+    <ul>
+      <li>list_display_links</li>
+      <li>search_fields</li>
+      <li>list_filter 등,</li>
+    </ul>
+  </li>
+  <li>property decorator</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">@</span><span class="nb">property</span>
+<span class="k">def</span> <span class="nf">like_count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">likes</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span></code></pre></figure>
+
+<ul>
+  <li>이렇게 하니 like_count를 필드처럼 사용할 수 있었음.</li>
+  <li>예를 들어 serializers.py에서 다음과 같이 사용가능.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">ImageSerializer</span><span class="p">(</span><span class="n">serializers</span><span class="o">.</span><span class="n">ModelSerializer</span><span class="p">):</span>
+
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">CommentSerializer</span><span class="p">(</span><span class="n">many</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">creator</span> <span class="o">=</span> <span class="n">FeedUserSerializer</span><span class="p">()</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Image</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s">'id'</span><span class="p">,</span>
+            <span class="s">'file'</span><span class="p">,</span>
+            <span class="s">'location'</span><span class="p">,</span>
+            <span class="s">'caption'</span><span class="p">,</span>
+            <span class="s">'comments'</span><span class="p">,</span>
+            <span class="s">'like_count'</span><span class="p">,</span>
+            <span class="s">'creator'</span>
+        <span class="p">)</span></code></pre></figure>
+
+<ol>
+  <li>url을 다음과 같이 사용가능</li>
+</ol>
+
+<p>url(
+        regex=r’(?P<image_id>[0-9]+)/like/',
+        view=views.LikeImage.as_view(),
+        name='like_image'
+    )</image_id></p>
+:ET

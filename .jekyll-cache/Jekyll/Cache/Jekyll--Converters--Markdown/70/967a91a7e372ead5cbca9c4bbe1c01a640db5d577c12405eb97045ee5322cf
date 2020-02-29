@@ -1,0 +1,20 @@
+I"�<h2 id="local-server에서-s3로-mediafile-연결">local server에서 S3로 mediafile 연결</h2>
+<ul>
+  <li>settings/dev.py 에서 아래와 같은 설정을 추가하여 S3에 media파일을 넣을 수 있었다.
+``` python
+DATABASES = {
+      ‘default’: {
+          ‘ENGINE’: ‘django.db.backends.postgresql_psycopg2’,
+          ‘NAME’: ‘dbname’,
+          ‘USER’: ‘username’,
+          ‘PASSWORD’: ‘pw’,
+          ‘HOST’:’hostname’,
+          ‘PORT’: ‘5432’,
+      },
+  }
+  INSTALLED_APPS += [‘storages’]
+  AWS_S3_HOST = ‘s3.ap-northeast-2.amazonaws.com’
+  STATICFILES_STORAGE = ‘mysite.storages.StaticS3Boto3Storage’
+  DEFAULT_FILE_STORAGE = ‘mysite.storages.MediaS3Boto3Storage’</li>
+</ul>
+:ET

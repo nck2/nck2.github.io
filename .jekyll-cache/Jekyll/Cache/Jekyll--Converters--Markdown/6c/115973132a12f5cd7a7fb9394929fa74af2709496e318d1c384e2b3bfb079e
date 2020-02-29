@@ -1,0 +1,66 @@
+I"�
+<p>Barnsley's fern uses four <a title="Affine transformation" href="https://en.wikipedia.org/wiki/Affine_transformation">affine transformations</a>. The formula for one transformation is the following:</p>
+<p><script type="math/tex">% <![CDATA[
+f(x,y)={\begin{bmatrix}a&b\\c&d\end{bmatrix}}{\begin{bmatrix}x\\y\end{bmatrix}}+{\begin{bmatrix}e\\f\end{bmatrix}} %]]></script></p>
+<p>Barnsley shows the <i>IFS</i> code for his <i>Black Spleenwort</i> fern fractal as a matrix of values shown in a table. In the table, the columns "a" through "f" are the coefficients of the equation, and "p" represents the probability factor.</p>
+<table class="wikitable aligncenter" style="height: 146px;" width="493">
+<tbody>
+<tr>
+<th style="width: 16.4px;"><i>w</i></th>
+<th style="width: 40.4px;">a</th>
+<th style="width: 40.4px;">b</th>
+<th style="width: 40.4px;">c</th>
+<th style="width: 31.6px;">d</th>
+<th style="width: 9.2px;">e</th>
+<th style="width: 31.6px;">f</th>
+<th style="width: 31.6px;">p</th>
+<th style="width: 196.4px;">Portion generated</th>
+</tr>
+<tr>
+<td style="width: 16.4px;"><i>ƒ</i><sub>1</sub></td>
+<td style="width: 40.4px;">0</td>
+<td style="width: 40.4px;">0</td>
+<td style="width: 40.4px;">0</td>
+<td style="width: 31.6px;">0.16</td>
+<td style="width: 9.2px;">0</td>
+<td style="width: 31.6px;">0</td>
+<td style="width: 31.6px;">0.01</td>
+<td style="width: 196.4px;">Stem</td>
+</tr>
+<tr>
+<td style="text-align: center; width: 16.4px;"><i>ƒ</i><sub>2</sub></td>
+<td style="width: 40.4px;">0.85</td>
+<td style="width: 40.4px;">0.04</td>
+<td style="width: 40.4px;">−0.04</td>
+<td style="width: 31.6px;">0.85</td>
+<td style="width: 9.2px;">0</td>
+<td style="width: 31.6px;">1.60</td>
+<td style="width: 31.6px;">0.85</td>
+<td style="width: 196.4px;">Successively smaller leaflets</td>
+</tr>
+<tr>
+<td style="width: 16.4px;"><i>ƒ</i><sub>3</sub></td>
+<td style="width: 40.4px;">0.20</td>
+<td style="width: 40.4px;">−0.26</td>
+<td style="width: 40.4px;">0.23</td>
+<td style="width: 31.6px;">0.22</td>
+<td style="width: 9.2px;">0</td>
+<td style="width: 31.6px;">1.60</td>
+<td style="width: 31.6px;">0.07</td>
+<td style="width: 196.4px;">Largest left-hand leaflet</td>
+</tr>
+<tr>
+<td style="width: 16.4px;"><i>ƒ</i><sub>4</sub></td>
+<td style="width: 40.4px;">−0.15</td>
+<td style="width: 40.4px;">0.28</td>
+<td style="width: 40.4px;">0.26</td>
+<td style="width: 31.6px;">0.24</td>
+<td style="width: 9.2px;">0</td>
+<td style="width: 31.6px;">0.44</td>
+<td style="width: 31.6px;">0.07</td>
+<td style="width: 196.4px;">Largest right-hand leaflet</td>
+</tr>
+</tbody>
+</table>
+<blockquote><p><span style="font-size: 10pt;">&lt;출처: https://en.wikipedia.org/wiki/Barnsley_fern&gt;</span></p></blockquote>
+:ET

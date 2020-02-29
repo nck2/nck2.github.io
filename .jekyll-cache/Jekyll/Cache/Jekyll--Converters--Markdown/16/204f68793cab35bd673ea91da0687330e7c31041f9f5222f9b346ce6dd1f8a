@@ -1,0 +1,41 @@
+I" <ol>
+  <li>IAM 계정생성
+    <ul>
+      <li>프로그래밍 방식 접근허용</li>
+    </ul>
+  </li>
+  <li>EC2 생성(아마존 리눅스로 생성)
+    <ul>
+      <li>보안그룹에 http 규칙추가</li>
+    </ul>
+  </li>
+  <li>Key pair 생성
+    <ul>
+      <li>.ssh생성</li>
+    </ul>
+  </li>
+  <li>ssh 접속
+ssh -i ***.pem ec2-user@주소</li>
+  <li>퍼미션 오류가 발생</li>
+  <li>***.pem의 퍼미션 조정
+    <ul>
+      <li>chmod 400 mykey.pem</li>
+    </ul>
+  </li>
+  <li>ssh접속 성공(아이디가 ec2-user임)</li>
+  <li>sudo su
+    <ul>
+      <li>passwd 로 root계정의 비밀번호를 설정할 수 있음.
+9.</li>
+      <li>yum update -y</li>
+      <li>yum install httpd -y</li>
+      <li>(파일을 /var/www/html/에 저장함.)</li>
+      <li>wget  https://s3.ap-northeast-2.amazonaws.com/180328-begginer/templated-visualize.zip</li>
+      <li>unzip templated-visualize.zip</li>
+      <li>cd templated-visualize</li>
+      <li>cp -R ./* /var/www/html/</li>
+      <li>service httpd restart</li>
+    </ul>
+  </li>
+</ol>
+:ET

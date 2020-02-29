@@ -1,0 +1,6 @@
+I"<h2 id="vscode-사용">vscode 사용</h2>
+<p>.vscode/settings.json 에 다음과 같이 파이썬 파일의 위치를 지정하면 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"python.linting.pylintEnabled"</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+<span class="s">"python.pythonPath"</span><span class="p">:</span><span class="s">"/Users/ckn/craw/bin/python3"</span>
+</code></pre></div></div>
+:ET

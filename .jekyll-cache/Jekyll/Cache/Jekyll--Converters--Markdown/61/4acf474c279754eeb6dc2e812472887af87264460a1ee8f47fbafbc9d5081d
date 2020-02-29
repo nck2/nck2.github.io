@@ -1,0 +1,19 @@
+I"�<h2 id="git-사용법">git 사용법</h2>
+<ul>
+  <li>git init
+    <ul>
+      <li>폴더에 .git을 만들고 이 폴더가 git을 사용한다는 것을 알려줌</li>
+    </ul>
+  </li>
+  <li>git clone
+    <ul>
+      <li>github과 같은 장소에서 내용을 복사해옴. 이때 저장소와 연결까지 되는 것 같음</li>
+    </ul>
+  </li>
+  <li>git add .</li>
+  <li>git commit -m ‘text’</li>
+  <li>git push</li>
+</ul>
+
+<h2 id="고급-사용법">고급 사용법</h2>
+:ET

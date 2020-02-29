@@ -1,0 +1,111 @@
+I"S><h2 id="django-form-html-꾸미기">Django form Html 꾸미기</h2>
+
+<h3 id="bootstrap을-사용하여-개별적으로-폼을-만드는-방법">bootstrap을 사용하여 개별적으로 폼을 만드는 방법</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&lt;</span><span class="err">!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">"utf-8"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">link</span> <span class="n">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="n">href</span><span class="o">=</span><span class="s">"//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s">"//code.jquery.com/jquery-2.2.4.min.js"</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"container"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">form</span> <span class="n">action</span><span class="o">=</span><span class="s">""</span> <span class="n">method</span><span class="o">=</span><span class="s">"post"</span> <span class="n">class</span><span class="o">=</span><span class="s">"form-horizontal"</span> <span class="n">enctype</span><span class="o">=</span><span class="s">"multipart/form-data"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">legend</span><span class="o">&gt;</span><span class="n">Post</span> <span class="n">Form</span><span class="o">&lt;/</span><span class="n">legend</span><span class="o">&gt;</span>
+
+           <span class="p">{</span><span class="o">%</span> <span class="n">csrf_token</span> <span class="o">%</span><span class="p">}</span>
+
+
+      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">non_field_errors</span> <span class="o">%</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"alert alert-danger"</span><span class="o">&gt;</span>
+        <span class="p">{{</span> <span class="n">error</span> <span class="p">}}</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">hidden</span> <span class="n">fields</span><span class="err">는</span> <span class="err">위젯만</span> <span class="err">렌더링</span> <span class="o">--&gt;</span>
+
+      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">hidden_fields</span> <span class="o">%</span><span class="p">}</span>
+      <span class="p">{{</span> <span class="n">field</span> <span class="p">}}</span>
+     <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+      <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">visible</span> <span class="n">fields</span><span class="err">는</span> <span class="err">모든</span> <span class="err">요소</span> <span class="err">렌더링</span> <span class="o">--&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">visible_fields</span> <span class="o">%</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"form-group"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span> <span class="k">for</span><span class="o">=</span><span class="s">"{{field.id_for_label}}"</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">field</span><span class="o">.</span><span class="n">label</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span> <span class="p">{{</span><span class="n">field</span><span class="p">}}</span> <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">field</span><span class="o">.</span><span class="n">errors</span> <span class="o">%</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s">"help-block"</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">error</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span> <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+
+      <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="n">class</span><span class="o">=</span><span class="s">"btn btn-primary btn-lg"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span></code></pre></figure>
+
+<h3 id="widget_tweaks을-사용하여-개별적으로-폼을-만드는-방법">widget_tweaks을 사용하여 개별적으로 폼을 만드는 방법</h3>
+<ul>
+  <li>install apps : ‘widget_tweaks’</li>
+  <li>pip install django-widget-tweaks</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&lt;</span><span class="err">!</span><span class="n">DOCTYPE</span> <span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">html</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">head</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">meta</span> <span class="n">charset</span><span class="o">=</span><span class="s">"utf-8"</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;&lt;/</span><span class="n">title</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">link</span> <span class="n">rel</span><span class="o">=</span><span class="s">"stylesheet"</span> <span class="n">href</span><span class="o">=</span><span class="s">"//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s">"//code.jquery.com/jquery-2.2.4.min.js"</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">head</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">load</span> <span class="n">widget_tweaks</span> <span class="o">%</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"container"</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">form</span> <span class="n">action</span><span class="o">=</span><span class="s">""</span> <span class="n">method</span><span class="o">=</span><span class="s">"post"</span> <span class="n">class</span><span class="o">=</span><span class="s">"form-horizontal"</span> <span class="n">enctype</span><span class="o">=</span><span class="s">"multipart/form-data"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">legend</span><span class="o">&gt;</span><span class="n">Post</span> <span class="n">Form</span><span class="o">&lt;/</span><span class="n">legend</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">csrf_token</span> <span class="o">%</span><span class="p">}</span>
+
+      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">non_field_errors</span> <span class="o">%</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"alert alert-danger"</span><span class="o">&gt;</span>
+        <span class="p">{{</span> <span class="n">error</span> <span class="p">}}</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+      <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">hidden</span> <span class="n">fields</span><span class="err">는</span> <span class="err">위젯만</span> <span class="err">렌더링</span> <span class="o">--&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">hidden_fields</span> <span class="o">%</span><span class="p">}</span>
+      <span class="p">{{</span> <span class="n">field</span> <span class="p">}}</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+
+      <span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="n">visible</span> <span class="n">fields</span><span class="err">는</span> <span class="err">모든</span> <span class="err">요소</span> <span class="err">렌더링</span> <span class="o">--&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">form</span><span class="o">.</span><span class="n">visible_fields</span> <span class="o">%</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"form-group"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">label</span> <span class="k">for</span><span class="o">=</span><span class="s">"{{field.id_for_label}}"</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">field</span><span class="o">.</span><span class="n">label</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+        <span class="p">{{</span> <span class="n">field</span><span class="o">|</span><span class="n">add_class</span><span class="p">:</span><span class="s">'form-control'</span> <span class="p">}}</span>
+        <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">help_text</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s">"help-block"</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">field</span><span class="o">.</span><span class="n">help_text</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+
+        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">field</span><span class="o">.</span><span class="n">errors</span> <span class="o">%</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">span</span> <span class="n">class</span><span class="o">=</span><span class="s">"help-block"</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">error</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+
+      <span class="p">{</span><span class="o">%</span> <span class="n">render_field</span> <span class="n">form</span><span class="o">.</span><span class="n">title</span> <span class="n">class</span><span class="o">=</span><span class="s">"form-control"</span> <span class="n">placeholder</span><span class="o">=</span><span class="n">form</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">label</span> <span class="o">%</span><span class="p">}</span>
+      <span class="p">(</span><span class="err">참고</span><span class="p">)</span> <span class="n">label</span> <span class="err">에는</span> <span class="n">verbose_name</span><span class="err">이</span> <span class="err">기재됨</span>
+
+      <span class="o">&lt;</span><span class="nb">input</span> <span class="nb">type</span><span class="o">=</span><span class="s">"submit"</span> <span class="n">class</span><span class="o">=</span><span class="s">"btn btn-primary btn-lg"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">form</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">html</span><span class="o">&gt;</span></code></pre></figure>
+
+<blockquote>
+  <p>https://simpleisbetterthancomplex.com/2015/12/04/package-of-the-week-django-widget-tweaks.html</p>
+</blockquote>
+:ET

@@ -1,0 +1,27 @@
+I"�<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Animal</span><span class="p">():</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span> <span class="n">name</span>
+
+
+<span class="k">class</span> <span class="nc">Person2</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+    <span class="nb">super</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="s">'nck'</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="o">=</span><span class="n">key</span>
+
+<span class="n">p4</span><span class="o">=</span><span class="n">Person2</span><span class="p">(</span><span class="s">'myname'</span><span class="p">,</span><span class="s">'mykey'</span><span class="p">)</span>
+<span class="n">p4</span><span class="o">.</span><span class="n">name</span> <span class="c1">#'nck'
+</span><span class="n">p4</span><span class="o">.</span><span class="n">key</span> <span class="c1">#'mykey'
+</span>
+
+<span class="k">class</span> <span class="nc">Person3</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">super</span><span class="o">.</span><span class="n">init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c1">#super(Person3,self).init__(*args,**kwargs) #위와 같은 명령
+</span>    <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">kwargs</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span><span class="o">+</span><span class="s">"**"</span>
+    <span class="c1"># self.key=key # error key라는
+</span>
+<span class="n">p12</span><span class="o">=</span><span class="n">Person3</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'lee'</span><span class="p">)</span>
+<span class="n">p12</span><span class="o">.</span><span class="n">name</span> <span class="c1"># lee**
+</span></code></pre></div></div>
+<p>즉, 부모에 사용되는 변수를 잘모르지만, 하나의 변수를 알고 있을 때, 이 변수의 값을 수정할 때 유용한 것 같음.</p>
+:ET

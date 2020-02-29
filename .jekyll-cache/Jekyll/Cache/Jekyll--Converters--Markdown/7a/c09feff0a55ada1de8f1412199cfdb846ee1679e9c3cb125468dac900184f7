@@ -1,0 +1,8 @@
+I"R<h2 id="join-함수의-사용예제">Join 함수의 사용예제</h2>
+<p><script src="https://gist.github.com/nck2/9ed588f9807ca6a33c04e81f31e76895.js"></script></p>
+<ol>
+<li>redim preserve : 그전에 있던 값은 저장하고 추가하는 선언</li>
+<li>join (배열, 구분자)</li>
+<li>함수 선언시 optional ... ="/"</li>
+</ol>
+:ET

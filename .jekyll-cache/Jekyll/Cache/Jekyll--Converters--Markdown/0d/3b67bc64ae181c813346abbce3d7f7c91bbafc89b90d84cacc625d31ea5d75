@@ -1,0 +1,411 @@
+I"�)<h2 id="xml-데이터-파싱">XML 데이터 파싱</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="n">req</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108"</span>
+<span class="n">savename</span> <span class="o">=</span> <span class="s">"./forecast.xml"</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">savename</span><span class="p">):</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">savename</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<h2 id="파싱">파싱</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xml</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">savename</span><span class="p">,</span><span class="s">'r'</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="s">'html.parser'</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<h2 id="지역확인">지역확인</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">info</span> <span class="o">=</span><span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"location"</span><span class="p">):</span> <span class="c1"># xml 은 selector보다 find가 유용함
+</span>    <span class="n">loc</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'city'</span><span class="p">)</span><span class="o">.</span><span class="n">string</span>
+<span class="c1">#     print(loc)
+</span>    <span class="n">weather</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'tmn'</span><span class="p">)</span>
+<span class="c1">#     print(weather)
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">loc</span> <span class="ow">in</span> <span class="n">info</span><span class="p">):</span>
+        <span class="n">info</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">tmn</span> <span class="ow">in</span> <span class="n">weather</span><span class="p">:</span>
+        <span class="n">info</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmn</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {'서울': ['22', '22', '22', '22', '22', '22', '23', '23', '23', '23', '23', '23', '22'], '인천': ['20', '20', '22', '22', '22', '22', '22', '22', '22', '22', '21', '22', '21'], '수원': ['21', '21', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '21'], '파주': ['19', '19', '21', '21', '21', '21', '21', '21', '21', '21', '21', '21', '20'], '춘천': ['21', '21', '21', '21', '22', '22', '22', '22', '22', '22', '22', '22', '21'], '원주': ['21', '21', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '21'], '강릉': ['22', '22', '22', '22', '22', '22', '22', '22', '23', '23', '22', '21', '22'], '대전': ['23', '23', '23', '23', '23', '23', '22', '22', '22', '22', '22', '22', '22'], '세종': ['22', '22', '23', '23', '23', '23', '21', '21', '21', '21', '21', '21', '21'], '홍성': ['22', '22', '23', '23', '23', '23', '21', '21', '21', '21', '21', '21', '21'], '청주': ['23', '23', '23', '23', '23', '23', '23', '23', '24', '24', '23', '23', '23'], '광주': ['22', '22', '23', '23', '23', '23', '23', '23', '23', '23', '23', '23', '23'], '목포': ['22', '22', '22', '22', '22', '22', '22', '22', '23', '23', '23', '22', '22'], '여수': ['22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22'], '전주': ['23', '23', '22', '22', '23', '23', '23', '23', '22', '22', '22', '22', '22'], '군산': ['22', '22', '22', '22', '22', '22', '22', '22', '21', '21', '21', '21', '21'], '부산': ['22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '23', '22', '22'], '울산': ['22', '22', '22', '22', '22', '22', '22', '22', '23', '23', '23', '22', '22'], '창원': ['22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22', '22'], '대구': ['22', '22', '22', '22', '22', '22', '22', '22', '23', '23', '23', '22', '22'], '안동': ['21', '21', '21', '21', '21', '21', '21', '21', '21', '21', '22', '22', '22'], '포항': ['23', '23', '23', '23', '23', '23', '23', '23', '23', '23', '23', '23', '23'], '제주': ['24', '24', '24', '24', '24', '24', '23', '23', '24', '24', '23', '23', '24'], '서귀포': ['23', '23', '24', '24', '24', '24', '23', '23', '24', '24', '23', '23', '24']}
+
+</code></pre></div></div>
+
+<h2 id="각-지역별-날씨-텍스트-쓰기">각 지역별 날씨 텍스트 쓰기</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'./forecest.txt'</span><span class="p">,</span><span class="s">'wt'</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"+"</span><span class="p">,</span><span class="n">loc</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="n">loc</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"-"</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  + 강릉
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 23
+- 23
+- 22
+- 21
+- 22
++ 광주
+- 22
+- 22
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
++ 군산
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 21
+- 21
+- 21
+- 21
+- 21
++ 대구
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 23
+- 23
+- 23
+- 22
+- 22
++ 대전
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
++ 목포
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 23
+- 23
+- 23
+- 22
+- 22
++ 부산
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 23
+- 22
+- 22
++ 서귀포
+- 23
+- 23
+- 24
+- 24
+- 24
+- 24
+- 23
+- 23
+- 24
+- 24
+- 23
+- 23
+- 24
++ 서울
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 22
++ 세종
+- 22
+- 22
+- 23
+- 23
+- 23
+- 23
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
++ 수원
+- 21
+- 21
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 21
++ 안동
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 22
+- 22
+- 22
++ 여수
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
++ 울산
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 23
+- 23
+- 23
+- 22
+- 22
++ 원주
+- 21
+- 21
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 21
++ 인천
+- 20
+- 20
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 21
+- 22
+- 21
++ 전주
+- 23
+- 23
+- 22
+- 22
+- 23
+- 23
+- 23
+- 23
+- 22
+- 22
+- 22
+- 22
+- 22
++ 제주
+- 24
+- 24
+- 24
+- 24
+- 24
+- 24
+- 23
+- 23
+- 24
+- 24
+- 23
+- 23
+- 24
++ 창원
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
++ 청주
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 24
+- 24
+- 23
+- 23
+- 23
++ 춘천
+- 21
+- 21
+- 21
+- 21
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 22
+- 21
++ 파주
+- 19
+- 19
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 20
++ 포항
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
+- 23
++ 홍성
+- 22
+- 22
+- 23
+- 23
+- 23
+- 23
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+- 21
+
+</code></pre></div></div>
+:ET

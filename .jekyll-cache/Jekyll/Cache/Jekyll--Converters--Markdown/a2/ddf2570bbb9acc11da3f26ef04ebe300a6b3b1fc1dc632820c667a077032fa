@@ -1,0 +1,10 @@
+I"<h2 id="jupyter-notebook을-jekyll-에-적용">jupyter notebook을 jekyll 에 적용</h2>
+<ul>
+  <li>아래를 참고하여 mytemplate.tpl을 작성하여 적당한 위치에 둠
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter nbconvert --to markdown --template ./mytemplate.tpl abc.ipynb
+</code></pre></div>    </div>
+  </li>
+  <li>위의 명령을 통해 abc.md 가 만들어짐</li>
+  <li>그런데 위의 명령으로는 in과 out에 적당한 클래스이름이 만들어짐</li>
+</ul>
+:ET

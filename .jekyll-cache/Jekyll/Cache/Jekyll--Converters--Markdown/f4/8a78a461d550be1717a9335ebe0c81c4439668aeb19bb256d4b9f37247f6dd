@@ -1,0 +1,10 @@
+I"�<h2 id="templage-tag-관련">templage tag 관련</h2>
+<ul>
+  <li>호출가능한 객체 cal에 대하여 {{ClassName.cal}}  와 같이 불러낼 수 있다.</li>
+  <li>tag와 filter는 모두 함수이다.</li>
+  <li>tag는 {%%}와 같이 사용</li>
+  <li>변수는{{ }}를 사용</li>
+  <li>함수의 인자는 ()를 사용하지 않음.</li>
+  <li>인자사이에 ,를 넣지 않음.</li>
+</ul>
+:ET

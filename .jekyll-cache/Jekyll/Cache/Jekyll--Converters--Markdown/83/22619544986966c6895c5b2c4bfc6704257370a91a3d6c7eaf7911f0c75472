@@ -1,0 +1,23 @@
+I"�<h2 id="pip의-각종-명령들">pip의 각종 명령들</h2>
+<ul>
+  <li>where python : python의 설치위치를 보여줌. (윈도우)</li>
+  <li>which python : python의 설치위치를 보여줌.(맥)</li>
+  <li>pip3 : python3 버젼의 pip</li>
+  <li>pip install, pip uninstall, pip search, pip freeze</li>
+  <li>pip freeze&gt;requirements.txt (설치된 패키지목록을 표준출력방식으로 저장함.)</li>
+  <li>pip install -r requirements.txt(패키지의 일괄 설치)</li>
+  <li>(안의 내용, django&gt;=1.10.7 , django==1.10 식으로 부등호와 등호로 표시할 수 있음)</li>
+  <li>pip install -r ../requirements.txt(패키지의 일괄 설치, 상위폴더)</li>
+  <li>type 파일명 (윈도우: 파일의 내용을 출력함)</li>
+  <li>catch 파일명(맥:파일의 내용을 출력함)</li>
+  <li>구동환경별로 다르게 만들면 좋음
+    <ul>
+      <li>./reqs/common.txt (공통파일)</li>
+      <li>./reqs/dev.txt(로컬개발용)</li>
+      <li>./reqs/prod_aws.txt(Aws ec2 배포용)</li>
+      <li>./reqs/dev_mac.txt(맥용)
+등 폴더안에 서로 다른 파일로 구성하는 것을 추천</li>
+    </ul>
+  </li>
+</ul>
+:ET

@@ -1,0 +1,11 @@
+I"�<h3 id="문제상황">문제상황</h3>
+<ul>
+  <li>학교 컴에서
+현재 python3 와 주피터를 같이 쓰고 있는 상황</li>
+  <li>주피터에 패키지를 인스톨하기 위해 pip3를 사용하면 주피터가 아닌 python3에 패키지가 install 되는 경우가 많다.
+    <ul>
+      <li><a href="http://egloos.zum.com/mcchae/v/11267105">conda관련</a> : 이를 참조함</li>
+    </ul>
+  </li>
+</ul>
+:ET

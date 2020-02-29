@@ -1,0 +1,187 @@
+I"9<p>import mechanicalsoup</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span> <span class="o">=</span> <span class="n">mechanicalsoup</span><span class="o">.</span><span class="n">StatefulBrowser</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="s">"https://nid.naver.com/nidlogin.login"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>fakfa</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Response [200]&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="o">.</span><span class="n">select_form</span><span class="p">(</span><span class="s">'form[action="https://nid.naver.com/nidlogin.login"]'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;mechanicalsoup.form.Form at 0x113559128&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="o">.</span><span class="n">get_current_page</span><span class="p">()</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'form'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;form action="https://nid.naver.com/nidlogin.login" autocomplete="off" id="frmNIDLogin" method="post" name="frmNIDLogin" onsubmit="return confirmSubmit();" target="_top"&gt;
+ &lt;input id="enctp" name="enctp" type="hidden" value="2"/&gt;
+ &lt;input id="encpw" name="encpw" type="hidden" value=""/&gt;
+ &lt;input id="encnm" name="encnm" type="hidden" value=""/&gt;
+ &lt;input id="svctype" name="svctype" type="hidden" value="0"/&gt;
+ &lt;input id="svc" name="svc" type="hidden" value=""/&gt;
+ &lt;input id="viewtype" name="viewtype" type="hidden" value="0"/&gt;
+ &lt;input id="locale" name="locale" type="hidden" value="ko_KR"/&gt;
+ &lt;input id="postDataKey" name="postDataKey" type="hidden" value=""/&gt;
+ &lt;input id="smart_LEVEL" name="smart_LEVEL" type="hidden" value="-1"/&gt;
+ &lt;input id="logintp" name="logintp" type="hidden" value=""/&gt;
+ &lt;input id="url" name="url" type="hidden" value="http://www.naver.com"/&gt;
+ &lt;input id="localechange" name="localechange" type="hidden" value=""/&gt;
+ &lt;input id="theme_mode" name="theme_mode" type="hidden" value=""/&gt;
+ &lt;input id="ls" name="ls" type="hidden" value=""/&gt;
+ &lt;input id="xid" name="xid" type="hidden" value=""/&gt;
+ &lt;input id="pre_id" name="pre_id" type="hidden" value=""/&gt;
+ &lt;input id="resp" name="resp" type="hidden" value=""/&gt;
+ &lt;input id="exp" name="exp" type="hidden" value=""/&gt;
+ &lt;input id="ru" name="ru" type="hidden" value=""/&gt;
+ &lt;fieldset class="login_form"&gt;
+ &lt;legend class="blind"&gt;로그인&lt;/legend&gt;
+ &lt;div class="input_row" id="id_area"&gt;
+ &lt;span class="input_box"&gt;
+ &lt;label class="lbl" for="id" id="label_id_area"&gt;아이디&lt;/label&gt;
+ &lt;input accesskey="L" class="int" id="id" maxlength="41" name="id" placeholder="아이디" tabindex="7" type="text" value=""/&gt;
+ &lt;/span&gt;
+ &lt;button class="wrg" disabled="" id="id_clear" title="delete" type="button"&gt;삭제&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="error" id="err_empty_id" style="display:none;"&gt;아이디를 입력해주세요.&lt;/div&gt;
+ &lt;div class="input_row" id="pw_area"&gt;
+ &lt;span class="input_box"&gt;
+ &lt;label class="lbl" for="pw" id="label_pw_area"&gt;비밀번호&lt;/label&gt;
+ &lt;input class="int" id="pw" maxlength="16" name="pw" onkeydown="checkShiftDown(event);" onkeypress="capslockevt(event);getKeysv2();" onkeyup="checkShiftUp(event);" placeholder="비밀번호" tabindex="8" type="password"/&gt;
+ &lt;/span&gt;
+ &lt;button class="wrg" disabled="" id="pw_clear" title="delete" type="button"&gt;삭제&lt;/button&gt;
+ &lt;div class="ly_v2" id="err_capslock" style="display:none;"&gt;
+ &lt;div class="ly_box"&gt;
+ &lt;p&gt;&lt;strong&gt;Caps Lock&lt;/strong&gt;이 켜져 있습니다.&lt;/p&gt; &lt;/div&gt;
+ &lt;span class="sp ly_point"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="error" id="err_empty_pw" style="display:none;"&gt;비밀번호를 입력해주세요.&lt;/div&gt;
+ &lt;input alt="로그인" class="btn_global" onclick="nclks('log.login',this,event)" tabindex="12" title="로그인" type="submit" value="로그인"/&gt;
+ &lt;div class="check_info"&gt;
+ &lt;div class="login_check"&gt;
+ &lt;span class="login_check_box"&gt;
+ &lt;input class="" id="login_chk" name="nvlong" onchange="savedLong(this);nclks_chk('login_chk', 'log.keepon', 'log.keepoff',this,event)" tabindex="9" type="checkbox" value="off"/&gt;
+ &lt;label class="sp" for="login_chk" id="label_login_chk"&gt;로그인 상태 유지&lt;/label&gt;
+ &lt;/span&gt;
+ &lt;div class="ly_v2" id="persist_usage" style="display:none;"&gt;
+ &lt;div class="ly_box"&gt;
+ &lt;p&gt;개인정보 보호를 위해 &lt;strong&gt;개인 PC에서만 사용하세요.&lt;/strong&gt;  &lt;a class="sp btn_check_help" href="https://help.naver.com/support/contents/contents.nhn?serviceNo=532&amp;amp;categoryNo=1523" target="_blank"&gt;도움말보기&lt;/a&gt;&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;span class="sp ly_point"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="pc_check"&gt;
+ &lt;span class="ip_check"&gt;
+ &lt;a href="/login/ext/help_ip3.html" onclick="window.open(this.href, 'IPGUIDE', 'titlebar=1, resizable=1, scrollbars=yes, width=537, height=750'); return false;" tabindex="10" target="_blank" title=""&gt;IP보안&lt;/a&gt;
+ &lt;span class="ip_ch"&gt;
+ &lt;input checked="checked" class="" id="ip_on" onchange="ipCheck(this,event);nclks_chk('ip_on', 'log.iponset', 'log.ipoffset',this,event)" tabindex="11" type="checkbox"/&gt;
+ &lt;label class="sp" for="ip_on" id="label_ip_on"&gt;on&lt;/label&gt;
+ &lt;/span&gt;
+ &lt;/span&gt;
+ &lt;span class="bar"&gt;|&lt;/span&gt;
+ &lt;span class="dis_di"&gt;
+ &lt;a href="#" onclick="onetime(); nclks('log.otn',this,event); return false;" title="일회용 로그인"&gt;일회용 로그인&lt;/a&gt;&lt;a class="sp btn_help" href="javascript:viewOnetime();" onclick="nclks('log.otnhelp',this,event)" title="도움말"&gt;도움말&lt;/a&gt;
+ &lt;div class="ly" id="onetime_usage" onclick="javascript:viewOnetime()" style="display:none;"&gt;
+ &lt;div class="ly_box"&gt;
+ &lt;p&gt;네이버앱에서 생성된 일회용 로그인 번호를 입력하면, 앱에 로그인된 계정으로 PC에서 로그인할 수 있어요. 아이디/비밀번호를 입력하지 않아 간편하고 더욱 안전합니다.&lt;/p&gt; &lt;/div&gt;
+ &lt;span class="sp ly_point"&gt;&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/fieldset&gt;
+ &lt;/form&gt;]
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="o">.</span><span class="n">get_current_form</span><span class="p">()</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;input id="enctp" name="enctp" type="hidden" value="2"/&gt;
+&lt;input id="encpw" name="encpw" type="hidden" value=""/&gt;
+&lt;input id="encnm" name="encnm" type="hidden" value=""/&gt;
+&lt;input id="svctype" name="svctype" type="hidden" value="0"/&gt;
+&lt;input id="svc" name="svc" type="hidden" value=""/&gt;
+&lt;input id="viewtype" name="viewtype" type="hidden" value="0"/&gt;
+&lt;input id="locale" name="locale" type="hidden" value="ko_KR"/&gt;
+&lt;input id="postDataKey" name="postDataKey" type="hidden" value=""/&gt;
+&lt;input id="smart_LEVEL" name="smart_LEVEL" type="hidden" value="-1"/&gt;
+&lt;input id="logintp" name="logintp" type="hidden" value=""/&gt;
+&lt;input id="url" name="url" type="hidden" value="http://www.naver.com"/&gt;
+&lt;input id="localechange" name="localechange" type="hidden" value=""/&gt;
+&lt;input id="theme_mode" name="theme_mode" type="hidden" value=""/&gt;
+&lt;input id="ls" name="ls" type="hidden" value=""/&gt;
+&lt;input id="xid" name="xid" type="hidden" value=""/&gt;
+&lt;input id="pre_id" name="pre_id" type="hidden" value=""/&gt;
+&lt;input id="resp" name="resp" type="hidden" value=""/&gt;
+&lt;input id="exp" name="exp" type="hidden" value=""/&gt;
+&lt;input id="ru" name="ru" type="hidden" value=""/&gt;
+&lt;input accesskey="L" class="int" id="id" maxlength="41" name="id" placeholder="아이디" tabindex="7" type="text" value=""/&gt;
+&lt;input class="int" id="pw" maxlength="16" name="pw" onkeydown="checkShiftDown(event);" onkeypress="capslockevt(event);getKeysv2();" onkeyup="checkShiftUp(event);" placeholder="비밀번호" tabindex="8" type="password"/&gt;
+&lt;input alt="로그인" class="btn_global" onclick="nclks('log.login',this,event)" tabindex="12" title="로그인" type="submit" value="로그인"/&gt;
+&lt;input class="" id="login_chk" name="nvlong" onchange="savedLong(this);nclks_chk('login_chk', 'log.keepon', 'log.keepoff',this,event)" tabindex="9" type="checkbox" value="off"/&gt;
+&lt;input checked="checked" class="" id="ip_on" onchange="ipCheck(this,event);nclks_chk('ip_on', 'log.iponset', 'log.ipoffset',this,event)" tabindex="11" type="checkbox"/&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span><span class="o">=</span><span class="s">'hvofak5s'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="p">[</span><span class="s">'pw'</span><span class="p">]</span><span class="o">=</span><span class="s">'naver112629'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="o">.</span><span class="n">get_current_form</span><span class="p">()</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;input id="enctp" name="enctp" type="hidden" value="2"/&gt;
+&lt;input id="encpw" name="encpw" type="hidden" value=""/&gt;
+&lt;input id="encnm" name="encnm" type="hidden" value=""/&gt;
+&lt;input id="svctype" name="svctype" type="hidden" value="0"/&gt;
+&lt;input id="svc" name="svc" type="hidden" value=""/&gt;
+&lt;input id="viewtype" name="viewtype" type="hidden" value="0"/&gt;
+&lt;input id="locale" name="locale" type="hidden" value="ko_KR"/&gt;
+&lt;input id="postDataKey" name="postDataKey" type="hidden" value=""/&gt;
+&lt;input id="smart_LEVEL" name="smart_LEVEL" type="hidden" value="-1"/&gt;
+&lt;input id="logintp" name="logintp" type="hidden" value=""/&gt;
+&lt;input id="url" name="url" type="hidden" value="http://www.naver.com"/&gt;
+&lt;input id="localechange" name="localechange" type="hidden" value=""/&gt;
+&lt;input id="theme_mode" name="theme_mode" type="hidden" value=""/&gt;
+&lt;input id="ls" name="ls" type="hidden" value=""/&gt;
+&lt;input id="xid" name="xid" type="hidden" value=""/&gt;
+&lt;input id="pre_id" name="pre_id" type="hidden" value=""/&gt;
+&lt;input id="resp" name="resp" type="hidden" value=""/&gt;
+&lt;input id="exp" name="exp" type="hidden" value=""/&gt;
+&lt;input id="ru" name="ru" type="hidden" value=""/&gt;
+&lt;input accesskey="L" class="int" id="id" maxlength="41" name="id" placeholder="아이디" tabindex="7" type="text" value="hvofak5s"/&gt;
+&lt;input class="int" id="pw" maxlength="16" name="pw" onkeydown="checkShiftDown(event);" onkeypress="capslockevt(event);getKeysv2();" onkeyup="checkShiftUp(event);" placeholder="비밀번호" tabindex="8" type="password" value="naver112629"/&gt;
+&lt;input alt="로그인" class="btn_global" onclick="nclks('log.login',this,event)" tabindex="12" title="로그인" type="submit" value="로그인"/&gt;
+&lt;input class="" id="login_chk" name="nvlong" onchange="savedLong(this);nclks_chk('login_chk', 'log.keepon', 'log.keepoff',this,event)" tabindex="9" type="checkbox" value="off"/&gt;
+&lt;input checked="checked" class="" id="ip_on" onchange="ipCheck(this,event);nclks_chk('ip_on', 'log.iponset', 'log.ipoffset',this,event)" tabindex="11" type="checkbox"/&gt;
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">submit_selected</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;script </span><span class="na">language=</span><span class="s">javascript</span><span class="nt">&gt;</span>
+<span class="nx">location</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://nid.naver.com/login/sso/finalize.nhn?url=http%3A%2F%2Fwww.naver.com&amp;sid=vVPdbiNrvNcts6Z3&amp;svctype=1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="실패">실패</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">browser</span><span class="o">.</span><span class="n">launch_browser</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+:ET

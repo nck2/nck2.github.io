@@ -1,0 +1,109 @@
+I"h1<h2 id="json-데이터">json 데이터</h2>
+<h3 id="dumps-loads">dumps, loads</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">simplejson</span> <span class="k">as</span> <span class="n">json</span>
+
+<span class="c1">#Dict(Json)선언
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'Kim'</span><span class="p">,</span>
+    <span class="s">'website'</span><span class="p">:</span> <span class="s">'naver.com'</span><span class="p">,</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="s">'Seoul'</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'Park'</span><span class="p">,</span>
+    <span class="s">'website'</span><span class="p">:</span> <span class="s">'google.com'</span><span class="p">,</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="s">'Busan'</span>
+<span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'Lee'</span><span class="p">,</span>
+    <span class="s">'website'</span><span class="p">:</span> <span class="s">'daum.net'</span><span class="p">,</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="s">'Incheon'</span>
+<span class="p">})</span>
+
+<span class="c1">#data = {'people': [{'name': 'Kim', 'from': 'Seoul', 'website': 'naver.com'}, {'name': 'Park', 'from': 'Busan', 'website': 'google.com'}, {'name': 'Lee', 'from': 'Incheon', 'website': 'daum.net'}]}
+</span>
+<span class="c1">#Dict(Json) -&gt; Str
+</span><span class="n">e</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span> <span class="c1">#string
+</span><span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1">#Str -&gt; Dict(Json)
+</span><span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="c1">#dict
+</span><span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="c1">#json 파일 쓰기(dumps)
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'c:/section4/member.json'</span><span class="p">,</span><span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1">#json 파일 읽기(loads)
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'c:/section4/member.json'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">infile</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'====='</span><span class="p">)</span>
+    <span class="c1">#print(type(r))
+</span>    <span class="c1">#print(r)
+</span>    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s">'people'</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Name: '</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s">'name'</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Website: '</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s">'website'</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'From: '</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s">'from'</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>dumps 는 문자열을 반환함.</li>
+  <li>loads는 이 문자열을 원래 형태의 자료형으로 변환</li>
+  <li>json 을 simplejson으로 사용하는게 좋음</li>
+</ul>
+
+<h3 id="dump-load">dump, load</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Dict(Json)선언
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'Kim'</span><span class="p">,</span>
+    <span class="s">'website'</span><span class="p">:</span> <span class="s">'naver.com'</span><span class="p">,</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="s">'Seoul'</span><span class="p">,</span>
+    <span class="s">'grade'</span><span class="p">:</span> <span class="p">[</span><span class="mi">95</span><span class="p">,</span><span class="mi">77</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">91</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'Park'</span><span class="p">,</span>
+    <span class="s">'website'</span><span class="p">:</span> <span class="s">'google.com'</span><span class="p">,</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="s">'Busan'</span><span class="p">,</span>
+    <span class="s">'grade'</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">94</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'people'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s">'name'</span><span class="p">:</span> <span class="s">'Lee'</span><span class="p">,</span>
+    <span class="s">'website'</span><span class="p">:</span> <span class="s">'daum.net'</span><span class="p">,</span>
+    <span class="s">'from'</span><span class="p">:</span> <span class="s">'Incheon'</span><span class="p">,</span>
+    <span class="s">'grade'</span><span class="p">:</span> <span class="p">[</span><span class="mi">98</span><span class="p">,</span><span class="mi">79</span><span class="p">,</span><span class="mi">99</span><span class="p">,</span><span class="mi">92</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1">#data = {'people': [{'name': 'Kim', 'from': 'Seoul', 'website': 'naver.com', 'grade': [95,77,89,91]}, {'name': 'Park', 'from': 'Busan', 'website': 'google.com', 'grade': [85,67,100,94]}, {'name': 'Lee', 'from': 'Incheon', 'website': 'daum.net', 'grade': [98,79,99,92]}]}
+</span>
+<span class="c1">#json 파일 쓰기(dump)
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'c:/section4/member.json'</span><span class="p">,</span><span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">outfile</span><span class="p">)</span>
+
+<span class="c1">#json 파일 읽기(load)
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'c:/section4/member.json'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'==================='</span><span class="p">)</span>
+    <span class="c1">#print(type(r))
+</span>    <span class="c1">#print(r)
+</span>    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s">'people'</span><span class="p">]:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Name: '</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s">'name'</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Website: '</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s">'website'</span><span class="p">])</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'From: '</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="s">'from'</span><span class="p">])</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s">'grade'</span><span class="p">]</span>
+        <span class="n">grade</span> <span class="o">=</span> <span class="s">''</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">grade</span> <span class="o">=</span> <span class="n">grade</span> <span class="o">+</span> <span class="s">' '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Grade:'</span><span class="p">,</span> <span class="n">grade</span><span class="o">.</span><span class="n">lstrip</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+</code></pre></div></div>
+<ul>
+  <li>dump는 위의 형식으로 곧바로 파일만들기 편함.</li>
+  <li>즉 json 파일을 자주 만들어야 하는 상황이면 dump가 유용함.</li>
+</ul>
+:ET

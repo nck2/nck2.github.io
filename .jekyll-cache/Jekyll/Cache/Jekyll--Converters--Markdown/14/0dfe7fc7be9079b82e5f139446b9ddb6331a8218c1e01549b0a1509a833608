@@ -1,0 +1,8 @@
+I"`<p>주피터 사용시 모델에 대한 정보는 Profile?? 와 같은 명령을 통해 알 수 있음.
+주피터는 사용하는 모델을 자동으로 임포트함.</p>
+<h2 id="조회retrieve">조회(Retrieve)</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">ModelCls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span><span class="o">.</span><span class="n">oredr_by</span><span class="p">(</span><span class="s">'-id'</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">ModelCls</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">creat</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">"필수필드 모두 기재"</span><span class="p">)</span>
+<span class="n">queryset</span><span class="o">=</span><span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">title__icontains</span><span class="o">=</span><span class="s">"포함된 텍스트"</span><span class="p">)</span></code></pre></figure>
+:ET

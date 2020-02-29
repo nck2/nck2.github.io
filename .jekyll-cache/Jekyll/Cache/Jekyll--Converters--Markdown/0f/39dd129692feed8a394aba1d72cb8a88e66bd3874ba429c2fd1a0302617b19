@@ -1,0 +1,55 @@
+I"�<h2 id="askdjango-print-참고">Askdjango print 참고</h2>
+
+<ol>
+  <li>Resource Group 생성
+ -종량제로 선택함</li>
+  <li>Storage Accounts 생성
+    <ul>
+      <li>blob에서 static, media 생성</li>
+      <li>Storage account name과 Key 조사</li>
+      <li>지역은 모두 japan east</li>
+    </ul>
+  </li>
+  <li>Azure Database for PostgreSQL 생성
+    <ul>
+      <li>pricing tier 설정하기(basic- 43994.15 KRW)</li>
+    </ul>
+  </li>
+  <li>DB_HOST : (server name)</li>
+  <li>DB_USER : (Server admin login name)</li>
+  <li>DB_NAME : (아래쪽에 이름이 있음)
+    <ul>
+      <li>DB메뉴얼 : https://docs.microsoft.com/en-us/azure/postgresql/quickstart-create-server-database-portal</li>
+    </ul>
+  </li>
+  <li>방화벽 설치: connection security
+    <ul>
+      <li>일단 모든 곳에 다되도록</li>
+    </ul>
+  </li>
+  <li>docker 세팅</li>
+  <li>docker build -t matxzerodjango . 로 도커 빌드</li>
+  <li>sh dev.sh 로 환경변수 설정하여 도커실행</li>
+  <li>python3 manage.py collectstatic –no-input</li>
+  <li>python3 manage.py showmigrations</li>
+  <li>python3 manage.py migrate</li>
+  <li>python3 manage.py createsuperuser</li>
+  <li>docker build -t matxzerodjango . 로 도커 빌드</li>
+  <li>sh dev2.sh 로 환경변수 설정</li>
+  <li>http://localhost:8888/ 로 확인</li>
+  <li>docker login</li>
+  <li>docker build –tag hvofak5s/(이름:버젼) .</li>
+  <li>docker push hvofak5s/(이름:버젼)</li>
+  <li>Web app for container 설치
+    <ul>
+      <li>app service plan 설정 조심 :s1  (80,000원?)</li>
+    </ul>
+  </li>
+  <li>도커 이미지 설정</li>
+  <li>환경변수 지정(6개)후 재시작</li>
+  <li>always on 설정</li>
+  <li>https://docs.microsoft.com/ko-kr/azure/app-service/app-service-ip-addresses 에서 아웃바운드 찾아서 DB에 설정</li>
+</ol>
+
+<h3 id="돈이-너무-많이-드는-듯함">돈이 너무 많이 드는 듯함.</h3>
+:ET

@@ -1,0 +1,15 @@
+I"[<div class="input_area">
+
+  <p>```python
+class Test:
+    def <strong>init</strong>(self):
+        self.public_field =5
+        self._private_field = 6
+        self._protected_field =7</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def __private_method(self):
+    pass
+</code></pre></div>  </div>
+
+</div>
+:ET

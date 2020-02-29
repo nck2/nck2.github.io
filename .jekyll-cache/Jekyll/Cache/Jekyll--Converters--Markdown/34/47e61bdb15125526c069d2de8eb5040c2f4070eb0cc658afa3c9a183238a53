@@ -1,0 +1,7 @@
+I"o<h2 id="숫자뒤집기">숫자뒤집기</h2>
+<p><script src="https://gist.github.com/nck2/a1d0edbda09bdf530866bfc9a03cde6c.js"></script></p>
+<ul>
+<li>리스트를 뒤집기 위해 [].[::<span class="pl-k">-</span><span class="pl-c1">1</span>] 와 같이 사용할 수 있다.</li>
+<li>또한 l이 리스트일때, l.reverse()는 원본의 l을 바꾼다.</li>
+</ul>
+:ET

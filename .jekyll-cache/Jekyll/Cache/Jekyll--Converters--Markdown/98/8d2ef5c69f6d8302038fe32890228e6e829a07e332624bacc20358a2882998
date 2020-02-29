@@ -1,0 +1,67 @@
+I"<h2 id="ajax에서-csrf_token-문제">ajax에서 csrf_token 문제</h2>
+<ul>
+  <li>폼입력에서 가장 해결하기 힘들었던 부분이 csrf_token이다.</li>
+  <li>이 부분을 <a href="https://simpleisbetterthancomplex.com/tutorial/2016/11/15/how-to-implement-a-crud-using-ajax-and-json.html">여기</a>를 참고하여 해결하였다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">post</span> <span class="o">=</span> <span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">"POST"</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">PostForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"post방식 접근"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="c1"># data['form_is_valid'] = True
+</span>            <span class="n">data</span><span class="p">[</span><span class="s">'html_book_list'</span><span class="p">]</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">'blog/form_re.html'</span><span class="p">,{</span><span class="s">'form'</span><span class="p">:</span><span class="n">form</span><span class="p">},</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"get접근"</span><span class="p">)</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">PostForm</span><span class="p">()</span>
+        <span class="c1"># data['form_is_valid'] = True
+</span>        <span class="n">data</span><span class="p">[</span><span class="s">'html_book_list'</span><span class="p">]</span> <span class="o">=</span> <span class="n">render_to_string</span><span class="p">(</span><span class="s">'blog/form_re.html'</span><span class="p">,{</span><span class="s">'form'</span><span class="p">:</span><span class="n">form</span><span class="p">},</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">JsonResponse</span><span class="p">(</span><span class="n">data</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>render_to_string 은 render와 비슷하다. 만들어진 내용을 string으로 반환하여 준다. 이를 json형식으로 담는다.</li>
+  <li>이때 request=request 를 옵션으로 붙이면 폼에 있는 csrf_token을 함께 넘긴다. 이때 템플릿에 포함된 ajax요청은 다음과 같다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s">"text/javascript"</span><span class="o">&gt;</span>
+      <span class="err">$</span><span class="p">(</span><span class="n">function</span><span class="p">(){</span>
+        <span class="err">$</span><span class="p">(</span><span class="s">"#member"</span><span class="p">)</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s">"click"</span><span class="p">,</span><span class="n">function</span><span class="p">(){</span>
+          <span class="n">var</span> <span class="n">form</span> <span class="o">=</span> <span class="err">$</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+          <span class="o">//</span> <span class="err">$</span><span class="o">.</span><span class="n">ajaxSetup</span><span class="p">({</span>
+          <span class="o">//</span>   <span class="n">headers</span><span class="p">:</span> <span class="p">{</span><span class="s">"X-CSRFToken"</span><span class="p">:</span><span class="s">''</span><span class="p">}</span>
+          <span class="o">//</span> <span class="p">});</span>  <span class="o">//</span> <span class="err">이</span> <span class="err">부분은</span> <span class="err">반드시</span> <span class="err">필요</span><span class="p">,</span><span class="err">없으면</span> <span class="mi">403</span> <span class="err">에러</span> <span class="err">발생</span>
+          <span class="err">$</span><span class="o">.</span><span class="n">ajax</span><span class="p">({</span>
+            <span class="n">url</span><span class="p">:</span> <span class="s">'/blog/create'</span><span class="p">,</span>
+            <span class="o">//</span> <span class="n">data</span><span class="p">:</span> <span class="n">form</span><span class="o">.</span><span class="n">serialize</span><span class="p">(),</span> <span class="err">그냥</span> <span class="err">접속만</span> <span class="err">하면</span> <span class="err">되므로</span> <span class="err">특별히</span> <span class="err">전달할</span> <span class="err">데이터</span> <span class="err">없음</span><span class="o">.</span>
+            <span class="nb">type</span><span class="p">:</span> <span class="s">'get'</span><span class="p">,</span>
+            <span class="n">dataType</span><span class="p">:</span> <span class="s">'json'</span><span class="p">,</span>
+            <span class="n">beforeSend</span><span class="p">:</span> <span class="n">function</span><span class="p">(){</span>
+              <span class="err">$</span><span class="p">(</span><span class="s">"#modal-book"</span><span class="p">)</span><span class="o">.</span><span class="n">modal</span><span class="p">(</span><span class="s">"show"</span><span class="p">);</span>
+            <span class="p">},</span>
+            <span class="n">success</span><span class="p">:</span> <span class="n">function</span><span class="p">(</span><span class="n">data</span><span class="p">){</span>
+              <span class="err">$</span><span class="p">(</span><span class="s">"#modal-book .modal-content"</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">html_book_list</span><span class="p">);</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+    <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+        <span class="p">});</span>
+
+      <span class="p">});</span>
+
+    <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span></code></pre></figure>
+
+<ul>
+  <li>이때, request=request 옵션대신 템플릿에서
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$.ajaxSetup({
+headers: {"X-CSRFToken":''}
+ })
+</code></pre></div>    </div>
+    <p>을 적용하면 토큰이 넘어가기도 한다.</p>
+  </li>
+  <li>하지만 request=request 방식이 좋은 듯하다.</li>
+</ul>
+:ET

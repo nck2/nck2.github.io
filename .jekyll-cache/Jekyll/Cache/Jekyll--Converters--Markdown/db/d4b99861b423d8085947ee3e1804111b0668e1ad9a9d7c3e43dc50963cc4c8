@@ -1,0 +1,33 @@
+I"�<h2 id="db-수정-및-삭제-예제">DB 수정 및 삭제 예제</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1">#DB 생성
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'./databases/sqlite1.db'</span><span class="p">)</span>  <span class="c1">#,isolation_level=None) #Auto commit[ conn.commit()  생략가능]
+</span>
+<span class="c1">#커서 바인딩
+</span><span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1">#데이터 수정1
+</span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"UPDATE users SET username =? WHERE id=?"</span><span class="p">,(</span><span class="s">'niceman'</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">#데이터 수정2
+</span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"UPDATE users SET username = :name WHERE id=:id"</span><span class="p">,{</span><span class="s">"name"</span><span class="p">:</span><span class="s">'goodboy'</span><span class="p">,</span><span class="s">"id"</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>
+
+<span class="c1">#데이터 수정3
+</span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"UPDATE users SET username = '</span><span class="si">%</span><span class="s">s' WHERE id='</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span><span class="p">(</span><span class="s">'cuteboy'</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1">#데이터 삭제
+</span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"DELETE FROM users WHERE id=?"</span><span class="p">,(</span><span class="mi">4</span><span class="p">,))</span>
+
+<span class="c1">#중간 데이터 확인
+</span><span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT * FROM users"</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1">#jsonplaceholder
+</span>
+</code></pre></div></div>
+:ET

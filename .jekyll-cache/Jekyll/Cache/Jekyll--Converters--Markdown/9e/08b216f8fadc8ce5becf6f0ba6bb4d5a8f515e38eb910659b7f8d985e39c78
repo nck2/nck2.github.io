@@ -1,0 +1,42 @@
+I"�<h2 id="수열의-수렴성을-그래프로-나타내어-봄">수열의 수렴성을 그래프로 나타내어 봄.</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="n">ticker</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">x2</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">x</span>
+<span class="n">y1</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">x1</span>
+<span class="n">y2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">x2</span>
+<span class="n">y3</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">Z</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="mi">0</span>
+<span class="n">Z1</span><span class="o">=</span><span class="n">x</span><span class="o">*</span><span class="mi">0</span><span class="o">-</span><span class="mf">0.05</span>
+
+
+
+<span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">49</span><span class="p">)</span>
+
+<span class="n">name_list</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">pos_list</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># plt.scatter(x,y,c='blue',label=r"$\frac{1}{n}$")
+</span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s">'red'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s">'black'</span><span class="p">)</span>
+
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Z1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s">"gray"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">Z1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s">"gray"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ls</span><span class="o">=</span><span class="s">"--"</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s">'.75'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">shadow</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="c1">#,loc="lower right")
+</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+:ET

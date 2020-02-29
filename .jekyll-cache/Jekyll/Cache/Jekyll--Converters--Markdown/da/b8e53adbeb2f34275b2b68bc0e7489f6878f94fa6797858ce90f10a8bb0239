@@ -1,0 +1,67 @@
+I":<h2 id="이미지를-저장하고-이를-조회하기-위한-코드">이미지를 저장하고 이를 조회하기 위한 코드</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+
+<span class="c1"># -- 사진 데이터를 DB에 넣는 코드
+# conn = sqlite3.connect('./image.db')
+</span>
+<span class="c1"># c = conn.cursor()
+# c.execute("CREATE TABLE IF NOT EXISTS users(myimage BLOB, content text )") #AUTOINCREMENT
+# pict = './test.jpg'
+# # with open(pict,'rb') as input_file:
+# #     ablob=input_file.read()
+# #     c.execute("INSERT INTO users VALUES(?,?)",(ablob,'mytest'))
+# #     conn.commit()
+</span>
+<span class="c1">#  c.execute("SELECT * FROM users WHERE content=?",('mytest',))
+#  answer, cont = c.fetchone()
+</span>
+<span class="c1">#  qimg = QtGui.QImage.fromData(answer)
+#  pixmap = QtGui.QPixmap.fromImage(qimg)
+</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtWidgets</span> <span class="kn">import</span> <span class="n">QApplication</span><span class="p">,</span> <span class="n">QWidget</span><span class="p">,</span> <span class="n">QLabel</span>
+<span class="kn">from</span> <span class="nn">PyQt5.QtGui</span> <span class="kn">import</span> <span class="n">QIcon</span><span class="p">,</span> <span class="n">QPixmap</span><span class="p">,</span> <span class="n">QImage</span>
+<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>
+
+<span class="k">class</span> <span class="nc">App</span><span class="p">(</span><span class="n">QWidget</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s">'PyQt5 image - pythonspot.com'</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">640</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">480</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initUI</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">initUI</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'./image.db'</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"SELECT * FROM users WHERE content=?"</span><span class="p">,(</span><span class="s">'mytest'</span><span class="p">,))</span>
+
+        <span class="n">answer</span><span class="p">,</span> <span class="n">cont</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+        <span class="c1"># 이미지를 라벨에 보여주는 코드
+</span>        <span class="n">qimg</span> <span class="o">=</span> <span class="n">QImage</span><span class="o">.</span><span class="n">fromData</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+        <span class="n">pixmap</span> <span class="o">=</span> <span class="n">QPixmap</span><span class="o">.</span><span class="n">fromImage</span><span class="p">(</span><span class="n">qimg</span><span class="p">)</span>
+        <span class="n">pixmap</span> <span class="o">=</span> <span class="n">pixmap</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">IgnoreAspectRatio</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'size'</span><span class="p">,</span><span class="n">pixmap</span><span class="o">.</span><span class="n">width</span><span class="p">())</span>
+
+        <span class="c1"># Create widget
+</span>        <span class="n">label</span> <span class="o">=</span> <span class="n">QLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># pixmap = QPixmap('image.jpeg')
+</span>        <span class="n">label</span><span class="o">.</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">pixmap</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">pixmap</span><span class="o">.</span><span class="n">width</span><span class="p">(),</span><span class="n">pixmap</span><span class="o">.</span><span class="n">height</span><span class="p">())</span>
+        <span class="c1"># self.resize(50,50)
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="n">ex</span> <span class="o">=</span> <span class="n">App</span><span class="p">()</span>
+    <span class="n">ex</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
+
+</code></pre></div></div>
+:ET

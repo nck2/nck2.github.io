@@ -1,0 +1,6 @@
+I"e<h2 id="ajax에서-csrf_token-문제">ajax에서 csrf_token 문제</h2>
+<ul>
+  <li>폼입력에서 가장 해결하기 힘들었던 부분이 csrf_token이다.</li>
+  <li>이 부분을 <a href="https://simpleisbetterthancomplex.com/tutorial/2016/11/15/how-to-implement-a-crud-using-ajax-and-json.html">여기</a>를 참고하여 해결하였다.</li>
+</ul>
+:ET

@@ -1,0 +1,394 @@
+I"�S<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Test</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">public_field</span> <span class="o">=</span><span class="mi">5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_private_field</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_protected_field</span> <span class="o">=</span><span class="mi">7</span>
+        
+    <span class="k">def</span> <span class="nf">__private_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">=</span><span class="n">Test</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;__main__.Test at 0x103d337b8&gt;
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">public_field</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  5
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">_private_field</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  6
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">_protected_field</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  7
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Test2</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="o">=</span><span class="s">'red'</span>
+        
+    <span class="k">def</span> <span class="nf">set_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">clr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="o">=</span><span class="n">clr</span>
+        
+    <span class="k">def</span> <span class="nf">get_color</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span>
+    
+
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">=</span><span class="n">Test2</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;__main__.Test2 at 0x103d743c8&gt;
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">color</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  'red'
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s">"blue"</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">get_color</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  'blue'
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div>  </div>
+
+</div>
+
+<h3 id="property사용">@property사용</h3>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Test3</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__color</span><span class="o">=</span><span class="s">"red"</span>
+    
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__color</span>
+    
+    <span class="o">@</span><span class="n">color</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">clr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__color</span><span class="o">=</span> <span class="n">clr</span>
+        
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">=</span><span class="n">Test3</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">color</span><span class="o">=</span><span class="s">"blue"</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span><span class="o">.</span><span class="n">color</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  'blue'
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Celsius</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_fahrenheit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_temperature</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span>
+
+    <span class="k">def</span> <span class="nf">get_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_temperature</span>
+
+    <span class="k">def</span> <span class="nf">set_temperature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">273</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Temperature below -273 is not possible"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_temperature</span> <span class="o">=</span> <span class="n">value</span>
+
+
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">=</span><span class="n">Celsius</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">.</span><span class="n">_temperature</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  0
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">get_temperature</span><span class="p">())</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  20
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">.</span><span class="n">set_temperature</span><span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">get_temperature</span><span class="p">())</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---------------------------------------------------------------------------
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ValueError                                Traceback (most recent call last)
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;ipython-input-28-7b7da100e252&gt; in &lt;module&gt;()
+----&gt; 1 c.set_temperature(-300)
+      2 print(c.get_temperature())
+
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;ipython-input-18-9483d32151d6&gt; in set_temperature(self, value)
+     11     def set_temperature(self, value):
+     12         if value &lt; -273:
+---&gt; 13             raise ValueError("Temperature below -273 is not possible")
+     14         self._temperature = value
+     15 
+
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ValueError: Temperature below -273 is not possible
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">.</span><span class="n">_temperature</span><span class="o">=-</span><span class="mi">300</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">.</span><span class="n">_temperature</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  -300
+</code></pre></div></div>
+
+<h3 id="직접-변수에-접근하면-제한이-적용되지-않음">직접 변수에 접근하면 제한이 적용되지 않음.</h3>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 기존코드
+</span></code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">MovieOld</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">movie_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__movie_name</span> <span class="o">=</span> <span class="n">movie_name</span>
+ 
+    <span class="k">def</span> <span class="nf">movie_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># 이때 메서드 이름은 변수(속성)의 이름과 동일하게 하는 것이 좋습니다. 
+</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__movie_name</span>
+ 
+    <span class="k">def</span> <span class="nf">movie_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_movie_name</span><span class="p">):</span> <span class="c1"># 이때 메서드 이름은 변수(속성)의 이름과 동일하게 하는 것이 좋습니다. 
+</span>        <span class="s">""" 영화를 변경하는 setter 메서드"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__movie_name</span> <span class="o">=</span> <span class="n">new_movie_name</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"============ setter를 통해 영화를 변경합니다============"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'변경 후 영화이름 : {} '</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">movie_name</span><span class="p">))</span>
+
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">movie</span> <span class="o">=</span> <span class="n">MovieOld</span><span class="p">(</span><span class="s">'총알 탄 사나이'</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">movie</span><span class="o">.</span><span class="n">movie_name</span><span class="p">(</span><span class="s">'j'</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ============ setter를 통해 영화를 변경합니다============
+변경 후 영화이름 : &lt;bound method MovieOld.movie_name of &lt;__main__.MovieOld object at 0x103dfa470&gt;&gt; 
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Movie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">movie_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__movie_name</span> <span class="o">=</span> <span class="n">movie_name</span>
+ 
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">movie_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># 이때 메서드 이름은 변수(속성)의 이름과 동일하게 하는 것이 좋습니다. 
+</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__movie_name</span>
+ 
+    <span class="o">@</span><span class="n">movie_name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">movie_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_movie_name</span><span class="p">):</span> <span class="c1"># 이때 메서드 이름은 변수(속성)의 이름과 동일하게 하는 것이 좋습니다. 
+</span>        <span class="s">""" 영화를 변경하는 setter 메서드"""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__movie_name</span> <span class="o">=</span> <span class="n">new_movie_name</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"============ setter를 통해 영화를 변경합니다============"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'변경 후 영화이름 : {} '</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">movie_name</span><span class="p">))</span>
+
+
+<span class="c1">#출처: http://whatisthenext.tistory.com/115 [경영학도의 좌충우돌 프로그래밍]
+</span></code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">movie</span> <span class="o">=</span> <span class="n">Movie</span><span class="p">(</span><span class="s">'총알 탄 사나이'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">movie</span><span class="o">.</span><span class="n">movie_name</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  총알 탄 사나이
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">movie</span><span class="o">.</span><span class="n">movie_name</span> <span class="o">=</span> <span class="s">'히든 피겨스'</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ============ setter를 통해 영화를 변경합니다============
+변경 후 영화이름 : 히든 피겨스 
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div>  </div>
+
+</div>
+
+:ET

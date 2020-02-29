@@ -1,0 +1,24 @@
+I"3	<h1 id="views에서-저장-로직">views에서 저장 로직</h1>
+<ul>
+  <li>저장 기본 로직</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">MyTest</span>
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">MyTestForm</span>
+
+
+<span class="k">def</span> <span class="nf">form1</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">mytest</span> <span class="o">=</span> <span class="n">MyTest</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">all</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s">'POST'</span> <span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">MyTestForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s">'sage:index'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">MyTestForm</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="s">'formtest/form1.html'</span><span class="p">,{</span><span class="s">'form'</span><span class="p">:</span><span class="n">form</span><span class="p">})</span>
+</code></pre></div></div>
+:ET

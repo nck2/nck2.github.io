@@ -1,0 +1,47 @@
+I"�<h2 id="3벌식-버튼-만드는-예제">3벌식 버튼 만드는 예제</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+   <span class="nx">check</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#key3</span><span class="dl">"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">check</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">SCRIPT</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{% static "/askdjango/js/additional_layouts.js"%}</span><span class="dl">'</span><span class="p">;</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">text/javascript</span><span class="dl">'</span><span class="p">;</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">testt</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">head</span><span class="dl">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">SCRIPT</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">{% static "/askdjango/js/ohi.js"%}</span><span class="dl">'</span><span class="p">;</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">text/javascript</span><span class="dl">'</span><span class="p">;</span>
+        <span class="nx">script</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">testt2</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">head</span><span class="dl">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+
+      <span class="p">}</span>
+
+        <span class="nx">check</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">;</span>
+
+
+
+
+      <span class="c1">// var script = document.createElement("SCRIPT");</span>
+      <span class="c1">// script.src = '{% static "/askdjango/js/my6.js"%}';</span>
+      <span class="c1">// script.type = 'text/javascript';</span>
+      <span class="c1">// document.getElementsByTagName("head")[0].appendChild(script);</span>
+
+
+          <span class="c1">// your jQuery code here</span>
+
+
+
+
+
+    <span class="p">});</span>
+<span class="p">});</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span>
+</code></pre></div></div>
+:ET

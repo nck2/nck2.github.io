@@ -1,0 +1,8 @@
+I"<p>``` python
+def myg(val=”blank”):
+    ‘'’git push하고 배포 이거는 전체를 다시올리는 것이라 데이타 베이스가 다 초기화됨’’’
+    local(‘git add .’)
+    local(‘git commit -m {}’.format(val))
+    local(‘git push’)
+    deploy()</p>
+:ET

@@ -1,0 +1,38 @@
+I"Q<h2 id="jupyter-notebook을-jekyll-에-적용">jupyter notebook을 jekyll 에 적용</h2>
+<ul>
+  <li>아래를 참고하여 mytemplate.tpl을 작성하여 적당한 위치에 둠
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter nbconvert --to markdown --template ./mytemplate.tpl abc.ipynb
+</code></pre></div>    </div>
+  </li>
+  <li>위의 명령을 통해 abc.md 가 만들어짐</li>
+  <li>그런데 위의 명령으로는 in과 out에 적당한 클래스이름이 만들어짐</li>
+</ul>
+
+<h2 id="custom-css-적용">custom css 적용</h2>
+<ul>
+  <li>그래서 jupyter_notebook 만의 레이아웃(single_jupyter)을 만들고 이 안에 custom css를 넣음</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+<span class="c">/* jupyter notebook 나의 설정 시작 */</span>
+<span class="nc">.input_area</span> <span class="nt">div</span><span class="nc">.highlighter-rouge</span> <span class="p">{</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#263238</span>  <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.output_stream</span><span class="o">,</span> <span class="nc">.output_data_text</span><span class="o">,</span> <span class="nc">.output_traceback_line</span> <span class="p">{</span>
+  <span class="nl">margin-left</span><span class="p">:</span> <span class="m">2%</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#36434a38</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">5px</span> <span class="m">10px</span> <span class="m">8px</span> <span class="m">#888888</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="m">#344e4e</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</code></pre></div></div>
+<ul>
+  <li>그런데 생각해보니 위의 style 을 기본 레이아웃에 포함시켜 별도의 레이아웃을 만들지 않는 것이 좋을 것 같음.</li>
+</ul>
+
+<blockquote>
+  <p><a href="https://predictablynoisy.com/jekyll-markdown-nbconvert" target="_blank">참고</a></p>
+</blockquote>
+:ET

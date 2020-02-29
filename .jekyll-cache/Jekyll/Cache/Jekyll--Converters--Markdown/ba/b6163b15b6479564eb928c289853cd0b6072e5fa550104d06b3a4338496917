@@ -1,0 +1,36 @@
+I"�<p><a href="http://oniondev.egloos.com/9862474">링크</a> (이 내용을 정리)</p>
+
+<h2 id="재사용가능한-템플릿-태그-작성">재사용가능한 템플릿 태그 작성</h2>
+<ol>
+  <li>다른 앱에 설치되어 있어도 사용가능하다.</li>
+  <li>templatetags라는 폴더를 앱아래에 만든다</li>
+  <li>이 폴더안에 my_filters.py 라는 이름으로 아래 코드를 작성한다.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">template</span>
+  <span class="n">register</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">Library</span><span class="p">()</span>
+
+  <span class="o">@</span><span class="n">register</span><span class="o">.</span><span class="nb">filter</span>
+  <span class="k">def</span> <span class="nf">get_item</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+      <span class="k">return</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+  </code></pre></figure>
+
+<ol>
+  <li>blabla.html 이라는 template 파일의 context 로 아래와 같은 정보가 넘어갔다고 하자.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1"># === BlaBlaView ===
+</span><span class="n">context</span><span class="p">[</span><span class="s">'name_dic'</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">'shoe01'</span><span class="p">:</span><span class="s">'컨버스'</span><span class="p">,</span> <span class="s">'shoe02'</span><span class="p">:</span><span class="s">'구두'</span><span class="p">,</span> <span class="s">'shoe03'</span><span class="p">:</span><span class="s">'군화'</span><span class="p">}</span>
+<span class="n">context</span><span class="p">[</span><span class="s">'shoe_code'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'shoe02'</span></code></pre></figure>
+
+<p>이때 template 에서 shoe_code 를 우리가 보기좋은 정보로 치환하기 위해서는 Dictionary의 Key값으로 조회하여 Value를 빼올 수 있는!!
+내가만든 필터를 적용해야만 한다. 자 그럼 아래 코드를 보자.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1"># === blabla.html ===
+</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">load</span> <span class="n">get_item</span> <span class="k">from</span> <span class="n">my_filters</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">...</span>
+<span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="err">신발명</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">name_dic</span> <span class="o">|</span> <span class="n">get_item</span><span class="p">:</span><span class="n">shoe_code</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span></code></pre></figure>
+
+:ET

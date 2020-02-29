@@ -1,0 +1,32 @@
+I"�<h2 id="가상환경이란">가상환경이란?</h2>
+<ul>
+  <li>파이썬 라이브러리를 설치할 수 있는 별도로 격리된 디렉토리</li>
+</ul>
+
+<h3 id="시나리오">시나리오</h3>
+<ul>
+  <li>새로운 가상환경 디렉토리를 생성</li>
+  <li>생성된 가상환경을 활성화</li>
+  <li>환경변수 PATH에 현재 가상환경 경로가 우선 순위로 잡힘.</li>
+  <li>활성화된 가상환경 내에 필요한 라이브러리 설치</li>
+  <li>가상환경을 파이썬 3로 만들었으면 명령을 python으로 써도 python3로 해석함.</li>
+</ul>
+
+<h2 id="venv-기본라이브러리">venv (기본라이브러리)</h2>
+<ul>
+  <li>python3 -m venv  ./myvenv (현재 디렉토리에 myvenv에 설치함)</li>
+  <li>start . (윈도우에서 현재 디렉토리가 탐색기로 열림)</li>
+  <li>활성화하는 명령
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'(win) myvenv/Scripts/activate'</span>
+<span class="s">'(mac). myvenv/bin/activate'</span> <span class="err"> </span><span class="n">source</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</code></pre></div>    </div>
+  </li>
+  <li>활성화후 설치하면 이 폴더 아래 어딘가에 생성
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="n">mac</span><span class="p">)</span> <span class="n">which</span> <span class="n">python</span> <span class="p">:</span> <span class="err">경로알려줌</span>
+<span class="n">deactivate</span> <span class="p">(</span><span class="err">활성화</span> <span class="err">끝</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>윈도우는  파워셸보다는  CMD로</li>
+  <li>그리고  virtualenv 는  파이썬 2에서 사용할 것(굳이 3에서 사용할 필요가 없음.)</li>
+</ul>
+:ET

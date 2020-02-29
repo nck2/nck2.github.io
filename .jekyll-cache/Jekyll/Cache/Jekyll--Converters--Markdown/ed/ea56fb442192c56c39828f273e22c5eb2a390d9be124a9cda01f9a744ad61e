@@ -1,0 +1,49 @@
+I"�<h2 id="anaconda-각종-명령">Anaconda 각종 명령</h2>
+<ul>
+  <li>conda –
+    <ul>
+      <li>설치확인</li>
+    </ul>
+  </li>
+  <li>conda update conda
+    <ul>
+      <li>conda 를 업데이트 함</li>
+    </ul>
+  </li>
+  <li>conda info –envs
+    <ul>
+      <li>설치되어 있는 콘다의 환경을 보여줌</li>
+    </ul>
+  </li>
+  <li>conda create –name test1 python=3 simplejson
+    <ul>
+      <li>test1 이름의 환경을 만들고 그 안에 파이썬3 및 패키지 simplejson 설치함</li>
+    </ul>
+  </li>
+  <li>conda list
+    <ul>
+      <li>패키지 목록</li>
+    </ul>
+  </li>
+  <li>pip install –ignore-installed simplejson
+    <ul>
+      <li>설치가 되어 있어도 새로 설치함.</li>
+      <li>패키지가 꼬여있다고 생각될 때 유용함.</li>
+    </ul>
+  </li>
+  <li>pip uninstall simplejson</li>
+  <li>conda remove –name test1 –all
+    <ul>
+      <li>환경을 지움.</li>
+    </ul>
+  </li>
+  <li>conda clean –all
+    <ul>
+      <li>캐시, 임시파일 삭제</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="네비게이터">네비게이터</h2>
+<p>anaconda-navigator 를 사용하면 GUI환경에서 위의 작업을 모두 할 수 있음!!</p>
+:ET

@@ -1,0 +1,6 @@
+I"<ul>
+  <li>참고 <a href="https://chrisalbon.com/software_engineering/cloud_computing/run_project_jupyter_on_amazon_ec2/">link</a></li>
+  <li>ssh와 custom TCP 만 보안그룹 규칙으로 추가함.</li>
+  <li>https://[주소]:8888 로 접속하면 끝</li>
+</ul>
+:ET

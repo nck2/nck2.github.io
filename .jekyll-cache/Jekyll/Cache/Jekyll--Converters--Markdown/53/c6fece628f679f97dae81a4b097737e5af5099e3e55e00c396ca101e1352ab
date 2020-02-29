@@ -1,0 +1,15 @@
+I""<ul>
+  <li>askdjango 앱내의 urls 에
+include(‘accounts.urls’)
+를 포함시키면
+askdjango 아래에 accouts앱이 있는 것 같은 url을 형성함.</li>
+  <li>url reverse 매칭이 안될때는 네임스페이스를 잘 확인해보자!!</li>
+</ul>
+
+<p>소셜로그인을 사용하기 위해서는 다음을 고려한다.</p>
+<ul>
+  <li>Install app 에 추가한다.</li>
+  <li>각 사이트의 api에서 주소를 추가한다.</li>
+  <li>콜백 주소를 입력한다.(http://localhost:8000/accounts/daum/login/callback/)</li>
+</ul>
+:ET

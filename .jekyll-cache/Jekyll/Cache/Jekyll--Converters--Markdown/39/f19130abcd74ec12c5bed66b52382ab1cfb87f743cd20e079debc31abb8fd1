@@ -1,0 +1,8 @@
+I"u<h2 id="migrations-명령어">Migrations 명령어</h2>
+<ol>
+  <li>python manage.py makemigrations [앱이름]</li>
+  <li>python manage.py migrate [앱이름]</li>
+  <li>python manage.py showmigrations [앱이름] : 어떤 마이그레이션이 적용되었는지 안되었는지 확인가능.</li>
+  <li>python manage.py sqlmigrate [앱이름] [migration-name]</li>
+</ol>
+:ET

@@ -1,0 +1,7 @@
+I"c<h2 id="윈도우에서-설치하기">윈도우에서 설치하기</h2>
+<ul>
+  <li>기본적으로 linux, mac 설치지원</li>
+  <li>윈도우에서는 <a href="http://jekyllrb-ko.github.io/docs/windows/" target="_blank">jekyll</a>을 참고하여 생성</li>
+  <li>나의 경우 <code>chcp 65001</code>로 <font color="red">설정함.</font></li>
+</ul>
+:ET

@@ -1,0 +1,58 @@
+I"(<h2 id="db생성예제">DB생성예제</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">simplejson</span> <span class="k">as</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="c1"># DB 생성
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'./databases/sqlite1.db'</span><span class="p">)</span>  <span class="c1">#,isolation_level=None) #Auto commit[ conn.commit()  생략가능]
+</span>
+<span class="c1"># DB 생성(메모리에)
+# conn = sqlite3.connect(':memory:')
+</span>
+<span class="c1">#날짜 생성
+</span><span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'now'</span><span class="p">,</span><span class="n">now</span><span class="p">)</span>
+
+<span class="n">nowDatetime</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">Y-</span><span class="si">%</span><span class="s">m-</span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'nowDatetime'</span><span class="p">,</span><span class="n">nowDatetime</span><span class="p">)</span>
+
+<span class="c1">#sqlite3 버젼확인
+</span><span class="k">print</span><span class="p">(</span><span class="s">'sqlite3.versin'</span><span class="p">,</span><span class="n">sqlite3</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'sqlite3_version'</span><span class="p">,</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">sqlite_version</span><span class="p">)</span>
+
+<span class="c1">#Cursor 연결
+</span><span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="c1">#&lt;class 'sqlite3.Cursor'&gt;
+</span>
+<span class="c1">#테이블 생성(sqlite3 데이터 타입 : TEXT, NUMERIC, INTEGER, REAL, BLOB)
+</span><span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, username text, email text, phone text, website text, regdate text )"</span><span class="p">)</span> <span class="c1">#AUTOINCREMENT
+</span>
+<span class="c1">#데이터 삽입
+# c.execute("INSERT INTO users VALUES(1,'kim','dim@naver.com','01-0000-0000','kim.co.kr',?)",(nowDatetime,))
+</span>
+<span class="n">userList</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s">'kim'</span><span class="p">,</span><span class="s">'dim@naver.com'</span><span class="p">,</span><span class="s">'01-0000-0000'</span><span class="p">,</span><span class="s">'kim.co.kr'</span><span class="p">,</span><span class="n">nowDatetime</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s">'kim'</span><span class="p">,</span><span class="s">'dim@naver.com'</span><span class="p">,</span><span class="s">'01-0000-0000'</span><span class="p">,</span><span class="s">'kim.co.kr'</span><span class="p">,</span><span class="n">nowDatetime</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s">'kim'</span><span class="p">,</span><span class="s">'dim@naver.com'</span><span class="p">,</span><span class="s">'01-0000-0000'</span><span class="p">,</span><span class="s">'kim.co.kr'</span><span class="p">,</span><span class="n">nowDatetime</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="c1"># c.executemany("INSERT INTO users(id, username, email, phone, website, regdate) VALUES (?,?,?,?,?,?)",userList)
+</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'./data/users.json'</span><span class="p">,</span><span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+    <span class="c1"># print('r',r)
+</span>    <span class="n">userData</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s">'id'</span><span class="p">],</span><span class="n">user</span><span class="p">[</span><span class="s">'username'</span><span class="p">],</span><span class="n">user</span><span class="p">[</span><span class="s">'email'</span><span class="p">],</span><span class="n">user</span><span class="p">[</span><span class="s">'phone'</span><span class="p">],</span><span class="n">user</span><span class="p">[</span><span class="s">'website'</span><span class="p">],</span><span class="n">nowDatetime</span><span class="p">)</span>
+        <span class="c1"># print('t',t)
+</span>        <span class="n">userData</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="c1"># print('userData',userData)
+</span>    <span class="c1"># print('userData',tuple(userData))
+</span>    <span class="n">c</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s">"INSERT INTO users(id, username, email, phone, website, regdate) VALUES (?,?,?,?,?,?)"</span><span class="p">,</span><span class="n">userData</span><span class="p">)</span>
+
+<span class="c1">## DB삭제 (구조는 남겨놓음)
+# print('users db delete',conn.execute("delete from users").rowcount, "rows")
+</span><span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+:ET

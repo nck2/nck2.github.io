@@ -1,0 +1,11 @@
+I"W<h2 id="필요한-프로그램-설치">필요한 프로그램 설치</h2>
+<ol>
+  <li>yarn 설치중
+    <ul>
+      <li>sudo chown -R $(whoami):admin /usr/local</li>
+      <li>usr/local 아래의 모든 파일(-R)에 [사용자:그룹]에 소유권부여</li>
+      <li>brew update; brew install yarn 로 설치함</li>
+    </ul>
+  </li>
+</ol>
+:ET

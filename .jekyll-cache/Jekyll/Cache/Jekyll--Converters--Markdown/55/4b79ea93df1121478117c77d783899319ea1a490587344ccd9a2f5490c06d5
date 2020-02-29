@@ -1,0 +1,79 @@
+I"<h2 id="pickle-사용">pickle 사용</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="n">bfilename</span> <span class="o">=</span> <span class="s">'./test.bin'</span>
+<span class="n">tfilename</span> <span class="o">=</span> <span class="s">'./test.txt'</span>
+
+<span class="n">data1</span> <span class="o">=</span> <span class="mi">77</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="s">"hello world"</span>
+<span class="n">data3</span> <span class="o">=</span><span class="p">[</span><span class="s">'car'</span><span class="p">,</span><span class="s">'apple'</span><span class="p">,</span><span class="s">'house'</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+</div>
+
+<h2 id="binary와-텍스트-쓰기">binary와 텍스트 쓰기</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">bfilename</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="c1">#dumps (문자열 직렬화)
+</span>    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data3</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tfilename</span><span class="p">,</span><span class="s">'wt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data1</span><span class="p">))</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data3</span><span class="p">))</span> <span class="c1">#리스트는 write로 안써짐
+</span></code></pre></div>  </div>
+
+</div>
+
+<h2 id="binary-읽기">binary 읽기</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">bfilename</span><span class="p">,</span><span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="c1">#loads (문자열 역직렬화)
+</span>    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;class 'int'&gt; 77
+&lt;class 'str'&gt; hello world
+&lt;class 'list'&gt; ['car', 'apple', 'house']
+
+</code></pre></div></div>
+
+<h2 id="텍스트-읽기">텍스트 읽기</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tfilename</span><span class="p">,</span> <span class="s">'rt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="s">'text'</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span><span class="s">'|'</span><span class="p">,</span><span class="n">line</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;class 'str'&gt; text1| 77
+&lt;class 'str'&gt; text2| hello world
+&lt;class 'str'&gt; text3| car
+&lt;class 'str'&gt; text4| apple
+&lt;class 'str'&gt; text5| house
+</code></pre></div></div>
+
+<ul>
+  <li>binary는 자료형도 그대로 유지함</li>
+  <li>텍스트는 읽어오면 그대로 텍스트임</li>
+</ul>
+:ET

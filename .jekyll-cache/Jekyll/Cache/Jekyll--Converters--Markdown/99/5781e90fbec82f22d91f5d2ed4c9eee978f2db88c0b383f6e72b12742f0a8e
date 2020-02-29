@@ -1,0 +1,63 @@
+I"h<h2 id="local-server에서-s3로-mediafile-연결">local server에서 S3로 mediafile 연결</h2>
+<ul>
+  <li>settings/dev.py 에서 아래와 같은 설정을 추가하여 S3에 media파일을 넣을 수 있었다.
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+          <span class="s">'ENGINE'</span><span class="p">:</span> <span class="s">'django.db.backends.postgresql_psycopg2'</span><span class="p">,</span>
+          <span class="s">'NAME'</span><span class="p">:</span> <span class="s">'dbname'</span><span class="p">,</span>
+          <span class="s">'USER'</span><span class="p">:</span> <span class="s">'username'</span><span class="p">,</span>
+          <span class="s">'PASSWORD'</span><span class="p">:</span> <span class="s">'pw'</span><span class="p">,</span>
+          <span class="s">'HOST'</span><span class="p">:</span><span class="s">'hostname'</span><span class="p">,</span>
+          <span class="s">'PORT'</span><span class="p">:</span> <span class="s">'5432'</span><span class="p">,</span>
+      <span class="p">},</span>
+  <span class="p">}</span>
+  <span class="n">INSTALLED_APPS</span> <span class="o">+=</span> <span class="p">[</span><span class="s">'storages'</span><span class="p">]</span>
+  <span class="n">AWS_S3_HOST</span> <span class="o">=</span> <span class="s">'s3.ap-northeast-2.amazonaws.com'</span>
+  <span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s">'mysite.storages.StaticS3Boto3Storage'</span>
+  <span class="n">DEFAULT_FILE_STORAGE</span> <span class="o">=</span> <span class="s">'mysite.storages.MediaS3Boto3Storage'</span>
+
+  <span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="s">''</span>
+  <span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s">''</span>
+  <span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s">''</span>
+</code></pre></div>    </div>
+    <ul>
+      <li>위의 내용들은 실제로 aws 서버에 환경변수로 등록되어 있는 값들이다.</li>
+    </ul>
+  </li>
+  <li>image는 저장이 되었고 admin에서도 파일경로가 보이는데, 클릭하면 404오류가 뜨는 이유
+    <ul>
+      <li>이는 static과 달리 media는 파일서빙을 지원하지 않기 때문이다. 개발환경에서 지원하기 위해서는 룰을 추가하여야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1"># prject/ urls.py
+</span>  <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+  <span class="kn">from</span> <span class="nn">django.conf.urls.static</span> <span class="kn">import</span> <span class="n">static</span>
+
+  <span class="n">urlpatterns</span> <span class="o">+=</span><span class="n">static</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_URL</span><span class="p">,</span> <span class="n">document_root</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">)</span>
+  <span class="c1"># debug가 false이면 자동으로 빈문자열 리턴한다.
+</span></code></pre></div></div>
+
+<ul>
+  <li>혹은 form enctype이 지정되지 않아서임.</li>
+  <li>혹은 view에서 request.FILES가 지정되어 있는지 확인</li>
+</ul>
+
+<h2 id="템플릿에서-mediafile처리">템플릿에서 mediafile처리</h2>
+<ul>
+  <li>photo가 필드명이면 여기에는 저장주소가 담김</li>
+  <li>이때.photo.url은 Media_url의 저장경로를 prefix로 붙여줌</li>
+  <li>따라서 아래와 같이 하는 게 좋음
+```</li>
+</ul>
+
+<p>{% if post.photo %}
+<img src=" { {post.photo.url} } " />
+{% endif %}</p>
+
+<p>```</p>
+<ul>
+  <li>.path는 media_root를 prefix로 붙여줌.(서버에서 직접작업할 경우 사용)</li>
+</ul>
+:ET

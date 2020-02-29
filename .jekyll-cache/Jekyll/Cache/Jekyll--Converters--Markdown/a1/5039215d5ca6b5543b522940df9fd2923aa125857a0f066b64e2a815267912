@@ -1,0 +1,34 @@
+I"�
+<h2 id="django의-db의-내용을-csv로-바꾸는-코드">Django의 DB의 내용을 CSV로 바꾸는 코드</h2>
+
+<blockquote>
+  <p>https://github.com/azavea/django-queryset-csv</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">djqscsv</span> <span class="kn">import</span> <span class="n">render_to_csv_response</span>
+
+<span class="k">def</span> <span class="nf">csv_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+  <span class="n">qs</span> <span class="o">=</span> <span class="n">Foo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s">'id'</span><span class="p">,</span> <span class="s">'bar'</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">render_to_csv_response</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>위와 같이 하면 파일로 받아짐.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">djqscsv</span> <span class="kn">import</span> <span class="n">write_csv</span>
+
+<span class="n">qs</span> <span class="o">=</span> <span class="n">Foo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">bar</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s">'id'</span><span class="p">,</span> <span class="s">'bar'</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'foo.csv'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+  <span class="n">write_csv</span><span class="p">(</span><span class="n">qs</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">)</span></code></pre></figure>
+
+<ul>
+  <li>위와 같이 하면 서버의 어디엔가에 csv로 저장됨.</li>
+</ul>
+
+<h2 id="그런데-더-괜찮은-라이브러리-발견">그런데, 더 괜찮은 라이브러리 발견</h2>
+<blockquote>
+  <p>https://simpleisbetterthancomplex.com/packages/2016/08/11/django-import-export.html</p>
+</blockquote>
+
+<p>이것으로 쓰면 될듯!!</p>
+:ET

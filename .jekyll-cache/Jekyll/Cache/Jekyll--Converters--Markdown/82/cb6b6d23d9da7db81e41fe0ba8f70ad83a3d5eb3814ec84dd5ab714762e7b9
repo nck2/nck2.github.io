@@ -1,0 +1,47 @@
+I"	<h2 id="주피터-노트북-사용">주피터 노트북 사용</h2>
+<p>python manage.py shell_plus –notebook</p>
+
+<ul>
+  <li>1:1 OneToOneField로 연결된, user와 profile관계에서 profile에 해당하는 user호출 예시
+<script src="https://gist.github.com/nck2/ac7d813751f6869cb181271ef767c5da.js"></script></li>
+</ul>
+
+<h2 id="staticfile-사용">staticfile 사용</h2>
+
+<ul>
+  <li>앱/static/앱/css/style.css 생성</li>
+  <li>템플릿 파일위에
+`html</li>
+</ul>
+
+<p>{% load static %}</p>
+
+<p>`추가</p>
+<ul>
+  <li>탬플릿 파일에 <code class="highlighter-rouge">&lt;link rel="stylesheet" href="{ % static 'askdjango/css/style.css' %}" /&gt;</code> 같이 추가</li>
+</ul>
+
+<p>개수를 카운트할때
+Post.objects.all().count() 이다.
+탬플릿에서는 괄호를 제거하고 Post.objects.all.count 이다.
+마찬가지로 탬플릿단에서 쿼리셋전체는 Post.objects.all 이다.
+부트스트랩의 css와 js 가 커스텀으로 로드되어 있으면 다음 명령은 생략해도 된다. (부딪혀서 의도치 않은 오류가 발생하기도 한다.)
+{ % bootstrap_css %}
+{ % bootstrap_javascript %}</p>
+
+<ul>
+  <li>form에서 오류 메세지(부트스트랩은 자동으로 출력해주는듯)</li>
+</ul>
+
+<p>1.
+{ % for error in form.non_field_errors %}</p>
+
+<p>{ % endfor %}</p>
+
+<p>2.
+{ % for field in form.visible_fields %}
+    { % for error in field.errors %}</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ % endfor %} { % endfor %}
+</code></pre></div></div>
+:ET

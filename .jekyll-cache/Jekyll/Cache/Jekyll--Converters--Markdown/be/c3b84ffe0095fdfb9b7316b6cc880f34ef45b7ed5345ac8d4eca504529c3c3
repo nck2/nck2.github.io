@@ -1,0 +1,5 @@
+I"c<p>``` python
+class Animal():
+  def <strong>init</strong>(self,name):
+    self.name= name</p>
+:ET

@@ -1,0 +1,436 @@
+I"�H<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">li</span><span class="o">=</span><span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dic_li</span><span class="o">=</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dic_li</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Counter({'a': 2, 'b': 3, 'c': 1})
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cached</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="s">'AABC'</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cached</span><span class="p">:</span>
+        <span class="n">cached</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="c1">#print('배열은 {}'.format(collections.Counter))
+</span><span class="k">print</span><span class="p">(</span><span class="s">'배열의 총 개수는 {}개이다.'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cached</span><span class="p">)))</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ('A', 'A', 'B', 'C')
+('A', 'A', 'C', 'B')
+('A', 'B', 'A', 'C')
+('A', 'B', 'C', 'A')
+('A', 'C', 'A', 'B')
+('A', 'C', 'B', 'A')
+('B', 'A', 'A', 'C')
+('B', 'A', 'C', 'A')
+('B', 'C', 'A', 'A')
+('C', 'A', 'A', 'B')
+('C', 'A', 'B', 'A')
+('C', 'B', 'A', 'A')
+배열의 총 개수는 12개이다.
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Permu</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">listlen</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ball</span><span class="p">):</span>
+        <span class="s">'''공의 모양 출력'''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ball</span><span class="o">=</span><span class="n">ball</span>
+        <span class="n">Permu</span><span class="o">.</span><span class="n">listlen</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ball</span><span class="p">)</span>
+  
+    <span class="k">def</span> <span class="nf">random_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="c1">#         print("self.ball",self.ball)
+</span>        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ball</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ball</span>
+    
+    <span class="k">def</span> <span class="nf">get_all_case</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="o">=</span><span class="n">Permu</span><span class="o">.</span><span class="n">listlen</span><span class="p">):</span>
+        <span class="s">'''number만큼의 경우를 출력하는 함수, 기본은 갯수'''</span>
+        <span class="n">cached</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ball</span><span class="p">,</span><span class="n">number</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cached</span><span class="p">:</span>
+                <span class="n">cached</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"배열의 총 개수는 {}개이다."</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cached</span><span class="p">)))</span>
+        
+       <span class="c1"># print(cached)
+</span></code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu</span><span class="o">=</span><span class="n">Permu</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'d'</span><span class="p">])</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu</span><span class="o">.</span><span class="n">get_all_case</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ('a', 'c', 'c', 'd', 'd')
+('a', 'c', 'd', 'c', 'd')
+('a', 'c', 'd', 'd', 'c')
+('a', 'c', 'd', 'd', 'd')
+('a', 'd', 'c', 'c', 'd')
+('a', 'd', 'c', 'd', 'c')
+('a', 'd', 'c', 'd', 'd')
+('a', 'd', 'd', 'c', 'c')
+('a', 'd', 'd', 'c', 'd')
+('a', 'd', 'd', 'd', 'c')
+('c', 'a', 'c', 'd', 'd')
+('c', 'a', 'd', 'c', 'd')
+('c', 'a', 'd', 'd', 'c')
+('c', 'a', 'd', 'd', 'd')
+('c', 'c', 'a', 'd', 'd')
+('c', 'c', 'd', 'a', 'd')
+('c', 'c', 'd', 'd', 'a')
+('c', 'c', 'd', 'd', 'd')
+('c', 'd', 'a', 'c', 'd')
+('c', 'd', 'a', 'd', 'c')
+('c', 'd', 'a', 'd', 'd')
+('c', 'd', 'c', 'a', 'd')
+('c', 'd', 'c', 'd', 'a')
+('c', 'd', 'c', 'd', 'd')
+('c', 'd', 'd', 'a', 'c')
+('c', 'd', 'd', 'a', 'd')
+('c', 'd', 'd', 'c', 'a')
+('c', 'd', 'd', 'c', 'd')
+('c', 'd', 'd', 'd', 'a')
+('c', 'd', 'd', 'd', 'c')
+('d', 'a', 'c', 'c', 'd')
+('d', 'a', 'c', 'd', 'c')
+('d', 'a', 'c', 'd', 'd')
+('d', 'a', 'd', 'c', 'c')
+('d', 'a', 'd', 'c', 'd')
+('d', 'a', 'd', 'd', 'c')
+('d', 'c', 'a', 'c', 'd')
+('d', 'c', 'a', 'd', 'c')
+('d', 'c', 'a', 'd', 'd')
+('d', 'c', 'c', 'a', 'd')
+('d', 'c', 'c', 'd', 'a')
+('d', 'c', 'c', 'd', 'd')
+('d', 'c', 'd', 'a', 'c')
+('d', 'c', 'd', 'a', 'd')
+('d', 'c', 'd', 'c', 'a')
+('d', 'c', 'd', 'c', 'd')
+('d', 'c', 'd', 'd', 'a')
+('d', 'c', 'd', 'd', 'c')
+('d', 'd', 'a', 'c', 'c')
+('d', 'd', 'a', 'c', 'd')
+('d', 'd', 'a', 'd', 'c')
+('d', 'd', 'c', 'a', 'c')
+('d', 'd', 'c', 'a', 'd')
+('d', 'd', 'c', 'c', 'a')
+('d', 'd', 'c', 'c', 'd')
+('d', 'd', 'c', 'd', 'a')
+('d', 'd', 'c', 'd', 'c')
+('d', 'd', 'd', 'a', 'c')
+('d', 'd', 'd', 'c', 'a')
+('d', 'd', 'd', 'c', 'c')
+배열의 총 개수는 60개이다.
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu</span><span class="o">.</span><span class="n">ball</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['a', 'c', 'c', 'd', 'd', 'd']
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu2</span><span class="o">=</span><span class="n">Permu</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'E'</span><span class="p">,</span><span class="s">'F'</span><span class="p">])</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu2</span><span class="o">.</span><span class="n">get_all_case</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ('a', 'b', 'c', 'E', 'F')
+('a', 'b', 'c', 'F', 'E')
+('a', 'b', 'E', 'c', 'F')
+('a', 'b', 'E', 'F', 'c')
+('a', 'b', 'F', 'c', 'E')
+('a', 'b', 'F', 'E', 'c')
+('a', 'c', 'b', 'E', 'F')
+('a', 'c', 'b', 'F', 'E')
+('a', 'c', 'E', 'b', 'F')
+('a', 'c', 'E', 'F', 'b')
+('a', 'c', 'F', 'b', 'E')
+('a', 'c', 'F', 'E', 'b')
+('a', 'E', 'b', 'c', 'F')
+('a', 'E', 'b', 'F', 'c')
+('a', 'E', 'c', 'b', 'F')
+('a', 'E', 'c', 'F', 'b')
+('a', 'E', 'F', 'b', 'c')
+('a', 'E', 'F', 'c', 'b')
+('a', 'F', 'b', 'c', 'E')
+('a', 'F', 'b', 'E', 'c')
+('a', 'F', 'c', 'b', 'E')
+('a', 'F', 'c', 'E', 'b')
+('a', 'F', 'E', 'b', 'c')
+('a', 'F', 'E', 'c', 'b')
+('b', 'a', 'c', 'E', 'F')
+('b', 'a', 'c', 'F', 'E')
+('b', 'a', 'E', 'c', 'F')
+('b', 'a', 'E', 'F', 'c')
+('b', 'a', 'F', 'c', 'E')
+('b', 'a', 'F', 'E', 'c')
+('b', 'c', 'a', 'E', 'F')
+('b', 'c', 'a', 'F', 'E')
+('b', 'c', 'E', 'a', 'F')
+('b', 'c', 'E', 'F', 'a')
+('b', 'c', 'F', 'a', 'E')
+('b', 'c', 'F', 'E', 'a')
+('b', 'E', 'a', 'c', 'F')
+('b', 'E', 'a', 'F', 'c')
+('b', 'E', 'c', 'a', 'F')
+('b', 'E', 'c', 'F', 'a')
+('b', 'E', 'F', 'a', 'c')
+('b', 'E', 'F', 'c', 'a')
+('b', 'F', 'a', 'c', 'E')
+('b', 'F', 'a', 'E', 'c')
+('b', 'F', 'c', 'a', 'E')
+('b', 'F', 'c', 'E', 'a')
+('b', 'F', 'E', 'a', 'c')
+('b', 'F', 'E', 'c', 'a')
+('c', 'a', 'b', 'E', 'F')
+('c', 'a', 'b', 'F', 'E')
+('c', 'a', 'E', 'b', 'F')
+('c', 'a', 'E', 'F', 'b')
+('c', 'a', 'F', 'b', 'E')
+('c', 'a', 'F', 'E', 'b')
+('c', 'b', 'a', 'E', 'F')
+('c', 'b', 'a', 'F', 'E')
+('c', 'b', 'E', 'a', 'F')
+('c', 'b', 'E', 'F', 'a')
+('c', 'b', 'F', 'a', 'E')
+('c', 'b', 'F', 'E', 'a')
+('c', 'E', 'a', 'b', 'F')
+('c', 'E', 'a', 'F', 'b')
+('c', 'E', 'b', 'a', 'F')
+('c', 'E', 'b', 'F', 'a')
+('c', 'E', 'F', 'a', 'b')
+('c', 'E', 'F', 'b', 'a')
+('c', 'F', 'a', 'b', 'E')
+('c', 'F', 'a', 'E', 'b')
+('c', 'F', 'b', 'a', 'E')
+('c', 'F', 'b', 'E', 'a')
+('c', 'F', 'E', 'a', 'b')
+('c', 'F', 'E', 'b', 'a')
+('E', 'a', 'b', 'c', 'F')
+('E', 'a', 'b', 'F', 'c')
+('E', 'a', 'c', 'b', 'F')
+('E', 'a', 'c', 'F', 'b')
+('E', 'a', 'F', 'b', 'c')
+('E', 'a', 'F', 'c', 'b')
+('E', 'b', 'a', 'c', 'F')
+('E', 'b', 'a', 'F', 'c')
+('E', 'b', 'c', 'a', 'F')
+('E', 'b', 'c', 'F', 'a')
+('E', 'b', 'F', 'a', 'c')
+('E', 'b', 'F', 'c', 'a')
+('E', 'c', 'a', 'b', 'F')
+('E', 'c', 'a', 'F', 'b')
+('E', 'c', 'b', 'a', 'F')
+('E', 'c', 'b', 'F', 'a')
+('E', 'c', 'F', 'a', 'b')
+('E', 'c', 'F', 'b', 'a')
+('E', 'F', 'a', 'b', 'c')
+('E', 'F', 'a', 'c', 'b')
+('E', 'F', 'b', 'a', 'c')
+('E', 'F', 'b', 'c', 'a')
+('E', 'F', 'c', 'a', 'b')
+('E', 'F', 'c', 'b', 'a')
+('F', 'a', 'b', 'c', 'E')
+('F', 'a', 'b', 'E', 'c')
+('F', 'a', 'c', 'b', 'E')
+('F', 'a', 'c', 'E', 'b')
+('F', 'a', 'E', 'b', 'c')
+('F', 'a', 'E', 'c', 'b')
+('F', 'b', 'a', 'c', 'E')
+('F', 'b', 'a', 'E', 'c')
+('F', 'b', 'c', 'a', 'E')
+('F', 'b', 'c', 'E', 'a')
+('F', 'b', 'E', 'a', 'c')
+('F', 'b', 'E', 'c', 'a')
+('F', 'c', 'a', 'b', 'E')
+('F', 'c', 'a', 'E', 'b')
+('F', 'c', 'b', 'a', 'E')
+('F', 'c', 'b', 'E', 'a')
+('F', 'c', 'E', 'a', 'b')
+('F', 'c', 'E', 'b', 'a')
+('F', 'E', 'a', 'b', 'c')
+('F', 'E', 'a', 'c', 'b')
+('F', 'E', 'b', 'a', 'c')
+('F', 'E', 'b', 'c', 'a')
+('F', 'E', 'c', 'a', 'b')
+('F', 'E', 'c', 'b', 'a')
+배열의 총 개수는 120개이다.
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu2</span><span class="o">.</span><span class="n">ball</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['a', 'b', 'c', 'E', 'F']
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu3</span><span class="o">=</span><span class="n">Permu</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="s">'B'</span><span class="p">,</span><span class="s">'B'</span><span class="p">])</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu3</span><span class="o">.</span><span class="n">get_all_case</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ('a', 'b', 'B', 'B', 'B')
+('a', 'B', 'b', 'B', 'B')
+('a', 'B', 'B', 'b', 'B')
+('a', 'B', 'B', 'B', 'b')
+('b', 'a', 'B', 'B', 'B')
+('b', 'B', 'a', 'B', 'B')
+('b', 'B', 'B', 'a', 'B')
+('b', 'B', 'B', 'B', 'a')
+('B', 'a', 'b', 'B', 'B')
+('B', 'a', 'B', 'b', 'B')
+('B', 'a', 'B', 'B', 'b')
+('B', 'b', 'a', 'B', 'B')
+('B', 'b', 'B', 'a', 'B')
+('B', 'b', 'B', 'B', 'a')
+('B', 'B', 'a', 'b', 'B')
+('B', 'B', 'a', 'B', 'b')
+('B', 'B', 'b', 'a', 'B')
+('B', 'B', 'b', 'B', 'a')
+('B', 'B', 'B', 'a', 'b')
+('B', 'B', 'B', 'b', 'a')
+배열의 총 개수는 20개이다.
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">([</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">]))</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  None
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">]</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['b', 'a', 'c']
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu3</span><span class="o">.</span><span class="n">random_list</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['a', 'b', 'B', 'B', 'B']
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu3</span><span class="o">.</span><span class="n">random_list</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['B', 'B', 'a', 'b', 'B']
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">permu3</span><span class="o">.</span><span class="n">random_list</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['B', 'b', 'B', 'a', 'B']
+</code></pre></div></div>
+
+:ET

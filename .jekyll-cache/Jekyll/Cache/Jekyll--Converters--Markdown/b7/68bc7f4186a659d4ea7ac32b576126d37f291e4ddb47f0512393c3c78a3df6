@@ -1,0 +1,8 @@
+I"�<h2 id="파이썬-클래스와-데이터베이스-테이블의-매핑">파이썬 클래스와 데이터베이스 테이블의 매핑</h2>
+<ul>
+  <li>blog앱 Post모델 : blog_post 데이터베이스테이블</li>
+  <li>blog앱 Comment모델: blog_comment 데이터베이스테이블</li>
+  <li>model과 DB 테이블과 매핑</li>
+  <li>model instance 는 DB 테이블의 하나의 row와 매핑</li>
+</ul>
+:ET

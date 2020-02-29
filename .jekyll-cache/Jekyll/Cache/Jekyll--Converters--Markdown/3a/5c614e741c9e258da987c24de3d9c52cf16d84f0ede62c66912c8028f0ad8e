@@ -1,0 +1,50 @@
+I"�<h2 id="base_dir">BASE_DIR</h2>
+<ul>
+  <li>설정파일에 설정함.</li>
+  <li>
+    <p>보통 최상위root, 즉, manage.py가 있는 폴더를 말함</p>
+  </li>
+  <li>staic_url이 staic 인 경우
+    <ul>
+      <li>http://localhost:8000/staic/blog/style.css 와 같은 요청을 static파일 요청으로 구분한다.</li>
+    </ul>
+  </li>
+  <li>askdjango/static/style.css (http://localhost:8000/static/style.css)
+    <ul>
+      <li>filesystemfinder (즉, STATICFILES_DIRS에 적용된 것)</li>
+    </ul>
+  </li>
+  <li>blog/static/blog/style.css(http://localhost:8000/static/blogstyle.css)
+    <ul>
+      <li>개별앱에 적용된 것</li>
+    </ul>
+  </li>
+  <li>이때 리스트는 개별앱에 대한 static가 우선순위
+    <ul>
+      <li>만약 blog/static/style.css 라 설정하였고, http://localhost:8000/static/style.css 라는 요청이 들어오면 askdjango/static/style.css는 로드되지 않고 개별앱인 blog/static/style.css만 로드됨</li>
+      <li>따라서 앱이름/static/앱이름/style.css 규칙을 따를 필요가 있음.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="stylecss-사용">style.css 사용</h2>
+
+<p>{% load static%}
+&lt;link rel=”stylesheet” href=”{%static “style.css”%}”/&gt; 삽입
+&lt;–! html 주석, django에서는 처리하지만 client에서 처리안함 –&gt;</p>
+
+<ul>
+  <li>static에 관한 어떠한 urls.py, views.py 같은 설정이 없어도 위의 접근이 가능한 이유는 debug=True이기 때문임. 즉 상용서버에서는 별도의 설정이 필요함.</li>
+  <li>우리는 S3의 도움을 받아 서빙하는 것임.</li>
+  <li>collectstatic 의 명령을 통해 settings.STATIC_ROOT로 이것들이 자동 복사되고, 이를 웹서버가 참고하는 것임.
+    <ul>
+      <li>askdjango/static/style.css 은 settings.STATIC_ROOT/style.css로 복사</li>
+      <li>blog/static/blog/style.css 은 settings.STATIC_ROOT/blog/style.css로 복사</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>AskDjango EP26</p>
+</blockquote>
+:ET

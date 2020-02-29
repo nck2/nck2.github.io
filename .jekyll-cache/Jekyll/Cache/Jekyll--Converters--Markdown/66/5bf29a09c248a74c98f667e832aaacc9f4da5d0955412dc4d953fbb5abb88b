@@ -1,0 +1,25 @@
+I"�<h3 id="문제상황">문제상황</h3>
+<ul>
+  <li>학교 컴에서
+현재 python3 와 주피터를 같이 쓰고 있는 상황</li>
+  <li>주피터에 패키지를 인스톨하기 위해 pip3를 사용하면 주피터가 아닌 python3에 패키지가 install 되는 경우가 많다.
+    <ul>
+      <li><a href="http://egloos.zum.com/mcchae/v/11267105">conda관련</a> : 이를 참조함</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="해결방안">해결방안</h3>
+<ul>
+  <li>(windows경우) which conda 를 통해 위치를 파악해보려함.
+하지만 환경변수에 등록되지 않아 conda명령어를 찾지 못함.</li>
+  <li>이를 해결하기 위해 컴의 내용을 검색해본 결과
+C:\ProgramData\Anaconda3\exec\conda.bat
+에 있음을 알수 있었음.</li>
+  <li>위치를 변경하고 conda를 실행하면 됨.</li>
+  <li>conda install을 통해 패키지 인스톨.</li>
+  <li>conda list를 통해 설치해 패키지를 확인하면 설치된 것을 알 수 있음.!</li>
+</ul>
+:ET

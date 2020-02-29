@@ -1,0 +1,262 @@
+I";r<h2 id="장고-배포-방법">장고 배포 방법</h2>
+
+<ol>
+  <li>manage.py에 있는 곳에 fabfile.py 를 아래와 같이 만든다.</li>
+  <li>같은 위치에 deploy.json 과 envs.json (빈파일)을 만든다.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c1"># fabfile.py
+</span><span class="kn">from</span> <span class="nn">fabric.contrib.files</span> <span class="kn">import</span> <span class="n">append</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">sed</span><span class="p">,</span> <span class="n">put</span>
+<span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">env</span><span class="p">,</span> <span class="n">local</span><span class="p">,</span> <span class="n">run</span><span class="p">,</span> <span class="n">sudo</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">PROJECT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span><span class="c1">#settings 가 있는 제일 상위 폴더
+# PROJECT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),'fbtest')
+# PROJECT_DIR = './fbtest' # settings가 있는 폴더
+</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_DIR</span><span class="p">,</span> <span class="s">"deploy.json"</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">envs</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">get_env</span><span class="p">(</span><span class="n">setting</span><span class="p">,</span> <span class="n">envs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">envs</span><span class="p">[</span><span class="n">setting</span><span class="p">]</span>
+
+<span class="c1"># TODO: Required Fields: REPO_URL, PROJECT_NAME, REMOTE_HOST, REMOTE_PASSWORD, REMOTE_USER @ deploy.json
+</span>
+<span class="c1"># developer: chagne this!
+</span><span class="n">REPO_URL</span> <span class="o">=</span> <span class="n">get_env</span><span class="p">(</span><span class="s">'REPO_URL'</span><span class="p">,</span> <span class="n">envs</span><span class="p">)</span>
+<span class="n">PROJECT_NAME</span> <span class="o">=</span> <span class="n">get_env</span><span class="p">(</span><span class="s">'PROJECT_NAME'</span><span class="p">,</span> <span class="n">envs</span><span class="p">)</span>
+<span class="n">REMOTE_HOST</span> <span class="o">=</span> <span class="n">get_env</span><span class="p">(</span><span class="s">'REMOTE_HOST'</span><span class="p">,</span> <span class="n">envs</span><span class="p">)</span>
+<span class="n">REMOTE_HOST_SSH</span> <span class="o">=</span> <span class="n">get_env</span><span class="p">(</span><span class="s">'REMOTE_HOST_SSH'</span><span class="p">,</span> <span class="n">envs</span><span class="p">)</span>
+<span class="n">REMOTE_USER</span> <span class="o">=</span> <span class="n">get_env</span><span class="p">(</span><span class="s">'REMOTE_USER'</span><span class="p">,</span> <span class="n">envs</span><span class="p">)</span>
+<span class="n">REMOTE_PASSWORD</span> <span class="o">=</span> <span class="n">get_env</span><span class="p">(</span><span class="s">'REMOTE_PASSWORD'</span><span class="p">,</span> <span class="n">envs</span><span class="p">)</span>
+<span class="n">STATIC_ROOT_NAME</span> <span class="o">=</span> <span class="s">'static'</span>   <span class="c1">#---------------------------- 수정
+</span><span class="n">STATIC_URL_NAME</span> <span class="o">=</span> <span class="s">'static'</span>    <span class="c1">#---------------------------- 수정
+</span><span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="s">'media'</span>          <span class="c1">#---------------------------- 수정
+</span>
+<span class="c1"># TODO: Server Engineer: you should add env.user as sudo user and NOT be root
+</span><span class="n">env</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">REMOTE_USER</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">REMOTE_USER</span>
+<span class="c1"># Option: env.password
+</span><span class="n">env</span><span class="o">.</span><span class="n">hosts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">REMOTE_HOST_SSH</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">env</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">REMOTE_PASSWORD</span>
+<span class="n">project_folder</span> <span class="o">=</span> <span class="s">'/home/{}/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">PROJECT_NAME</span><span class="p">)</span>
+<span class="n">apt_requirements</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'curl'</span><span class="p">,</span>
+    <span class="s">'git'</span><span class="p">,</span>
+    <span class="s">'python3-dev'</span><span class="p">,</span>
+    <span class="s">'python3-pip'</span><span class="p">,</span>
+    <span class="s">'build-essential'</span><span class="p">,</span>
+    <span class="s">'libpq-dev'</span><span class="p">,</span>
+    <span class="s">'postgresql'</span><span class="p">,</span>
+    <span class="s">'postgresql-contrib'</span><span class="p">,</span>
+    <span class="s">'apache2'</span><span class="p">,</span>
+    <span class="s">'libapache2-mod-wsgi-py3'</span><span class="p">,</span>
+    <span class="s">'python3-setuptools'</span><span class="p">,</span>
+    <span class="s">'libssl-dev'</span><span class="p">,</span>
+    <span class="s">'libffi-dev'</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">new_server</span><span class="p">():</span>
+    <span class="n">setup</span><span class="p">()</span>
+    <span class="n">deploy</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">setup</span><span class="p">():</span>
+    <span class="n">_mkdir_ssh</span><span class="p">()</span>
+    <span class="n">_register_ssh_key</span><span class="p">()</span>
+    <span class="n">_get_latest_apt</span><span class="p">()</span>
+    <span class="n">_install_apt_requirements</span><span class="p">(</span><span class="n">apt_requirements</span><span class="p">)</span>
+    <span class="n">_make_virtualenv</span><span class="p">()</span>
+    <span class="c1">#_ufw_allow()
+</span>
+<span class="k">def</span> <span class="nf">deploy</span><span class="p">():</span>
+    <span class="n">_get_latest_source</span><span class="p">()</span>
+    <span class="n">_put_envs</span><span class="p">()</span>
+    <span class="n">_update_settings</span><span class="p">()</span>
+    <span class="n">_update_virtualenv</span><span class="p">()</span>
+    <span class="n">_update_static_files</span><span class="p">()</span>
+    <span class="n">_update_database</span><span class="p">()</span>
+    <span class="c1">#_ufw_allow()
+</span>    <span class="n">_make_virtualhost</span><span class="p">()</span>
+    <span class="n">_grant_apache2</span><span class="p">()</span>
+    <span class="n">_restart_apache2</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">create_superuser</span><span class="p">():</span>
+    <span class="n">virtualenv_folder</span> <span class="o">=</span> <span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/../.virtualenvs/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+    <span class="n">run</span><span class="p">(</span><span class="s">'cd </span><span class="si">%</span><span class="s">s &amp;&amp; </span><span class="si">%</span><span class="s">s/bin/python3 manage.py createsuperuser'</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">project_folder</span><span class="p">,</span> <span class="n">virtualenv_folder</span>
+    <span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">myg</span><span class="p">(</span><span class="n">val</span><span class="o">=</span><span class="s">"blank"</span><span class="p">):</span>
+    <span class="s">'''git push하고 배포'''</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'git add .'</span><span class="p">)</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'git commit -m {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">'git push'</span><span class="p">)</span>
+    <span class="n">deploy</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_mkdir_ssh</span><span class="p">():</span>
+    <span class="n">USER_HOME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">'~'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">USER_HOME</span><span class="p">,</span> <span class="s">'.ssh/'</span><span class="p">)):</span>
+        <span class="n">local</span><span class="p">(</span><span class="s">"mkdir {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">USER_HOME</span><span class="p">,</span> <span class="s">'.ssh'</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">_register_ssh_key</span><span class="p">():</span>
+    <span class="n">local</span><span class="p">(</span><span class="s">"ssh-keyscan -H {} &gt;&gt; {}"</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">REMOTE_HOST</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">'~/.ssh/known_hosts'</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">migrate</span><span class="p">():</span>
+    <span class="n">_put_envs</span><span class="p">()</span>
+    <span class="n">_update_settings</span><span class="p">()</span>
+    <span class="n">_update_virtualenv</span><span class="p">()</span>
+    <span class="n">_update_static_files</span><span class="p">()</span>
+    <span class="n">_update_database</span><span class="p">()</span>
+    <span class="n">_make_virtualhost</span><span class="p">()</span>
+    <span class="n">_grant_apache2</span><span class="p">()</span>
+    <span class="n">_restart_apache2</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">_put_envs</span><span class="p">():</span>
+    <span class="n">put</span><span class="p">(</span><span class="s">'envs.json'</span><span class="p">,</span> <span class="s">'~/{}/envs.json'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">))</span>
+    <span class="c1">#put('bank_envs.json', '~/{}/bank_envs.json'.format(PROJECT_NAME))
+</span>
+<span class="k">def</span> <span class="nf">_get_latest_apt</span><span class="p">():</span>
+    <span class="n">update_or_not</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'would you update?: [y/n]'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">update_or_not</span><span class="o">==</span><span class="s">'y'</span><span class="p">:</span>
+        <span class="n">sudo</span><span class="p">(</span><span class="s">'sudo apt-get update &amp;&amp; sudo apt-get -y upgrade'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_install_apt_requirements</span><span class="p">(</span><span class="n">apt_requirements</span><span class="p">):</span>
+    <span class="n">reqs</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">req</span> <span class="ow">in</span> <span class="n">apt_requirements</span><span class="p">:</span>
+        <span class="n">reqs</span> <span class="o">+=</span> <span class="p">(</span><span class="s">' '</span> <span class="o">+</span> <span class="n">req</span><span class="p">)</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">'sudo apt-get -y install {}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">reqs</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_make_virtualenv</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="s">'~/.virtualenvs'</span><span class="p">):</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="s">'''"# python virtualenv settings
+                    export WORKON_HOME=~/.virtualenvs
+                    export VIRTUALENVWRAPPER_PYTHON="$(command </span><span class="err">\</span><span class="s">which python3)"  # location of python3
+                    source /usr/local/bin/virtualenvwrapper.sh"'''</span>
+        <span class="n">run</span><span class="p">(</span><span class="s">'mkdir ~/.virtualenvs'</span><span class="p">)</span>
+        <span class="n">sudo</span><span class="p">(</span><span class="s">'sudo pip3 install virtualenv virtualenvwrapper'</span><span class="p">)</span>
+        <span class="n">run</span><span class="p">(</span><span class="s">'echo {} &gt;&gt; ~/.bashrc'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">script</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_get_latest_source</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/.git'</span><span class="p">):</span>
+        <span class="n">run</span><span class="p">(</span><span class="s">'cd </span><span class="si">%</span><span class="s">s &amp;&amp; git fetch'</span> <span class="o">%</span> <span class="p">(</span><span class="n">project_folder</span><span class="p">,))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">run</span><span class="p">(</span><span class="s">'git clone </span><span class="si">%</span><span class="s">s </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span> <span class="p">(</span><span class="n">REPO_URL</span><span class="p">,</span> <span class="n">project_folder</span><span class="p">))</span>
+    <span class="n">current_commit</span> <span class="o">=</span> <span class="n">local</span><span class="p">(</span><span class="s">"git log -n 1 --format=</span><span class="si">%</span><span class="s">H"</span><span class="p">,</span> <span class="n">capture</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">run</span><span class="p">(</span><span class="s">'cd </span><span class="si">%</span><span class="s">s &amp;&amp; git reset --hard </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span> <span class="p">(</span><span class="n">project_folder</span><span class="p">,</span> <span class="n">current_commit</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_update_settings</span><span class="p">():</span>
+    <span class="n">settings_path</span> <span class="o">=</span> <span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/{}/settings.py'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+
+    <span class="n">sed</span><span class="p">(</span><span class="n">settings_path</span><span class="p">,</span> <span class="s">"DEBUG = True"</span><span class="p">,</span> <span class="s">"DEBUG = False"</span><span class="p">)</span>
+    <span class="c1"># sed(settings_path, "DEBUG = True", "DEBUG = True")
+</span>
+    <span class="n">sed</span><span class="p">(</span><span class="n">settings_path</span><span class="p">,</span>
+        <span class="s">'ALLOWED_HOSTS = .+$'</span><span class="p">,</span>
+        <span class="s">'ALLOWED_HOSTS = ["</span><span class="si">%</span><span class="s">s"]'</span> <span class="o">%</span> <span class="p">(</span><span class="n">REMOTE_HOST</span><span class="p">,),</span>
+
+    <span class="p">)</span>
+    <span class="n">secret_key_file</span> <span class="o">=</span> <span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/{}/secret_key.py'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">secret_key_file</span><span class="p">):</span>
+        <span class="n">chars</span> <span class="o">=</span> <span class="s">'abcdefghijklmnopqrstuvwxyz0123456789!@#$</span><span class="si">%</span><span class="s">^&amp;*(-_=+)'</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">SystemRandom</span><span class="p">()</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+        <span class="n">append</span><span class="p">(</span><span class="n">secret_key_file</span><span class="p">,</span> <span class="s">"SECRET_KEY = '</span><span class="si">%</span><span class="s">s'"</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,))</span>
+    <span class="n">append</span><span class="p">(</span><span class="n">settings_path</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">from .secret_key import SECRET_KEY'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_update_virtualenv</span><span class="p">():</span>
+    <span class="n">virtualenv_folder</span> <span class="o">=</span> <span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/../.virtualenvs/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">virtualenv_folder</span> <span class="o">+</span> <span class="s">'/bin/pip'</span><span class="p">):</span>
+        <span class="n">run</span><span class="p">(</span><span class="s">'cd /home/</span><span class="si">%</span><span class="s">s/.virtualenvs &amp;&amp; virtualenv </span><span class="si">%</span><span class="s">s'</span> <span class="o">%</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">PROJECT_NAME</span><span class="p">))</span>
+    <span class="n">run</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">s/bin/pip install -r </span><span class="si">%</span><span class="s">s/requirements.txt'</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">virtualenv_folder</span><span class="p">,</span> <span class="n">project_folder</span>
+    <span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_update_static_files</span><span class="p">():</span>
+    <span class="n">virtualenv_folder</span> <span class="o">=</span> <span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/../.virtualenvs/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+    <span class="n">run</span><span class="p">(</span><span class="s">'cd </span><span class="si">%</span><span class="s">s &amp;&amp; </span><span class="si">%</span><span class="s">s/bin/python3 manage.py collectstatic --noinput'</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">project_folder</span><span class="p">,</span> <span class="n">virtualenv_folder</span>
+    <span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_update_database</span><span class="p">():</span>
+    <span class="n">virtualenv_folder</span> <span class="o">=</span> <span class="n">project_folder</span> <span class="o">+</span> <span class="s">'/../.virtualenvs/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+    <span class="n">run</span><span class="p">(</span><span class="s">'cd </span><span class="si">%</span><span class="s">s &amp;&amp; </span><span class="si">%</span><span class="s">s/bin/python3 manage.py migrate --noinput'</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">project_folder</span><span class="p">,</span> <span class="n">virtualenv_folder</span>
+    <span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_ufw_allow</span><span class="p">():</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">"ufw allow 'Apache Full'"</span><span class="p">)</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">"ufw reload"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_make_virtualhost</span><span class="p">():</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="s">"""'&lt;VirtualHost *:80&gt;
+    ServerName {servername}
+    Alias /{static_url} /home/{username}/{project_name}/{static_root}
+    Alias /{media_url} /home/{username}/{project_name}/{media_url}
+    &lt;Directory /home/{username}/{project_name}/{media_url}&gt;
+        Require all granted
+    &lt;/Directory&gt;
+    &lt;Directory /home/{username}/{project_name}/{static_root}&gt;
+        Require all granted
+    &lt;/Directory&gt;
+    &lt;Directory /home/{username}/{project_name}/{project_name}&gt;
+        &lt;Files wsgi.py&gt;
+            Require all granted
+        &lt;/Files&gt;
+    &lt;/Directory&gt;
+    WSGIDaemonProcess {project_name} python-home=/home/{username}/.virtualenvs/{project_name} python-path=/home/{username}/{project_name}
+    WSGIProcessGroup {project_name}
+    WSGIScriptAlias / /home/{username}/{project_name}/{project_name}/wsgi.py
+    ErrorLog $/error.log
+    CustomLog $/access.log combined
+    &lt;/VirtualHost&gt;'"""</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span>
+        <span class="n">static_root</span><span class="o">=</span><span class="n">STATIC_ROOT_NAME</span><span class="p">,</span>
+        <span class="n">username</span><span class="o">=</span><span class="n">env</span><span class="o">.</span><span class="n">user</span><span class="p">,</span>
+        <span class="n">project_name</span><span class="o">=</span><span class="n">PROJECT_NAME</span><span class="p">,</span>
+        <span class="n">static_url</span><span class="o">=</span><span class="n">STATIC_URL_NAME</span><span class="p">,</span>
+        <span class="n">servername</span><span class="o">=</span><span class="n">REMOTE_HOST</span><span class="p">,</span>
+        <span class="n">media_url</span><span class="o">=</span><span class="n">MEDIA_ROOT</span>
+    <span class="p">)</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">'echo {} &gt; /etc/apache2/sites-available/{}.conf'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">script</span><span class="p">,</span> <span class="n">PROJECT_NAME</span><span class="p">))</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">'a2ensite {}.conf'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">_grant_apache2</span><span class="p">():</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">'chown :www-data ~/{}'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">))</span>
+    <span class="c1"># enable below if use sqlite3
+</span>    <span class="n">sudo</span><span class="p">(</span><span class="s">'chmod 775 ~/{}/db.sqlite3'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">PROJECT_NAME</span><span class="p">))</span>
+    <span class="c1"># sudo('chmod a+w ~/{}/db.sqlite3'.format(PROJECT_NAME))
+</span><span class="k">def</span> <span class="nf">_restart_apache2</span><span class="p">():</span>
+    <span class="n">sudo</span><span class="p">(</span><span class="s">'sudo service apache2 restart'</span><span class="p">)</span></code></pre></figure>
+
+<h2 id="과정">과정</h2>
+<ul>
+  <li>gitignore 에 sqlite3 를 추가하여 데이터가 지워지지 않도록함.</li>
+  <li>실행하면 github의 유저네임, 비번을 입력하도록 하는 창이 계속 나타났음.</li>
+  <li>이때에는 서버의 .ssh/에 퍼블릭 키를 생성하고 이를 github에 등록하면됨. 또한 연결된 주소는 ssh 주소로 바꾸면 됨.</li>
+  <li>서버에서 git fetch에 대한 명령에 의해 나타남</li>
+  <li>git 과 연결할때 가장 처음에는 ssh말고 그냥 주소로 해야함.</li>
+  <li>staic_root 를 세팅파일에 추가해야 함.</li>
+  <li>서버에 ssh로 접속하여 서버에서 git 명령이 ssh로 나타나도록 설정하는 것이 중요(주소를 git에서 ssh형태로 복사 !서버에 .ssh가 있는 지 확인하였음)</li>
+  <li>myg 를 통해 git push와 배포자동화 (명령 : fab myg:”pushname”)</li>
+  <li>처음에 ssh 관련 오류가 나서, 주소를 ip주소로 바꾸니 됨.</li>
+  <li>ssh 오류가 나서 .ssh/known_hosts를 지우니 해결됨.</li>
+  <li>git reset –hard ***오류가 발생, 서버측에 git 장소를 제대로 지정하니 해결됨.</li>
+  <li>혹은 git push가 다되었는지 확인! 꼭!</li>
+  <li>fatal: Could not read from remote repository.
+Please make sure you have the correct access rights and the repository exists.</li>
+  <li>이 경우 서버에 직접 ssh키를 생성하고 서버에 생성된 공개키를 github에 등록하면 되었음.</li>
+  <li>key_load_public: invalid format Permission denied (publickey). fatal: Could not read from remote repository.</li>
+  <li>위의 에러의 경우 서버에 직접 ssh키를 생성하고 서버에 생성된 공개키를 github에 등록하면 되었음. 이때 서버에 개인키가 있고 이것에 대한 공개키가 github에 있어야 하는 것 같음.
+    <blockquote>
+      <p>https://beomi.github.io/2017/03/20/Deploy-Django-with-Fabric/</p>
+    </blockquote>
+  </li>
+</ul>
+:ET

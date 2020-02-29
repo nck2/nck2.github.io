@@ -1,0 +1,11 @@
+I"â<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">myf</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">args</span><span class="p">[</span><span class="s">'myname'</span><span class="p">]</span><span class="o">=</span><span class="s">'nck'</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>  </div>
+</div>
+:ET

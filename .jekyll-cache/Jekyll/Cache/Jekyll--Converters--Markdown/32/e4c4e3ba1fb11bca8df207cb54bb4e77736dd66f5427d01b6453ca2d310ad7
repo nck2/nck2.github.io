@@ -1,0 +1,213 @@
+I"�&<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">myf</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">args</span><span class="p">[</span><span class="s">'myname'</span><span class="p">]</span><span class="o">=</span><span class="s">'nck'</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myf</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  a
+b
+myname
+&lt;class 'dict'&gt;
+{'a': 1, 'b': 3, 'myname': 'nck'}
+
+</code></pre></div></div>
+
+<p>args가 사전으로 역할을 함, 이 사전에 추가등을 할 수 있음</p>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span><span class="o">=</span><span class="p">{</span><span class="s">'c'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s">'d'</span><span class="p">:</span><span class="mi">6</span><span class="p">}</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myf</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---------------------------------------------------------------------------
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  TypeError                                 Traceback (most recent call last)
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;ipython-input-8-2e9661a3b0f2&gt; in &lt;module&gt;()
+----&gt; 1 myf(test)
+
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  TypeError: myf() takes 0 positional arguments but 1 was given
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myf</span><span class="p">(</span><span class="o">**</span><span class="n">test</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  c
+d
+myname
+&lt;class 'dict'&gt;
+
+</code></pre></div></div>
+
+<p>test를 언팩킹하여 넣어줘야함</p>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  2
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  (1, 4)
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">packing</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">packing</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  (5, 6)
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  (1, 2)
+</code></pre></div></div>
+
+<p>packing이 됨.</p>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dic1</span><span class="o">=</span><span class="p">{</span><span class="s">'a'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s">'b'</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dic2</span><span class="o">=</span><span class="p">{</span><span class="s">'c'</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s">'d'</span><span class="p">:</span><span class="mi">4</span><span class="p">}</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dic1</span><span class="o">+</span><span class="n">dic2</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ---------------------------------------------------------------------------
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  TypeError                                 Traceback (most recent call last)
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  &lt;ipython-input-5-a503c9b1cf15&gt; in &lt;module&gt;()
+----&gt; 1 dic1+dic2
+
+</code></pre></div></div>
+
+<div class="output_traceback_line highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  TypeError: unsupported operand type(s) for +: 'dict' and 'dict'
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dict</span><span class="p">()</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {}
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="n">dic1</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {'a': 1, 'b': 2}
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">dict</span><span class="p">(</span><span class="o">**</span><span class="n">dic1</span><span class="p">,</span><span class="o">**</span><span class="n">dic2</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+</code></pre></div></div>
+
+:ET

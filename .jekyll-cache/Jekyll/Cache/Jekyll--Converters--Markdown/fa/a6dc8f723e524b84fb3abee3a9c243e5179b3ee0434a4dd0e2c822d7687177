@@ -1,0 +1,196 @@
+I"f/<h2 id="urljoin-사용법">urljoin 사용법</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urljoin</span>
+<span class="n">baseUrl</span> <span class="o">=</span> <span class="s">"http://test.com/html/a.html"</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">,</span> <span class="s">"b.html"</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">,</span> <span class="s">"sub/c.html"</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">,</span> <span class="s">"../index.html"</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">,</span> <span class="s">"../img/hoge.png"</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">print</span><span class="p">(</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">,</span> <span class="s">"../css/hoge.css"</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  http://test.com/html/b.html
+http://test.com/html/sub/c.html
+http://test.com/index.html
+http://test.com/img/hoge.png
+http://test.com/css/hoge.css
+
+</code></pre></div></div>
+
+<h2 id="태그선택자">태그선택자</h2>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">html</span> <span class="o">=</span> <span class="s">"""
+&lt;html&gt;&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="http://www.naver.com"&gt;naver&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="http://www.daum.net"&gt;daum&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="https://www.google.com"&gt;google&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="https://www.tistory.com"&gt;tistory&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;
+"""</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'html.parser'</span><span class="p">)</span>
+<span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"a"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [&lt;a href="http://www.naver.com"&gt;naver&lt;/a&gt;, &lt;a href="http://www.daum.net"&gt;daum&lt;/a&gt;, &lt;a href="https://www.google.com"&gt;google&lt;/a&gt;, &lt;a href="https://www.tistory.com"&gt;tistory&lt;/a&gt;]
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'a'</span> <span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">,</span><span class="n">a</span> <span class="p">)</span>
+    <span class="n">href</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s">'href'</span><span class="p">]</span>  <span class="c1"># 또는 A.attrs['href']
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'href'</span><span class="p">,</span><span class="n">href</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'txt'</span><span class="p">,</span><span class="n">a</span><span class="o">.</span><span class="n">text</span><span class="p">,)</span> <span class="c1">#또는 a.string
+</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  a &lt;class 'bs4.element.Tag'&gt; &lt;a href="http://www.naver.com"&gt;naver&lt;/a&gt;
+href http://www.naver.com
+txt naver
+a &lt;class 'bs4.element.Tag'&gt; &lt;a href="http://www.daum.net"&gt;daum&lt;/a&gt;
+href http://www.daum.net
+txt daum
+a &lt;class 'bs4.element.Tag'&gt; &lt;a href="https://www.google.com"&gt;google&lt;/a&gt;
+href https://www.google.com
+txt google
+a &lt;class 'bs4.element.Tag'&gt; &lt;a href="https://www.tistory.com"&gt;tistory&lt;/a&gt;
+href https://www.tistory.com
+txt tistory
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"a"</span><span class="p">,</span> <span class="n">string</span><span class="o">=</span><span class="s">'daum'</span><span class="p">)</span> <span class="c1"># a 태그 중 문자가 daum 인 것
+</span><span class="n">a</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [&lt;a href="http://www.daum.net"&gt;daum&lt;/a&gt;]
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  daum
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span><span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">"a"</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1">#limit=0 무제한
+</span><span class="n">b</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [&lt;a href="http://www.naver.com"&gt;naver&lt;/a&gt;,
+ &lt;a href="http://www.daum.net"&gt;daum&lt;/a&gt;,
+ &lt;a href="https://www.google.com"&gt;google&lt;/a&gt;]
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="p">[</span><span class="s">'naver'</span><span class="p">])</span> <span class="c1">#보통은 정규표현식으로 사용
+</span><span class="n">c</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ['naver']
+</code></pre></div></div>
+
+<h2 id="css-selector">css selector</h2>
+
+<h3 id="css-설명서"><a href="https://www.w3schools.com/CSSref/css_selectors.asp">css 설명서</a></h3>
+<h3 id="css-연습소"><a href="https://www.w3schools.com/CSSref/trysel.asp">css 연습소</a></h3>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">html</span> <span class="o">=</span> <span class="s">"""
+&lt;html&gt;&lt;body&gt;
+&lt;div id="main"&gt;
+  &lt;h1&gt;강의목록&lt;/h1&gt;
+  &lt;ul class="lecs"&gt;
+    &lt;li&gt;Java 초고수 되기&lt;/li&gt;
+    &lt;li&gt;파이썬 기초 프로그래밍&lt;/li&gt;
+    &lt;li&gt;파이썬 머신러닝 프로그래밍&lt;/li&gt;
+    &lt;li&gt;안드로이드 블루투스 프로그래밍&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;
+"""</span>
+
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'html.parser'</span><span class="p">)</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">"div#main &gt; h1"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  [&lt;h1&gt;강의목록&lt;/h1&gt;]
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">h1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  강의목록
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">h11</span><span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s">"div#main &gt; h1"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">h11</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  강의목록
+
+</code></pre></div></div>
+
+<div class="input_area">
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">list_li</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s">"#main &gt; ul.lecs &gt; li"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">list_li</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">li</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+</div>
+
+<div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Java 초고수 되기
+파이썬 기초 프로그래밍
+파이썬 머신러닝 프로그래밍
+안드로이드 블루투스 프로그래밍
+
+</code></pre></div></div>
+:ET
