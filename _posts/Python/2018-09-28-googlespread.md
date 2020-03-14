@@ -3,6 +3,7 @@ title: "구글 스프레드시트 "
 date: "2018-09-28 00:11"
 # categories: Python
   #Computer,Python,Math,Django,Excel,AWS, Crawl
+categories: 업무자동화
 tag: Python
   #Computer,Python,Math,Django,Excel,AWS, Crawl
 
