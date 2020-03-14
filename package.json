@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "npm-run-all": "^1.7.0",
-    "onchange": "^2.2.0",
+    "onchange": "^6.1.0",
     "uglify-js": "^2.6.1"
   },
   "scripts": {
@@ -31,5 +31,8 @@
     "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
     "build:js": "npm run uglify && npm run add-banner",
     "start": "jekyll serve --livereload --drafts"
+  },
+  "dependencies": {
+    "braces": "^3.0.2"
   }
 }
