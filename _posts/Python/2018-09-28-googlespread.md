@@ -1,5 +1,5 @@
 ---
-title: "구글 스프레드시트 "
+title: "Python으로 구글 스프레드시트 작업하기"
 date: "2018-09-28 00:11"
 # categories: Python
   #Computer,Python,Math,Django,Excel,AWS, Crawl

@@ -1,7 +1,7 @@
 ---
 # layout: 'single_math'
 #post
-title: 파이썬으로 파일이름 읽기 및 엑셀 내용 읽기 
+title: Python으로 특정폴더 내 파일이름 읽기 및 엑셀 내용 읽기 
 date: 2020-03-05
 categories: 업무자동화
 tag: 
