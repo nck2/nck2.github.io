@@ -15,15 +15,15 @@ slug:
 
 ## 과정
 - 처음에 HWP자동화에 대한 유튜브 자료가 있어서 살펴봄.
-https://www.youtube.com/playlist?list=PLalzN02jITUtke62DP2PHZ6mkDid72IC_
+- [회사원코딩](https://www.youtube.com/playlist?list=PLalzN02jITUtke62DP2PHZ6mkDid72IC_)
 - 그런데 한글의 경우 python에 대응하는 api가 잘 나와있지 않아서 어려움이 있음.
 - 그래서 라이브러리가 좀더 활성화된  Msword를 사용해서 작성해보기로 함.
 
 ## 참고
 - 우선 라이브러리는 다음을 참고함.
-https://python-docx.readthedocs.io/en/latest/
-- https://nittaku.tistory.com/253
-- https://m.blog.naver.com/PostView.nhn?blogId=12heejin&logNo=221397002037&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+- [python-docx](https://python-docx.readthedocs.io/en/latest/) 
+- [참고1](https://nittaku.tistory.com/253)
+- [참고2](https://m.blog.naver.com/PostView.nhn?blogId=12heejin&logNo=221397002037&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
 
 ## 코드
 ```python
